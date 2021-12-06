@@ -4,5 +4,7 @@ import main.shared.Password;
 import main.shared.UserName;
 
 public interface LoginDAOModel {
-    public String validateLoginClient(UserName userName, Password password);
+    String validateLoginClient(UserName userName, Password password);
+    String validateLoginOwner(UserName userName, Password password);
+    String validateLoginStaff(UserName userName, Password password);
 }

@@ -44,4 +44,64 @@ public class LoginDAO implements LoginDAOModel{
 
         return result;
     }
+
+    @Override
+    public String validateLoginOwner(UserName userName, Password password) {
+        PreparedStatement statement;
+        ResultSet resultSet;
+        String result = "Failed connection to the database";
+        try {
+            String query ="SELECT * FROM owner WHERE username = ?";
+            statement = dbConnection.createPreparedStatement(query);
+            statement.setString(1, userName.getUserName());
+            resultSet = statement.executeQuery();
+            if(resultSet.next()){
+                String passwordDB = resultSet.getString("password");
+                if(passwordDB.equals(password.getPassword())){
+                    result = "Owner Login Successfully";
+                } else {
+                    result = "Wrong Credentials";
+                }
+            } else {
+                result = "Username does not exist";
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            dbConnection.closeConnection();
+        }
+
+        return result;
+    }
+
+    @Override
+    public String validateLoginStaff(UserName userName, Password password) {
+        PreparedStatement statement;
+        ResultSet resultSet;
+        String result = "Failed connection to the database";
+        try {
+            String query ="SELECT * FROM staff WHERE username = ?";
+            statement = dbConnection.createPreparedStatement(query);
+            statement.setString(1, userName.getUserName());
+            resultSet = statement.executeQuery();
+            if(resultSet.next()){
+                String passwordDB = resultSet.getString("password");
+                if(passwordDB.equals(password.getPassword())){
+                    result = "Staff Login Successfully";
+                } else {
+                    result = "Wrong Credentials";
+                }
+            } else {
+                result = "Username does not exist";
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            dbConnection.closeConnection();
+        }
+
+        return result;
+    }
 }

@@ -8,4 +8,6 @@ import java.rmi.RemoteException;
 
 public interface RemoteClient extends Remote {
     String LoginClient(UserName userName, Password password) throws RemoteException;
+    String LoginOwner(UserName userName, Password password) throws RemoteException;
+    String LoginStaff(UserName userName, Password password) throws RemoteException;
 }

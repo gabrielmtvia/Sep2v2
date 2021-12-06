@@ -16,4 +16,14 @@ public class LoginManager implements LoginModel{
     public String validateLoginClient(UserName userName, Password password) {
         return loginDAO.validateLoginClient(userName,password);
     }
+
+    @Override
+    public String validateLoginOwner(UserName userName, Password password) {
+        return loginDAO.validateLoginOwner(userName, password);
+    }
+
+    @Override
+    public String validateLoginStaff(UserName userName, Password password) {
+        return loginDAO.validateLoginStaff(userName, password);
+    }
 }

@@ -43,4 +43,14 @@ public class RmiServer implements RemoteServer{
     public String LoginClient(UserName userName, Password password) throws RemoteException {
         return modelFactory.getLoginManager().validateLoginClient(userName, password);
     }
+
+    @Override
+    public String LoginOwner(UserName userName, Password password) throws RemoteException {
+        return modelFactory.getLoginManager().validateLoginOwner(userName, password);
+    }
+
+    @Override
+    public String LoginStaff(UserName userName, Password password) throws RemoteException {
+        return modelFactory.getLoginManager().validateLoginStaff(userName, password);
+    }
 }

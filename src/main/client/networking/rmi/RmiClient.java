@@ -33,6 +33,16 @@ public class RmiClient implements RemoteClient, PropertyChangeSubject {
     }
 
     @Override
+    public String LoginOwner(UserName userName, Password password) throws RemoteException {
+        return serverStub.LoginOwner(userName, password);
+    }
+
+    @Override
+    public String LoginStaff(UserName userName, Password password) throws RemoteException {
+        return serverStub.LoginStaff(userName, password);
+    }
+
+    @Override
     public void addPropertyChangeListener(PropertyChangeListener listener) {
 
     }

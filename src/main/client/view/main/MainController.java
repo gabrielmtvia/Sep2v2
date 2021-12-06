@@ -28,10 +28,10 @@ public class MainController {
     }
 
     public void onStaffButton(ActionEvent actionEvent) {
-        //viewHandler.openStaffLogin();
+        viewHandler.openStaffLogin();
     }
 
     public void onOwnerButton(ActionEvent actionEvent) {
-        //viewHandler.openOwnerLogin();
+        viewHandler.openOwnerLogin();
     }
 }

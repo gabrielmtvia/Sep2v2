@@ -24,4 +24,26 @@ public class LoginClient implements LoginClientModel{
 
         return "Connection failed";
     }
+
+    @Override
+    public String LoginOwner(UserName userName, Password password) {
+        try {
+            return rmiClient.LoginOwner(userName, password);
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
+
+        return "Connection failed";
+    }
+
+    @Override
+    public String LoginStaff(UserName userName, Password password) {
+        try {
+            return rmiClient.LoginStaff(userName, password);
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
+
+        return "Connection failed";
+    }
 }
