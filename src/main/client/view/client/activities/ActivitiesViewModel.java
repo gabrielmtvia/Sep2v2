@@ -5,6 +5,7 @@ import main.client.model.activities.ActivitiesModel;
 import main.client.model.login.LoginModel;
 import main.shared.Activity;
 
+import java.beans.PropertyChangeEvent;
 
 
 public class ActivitiesViewModel {
@@ -17,13 +18,24 @@ public class ActivitiesViewModel {
     public ActivitiesViewModel(ActivitiesModel activitiesManager){
         this.activitiesManager = activitiesManager;
         items = FXCollections.observableArrayList();
+        activitiesManager.addListener("Activity Deleted", evt -> activityDeleted(evt));
+        activitiesManager.addListener("Activity Added", evt -> activityAdded(evt));
     }
+
+    private void activityAdded(PropertyChangeEvent evt) {
+        Activity activityAdded = (Activity) evt.getNewValue();
+        items.add(activityAdded);
+    }
+
+    private void activityDeleted(PropertyChangeEvent evt) {
+        Activity activityDeleted = (Activity) evt.getNewValue();
+        items.remove(activityDeleted);
+    }
+
 
     public ObservableList<Activity> getItemsList() {
         return items;
     }
-
-
 
     public void loadActivities() {
         items.addAll(activitiesManager.requestActivities());

@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<AnchorPane prefHeight="488.0" prefWidth="994.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.client.view.staff.activities.ManageActivitiesController">
+   <children>
+      <BorderPane prefHeight="553.0" prefWidth="987.0">
+         <center>
+            <VBox prefHeight="312.0" prefWidth="982.0" BorderPane.alignment="CENTER">
+               <children>
+                  <HBox prefHeight="65.0" prefWidth="979.0">
+                     <children>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Add Type" wrappingWidth="112.529296875">
+                           <font>
+                              <Font size="25.0" />
+                           </font>
+                        </Text>
+                        <TextField fx:id="typeField" prefHeight="35.0" prefWidth="160.0">
+                           <HBox.margin>
+                              <Insets left="25.0" />
+                           </HBox.margin>
+                        </TextField>
+                     </children>
+                     <VBox.margin>
+                        <Insets left="5.0" right="5.0" top="10.0" />
+                     </VBox.margin>
+                  </HBox>
+                  <HBox prefHeight="76.0" prefWidth="971.0">
+                     <children>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Add Price" wrappingWidth="112.529296875">
+                           <font>
+                              <Font size="25.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets top="7.0" />
+                           </HBox.margin>
+                        </Text>
+                        <TextField fx:id="priceField" prefHeight="35.0" prefWidth="160.0">
+                           <HBox.margin>
+                              <Insets left="25.0" top="10.0" />
+                           </HBox.margin>
+                        </TextField>
+                     </children>
+                     <VBox.margin>
+                        <Insets left="5.0" right="5.0" />
+                     </VBox.margin>
+                  </HBox>
+                  <VBox prefHeight="129.0" prefWidth="977.0">
+                     <children>
+                        <HBox prefHeight="77.0" prefWidth="867.0">
+                           <children>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Date" wrappingWidth="111.12774658203125">
+                                 <font>
+                                    <Font size="25.0" />
+                                 </font>
+                                 <HBox.margin>
+                                    <Insets top="6.0" />
+                                 </HBox.margin>
+                              </Text>
+                              <DatePicker prefHeight="35.0" prefWidth="162.0">
+                                 <HBox.margin>
+                                    <Insets left="25.0" top="10.0" />
+                                 </HBox.margin>
+                              </DatePicker>
+                           </children>
+                           <VBox.margin>
+                              <Insets top="20.0" />
+                           </VBox.margin>
+                        </HBox>
+                        <HBox prefHeight="90.0" prefWidth="792.0">
+                           <children>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Time" wrappingWidth="109.86260986328125">
+                                 <font>
+                                    <Font size="25.0" />
+                                 </font>
+                                 <HBox.margin>
+                                    <Insets top="7.0" />
+                                 </HBox.margin>
+                              </Text>
+                              <TextField fx:id="timeField" prefHeight="35.0" prefWidth="162.0">
+                                 <HBox.margin>
+                                    <Insets left="25.0" top="10.0" />
+                                 </HBox.margin>
+                              </TextField>
+                           </children>
+                           <VBox.margin>
+                              <Insets top="10.0" />
+                           </VBox.margin>
+                        </HBox>
+                        <HBox prefHeight="76.0" prefWidth="971.0">
+                           <children>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Date" wrappingWidth="112.529296875">
+                                 <font>
+                                    <Font size="25.0" />
+                                 </font>
+                                 <HBox.margin>
+                                    <Insets top="7.0" />
+                                 </HBox.margin>
+                              </Text>
+                              <TextField fx:id="dateField" prefHeight="35.0" prefWidth="160.0">
+                                 <HBox.margin>
+                                    <Insets left="25.0" top="10.0" />
+                                 </HBox.margin>
+                              </TextField>
+                           </children>
+                        </HBox>
+                     </children>
+                     <VBox.margin>
+                        <Insets left="5.0" />
+                     </VBox.margin>
+                  </VBox>
+               </children>
+               <BorderPane.margin>
+                  <Insets left="5.0" />
+               </BorderPane.margin>
+            </VBox>
+         </center>
+         <bottom>
+            <HBox prefHeight="105.0" prefWidth="987.0" BorderPane.alignment="CENTER">
+               <children>
+                  <Button mnemonicParsing="false" onAction="#backButton" prefHeight="37.0" prefWidth="98.0" text="Back" textAlignment="JUSTIFY">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets left="560.0" top="25.0" />
+                     </HBox.margin>
+                  </Button>
+                  <Button mnemonicParsing="false" onAction="#deleteButton" prefHeight="37.0" prefWidth="98.0" text="Delete" textAlignment="JUSTIFY">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets left="25.0" top="25.0" />
+                     </HBox.margin>
+                  </Button>
+                  <Button mnemonicParsing="false" onAction="#saveButton" prefHeight="37.0" prefWidth="98.0" text="Save" textAlignment="JUSTIFY">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets left="25.0" top="25.0" />
+                     </HBox.margin>
+                  </Button>
+               </children>
+            </HBox>
+         </bottom>
+         <top>
+            <TableView fx:id="tableView" prefHeight="201.0" prefWidth="977.0" BorderPane.alignment="CENTER">
+              <columns>
+                <TableColumn fx:id="date" prefWidth="301.9999693632126" text="Date" />
+                  <TableColumn fx:id="time" prefWidth="195.33340454101562" text="Time" />
+                  <TableColumn fx:id="type" prefWidth="228.0" text="Type" />
+                  <TableColumn fx:id="price" prefWidth="252.0" text="Price" />
+              </columns>
+               <BorderPane.margin>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="10.0" />
+               </BorderPane.margin>
+            </TableView>
+         </top>
+      </BorderPane>
+   </children>
+</AnchorPane>
