@@ -5,58 +5,42 @@ import java.io.Serializable;
 public class Activity implements Serializable {
     private String activityName;
     private String price;
-    private String date;
+    private String day;
+    private String month;
+    private String year;
     private String time;
 
     @Override
     public String toString() {
-        return "Activity {" +
+        return "Activity{" +
                 "activityName='" + activityName + '\'' +
                 ", price='" + price + '\'' +
-                ", date='" + date + '\'' +
+                ", day='" + day + '\'' +
+                ", month='" + month + '\'' +
+                ", year='" + year + '\'' +
                 ", time='" + time + '\'' +
                 '}';
     }
 
-
-
     public String getActivityName() {
         return activityName;
     }
+
     public void setActivityName(String activityName) {
         this.activityName = activityName;
     }
 
-    public String getPrice() {
-        return price;
-    }
-
-    public void setPrice(String price) {
-        this.price = price;
-    }
-
-    public String getDate() {
-        return date;
-    }
-
-    public void setDate(String date) {
-        this.date = date;
-    }
 
 
 
-    public String getTime() {
-        return time;
-    }
 
-    public void setTime(String time) {
-        this.time = time;
-    }
-
-    public Activity(String activityName, String price, String date, String time) {
+    public Activity(String activityName, String time, String price, String day, String month, String year) {
         this.activityName = activityName;
         this.price = price;
-        this.date = date;
         this.time = time;
+        this.day = day;
+        this.month = month;
+        this.year = year;
+
     }
 }
