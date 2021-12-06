@@ -33,8 +33,8 @@ public class LoginManager implements LoginModel{
     }
 
     @Override
-    public void authenticate() {
-        loginClient.authenticate();
+    public boolean authenticate() {
+        return loginClient.authenticate();
     }
 
     @Override

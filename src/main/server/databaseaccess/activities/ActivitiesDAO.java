@@ -40,8 +40,8 @@ public class ActivitiesDAO implements ActivitiesDAOModel{
     }
 
     @Override
-    public void deleteActivity(Activity activity) {
-
+    public String deleteActivity(Activity activity) {
+        return "Activity deleted successfully";
     }
 
     @Override

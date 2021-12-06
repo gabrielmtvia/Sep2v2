@@ -5,8 +5,12 @@ import main.client.view.client.bmi.CalculateBmiViewModel;
 import main.client.view.client.login.ClientLoginViewModel;
 import main.client.view.main.MainViewModel;
 import main.client.view.owner.login.OwnerLoginViewModel;
+import main.client.view.owner.managestaff.AddStaffMemberViewModel;
+import main.client.view.owner.staffmemberlist.StaffMemberListViewModel;
 import main.client.view.staff.activities.ManageActivitiesViewModel;
 import main.client.view.staff.login.StaffLoginViewModel;
+import main.client.view.staff.personaltrainers.add.AddPersonalTrainerViewModel;
+import main.client.view.staff.personaltrainers.list.PersonalTrainersListViewModel;
 
 public class ViewModelFactory {
 
@@ -18,6 +22,10 @@ public class ViewModelFactory {
     private ActivitiesViewModel activitiesViewModel;
     private ManageActivitiesViewModel manageActivitiesViewModel;
     private CalculateBmiViewModel calculateBmiViewModel;
+    private AddStaffMemberViewModel addStaffMemberViewModel;
+    private StaffMemberListViewModel staffMemberListViewModel;
+    private AddPersonalTrainerViewModel addPersonalTrainerViewModel;
+    private PersonalTrainersListViewModel personalTrainersListViewModel;
 
     public ViewModelFactory(ModelFactory modelFactory){
         this.modelFactory = modelFactory;
@@ -66,4 +74,27 @@ public class ViewModelFactory {
         return calculateBmiViewModel;
     }
 
+    public AddStaffMemberViewModel getAddStaffMemberViewModel() {
+        if(addStaffMemberViewModel==null)
+            addStaffMemberViewModel = new AddStaffMemberViewModel(modelFactory.getManageStaffManager());
+        return addStaffMemberViewModel;
+    }
+
+    public StaffMemberListViewModel getStaffMembersListViewModel() {
+        if(staffMemberListViewModel==null)
+            staffMemberListViewModel = new StaffMemberListViewModel(modelFactory.getManageStaffManager()) ;
+        return staffMemberListViewModel;
+    }
+
+    public AddPersonalTrainerViewModel getAddPersonalTrainerViewModel() {
+        if(addPersonalTrainerViewModel==null)
+            addPersonalTrainerViewModel = new AddPersonalTrainerViewModel(modelFactory.getPersonalTrainerManager());
+        return addPersonalTrainerViewModel;
+    }
+
+    public PersonalTrainersListViewModel getPersonalTrainersListViewModel() {
+        if(personalTrainersListViewModel==null)
+            personalTrainersListViewModel = new PersonalTrainersListViewModel(modelFactory.getPersonalTrainerManager());
+        return personalTrainersListViewModel;
+    }
 }

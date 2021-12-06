@@ -1,10 +1,7 @@
 package main.client.networking.rmi;
 
 import main.server.rmiserver.RemoteServer;
-import main.shared.Activity;
-import main.shared.BMIData;
-import main.shared.Password;
-import main.shared.UserName;
+import main.shared.*;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
@@ -50,8 +47,8 @@ public class RmiClient implements RemoteClient {
     }
 
     @Override
-    public void deleteActivity(Activity activity) throws RemoteException {
-        serverStub.deleteActivity(activity);
+    public String deleteActivity(Activity activity) throws RemoteException {
+        return serverStub.deleteActivity(activity);
     }
 
     @Override
@@ -71,7 +68,7 @@ public class RmiClient implements RemoteClient {
 
 
     @Override
-    public void addListener(String eventName, PropertyChangeListener listener) {
+    public void addListener(String eventName, PropertyChangeListener listener) throws RemoteException{
         if(eventName == null || "".equals(eventName)) {
             support.addPropertyChangeListener(listener);
         } else {
@@ -80,13 +77,99 @@ public class RmiClient implements RemoteClient {
     }
 
     @Override
-    public void authenticate() throws RemoteException {
-        serverStub.authenticate(this);
-        System.out.println("System authenticated");
+    public boolean authenticate() throws RemoteException {
+        try{
+            serverStub.authenticate(this);
+            System.out.println("System authenticated");
+            return true;
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
+        return false;
     }
 
     @Override
-    public void saveBmiData(BMIData bmiData) throws RemoteException {
-        serverStub.saveBmiData(bmiData);
+    public String saveBmiData(BMIData bmiData) throws RemoteException {
+        return serverStub.saveBmiData(bmiData);
+    }
+
+    @Override
+    public String addStaffMember(StaffMember staffMember) throws RemoteException {
+        try {
+            return serverStub.addStaffMember(staffMember);
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
+        return "Connection error";
+    }
+
+    @Override
+    public ArrayList<StaffMember> getStaffMembers() throws RemoteException {
+        try {
+            return serverStub.getStaffMembers();
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    @Override
+    public String deleteStaffMember(StaffMember staffMember) throws RemoteException {
+        try {
+            return serverStub.deleteStaffMember(staffMember);
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
+        return "Connection error";
+    }
+
+    @Override
+    public String savePersonalTrainer(PersonalTrainer personalTrainer) {
+        try {
+            return serverStub.savePersonalTrainer(personalTrainer);
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
+        return "Connection error";
+    }
+
+    @Override
+    public ArrayList<PersonalTrainer> getPersonalTrainers() throws RemoteException {
+        try {
+            return serverStub.getPersonalTrainers();
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    @Override
+    public String removePersonalTrainer(PersonalTrainer personalTrainer) throws RemoteException {
+        try {
+            return serverStub.removePersonalTrainer(personalTrainer);
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
+        return "Connection error";
+    }
+
+    @Override
+    public void personalTrainerAdded(PersonalTrainer personalTrainer) throws RemoteException {
+        support.firePropertyChange("Personal Trainer Added", null, personalTrainer);
+    }
+
+    @Override
+    public void personalTrainerRemoved(PersonalTrainer personalTrainer) throws RemoteException {
+        support.firePropertyChange("Personal Trainer Removed", null, personalTrainer);
+    }
+
+    @Override
+    public void staffMemberAdded(StaffMember staffMember) throws RemoteException {
+        support.firePropertyChange("Staff Member Added", null, staffMember);
+    }
+
+    @Override
+    public void staffMemberDeleted(StaffMember staffMember) throws RemoteException {
+        support.firePropertyChange("Staff Member Deleted", null, staffMember);
     }
 }

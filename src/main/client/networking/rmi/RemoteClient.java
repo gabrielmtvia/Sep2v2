@@ -1,9 +1,6 @@
 package main.client.networking.rmi;
 
-import main.shared.Activity;
-import main.shared.BMIData;
-import main.shared.Password;
-import main.shared.UserName;
+import main.shared.*;
 
 import java.beans.PropertyChangeListener;
 import java.rmi.Remote;
@@ -15,11 +12,21 @@ public interface RemoteClient extends Remote {
     String loginOwner(UserName userName, Password password) throws RemoteException;
     String loginStaff(UserName userName, Password password) throws RemoteException;
     ArrayList<Activity> requestActivities() throws RemoteException;
-    void deleteActivity(Activity activity) throws RemoteException;
+    String deleteActivity(Activity activity) throws RemoteException;
     String saveActivity(Activity activity) throws RemoteException;
     void activityDeleted(Activity activity) throws RemoteException;
     void activityAdded(Activity activity) throws RemoteException;
     void addListener(String eventName, PropertyChangeListener listener) throws RemoteException;
-    void authenticate() throws RemoteException;
-    void saveBmiData(BMIData bmiData) throws RemoteException;
+    boolean authenticate() throws RemoteException;
+    String saveBmiData(BMIData bmiData) throws RemoteException;
+    String addStaffMember(StaffMember staffMember) throws RemoteException;
+    ArrayList<StaffMember> getStaffMembers() throws RemoteException;
+    String deleteStaffMember(StaffMember staffMember) throws RemoteException;
+    String savePersonalTrainer(PersonalTrainer personalTrainer) throws RemoteException;
+    ArrayList<PersonalTrainer> getPersonalTrainers() throws RemoteException;
+    String removePersonalTrainer(PersonalTrainer personalTrainer) throws RemoteException;
+    void personalTrainerAdded(PersonalTrainer personalTrainer) throws RemoteException;
+    void personalTrainerRemoved(PersonalTrainer personalTrainer) throws RemoteException;
+    void staffMemberAdded(StaffMember staffMember) throws RemoteException;
+    void staffMemberDeleted(StaffMember staffMember) throws RemoteException;
 }

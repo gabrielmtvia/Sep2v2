@@ -11,10 +11,14 @@ import main.client.view.client.main.ClientMainController;
 import main.client.view.main.MainController;
 import main.client.view.owner.login.OwnerLoginController;
 import main.client.view.owner.main.OwnerMainController;
+import main.client.view.owner.managestaff.AddStaffMemberController;
+import main.client.view.owner.staffmemberlist.StaffMemberListController;
 import main.client.view.staff.activities.ManageActivitiesController;
 import main.client.view.staff.login.StaffLoginController;
-import main.client.view.staff.login.StaffLoginViewModel;
 import main.client.view.staff.main.StaffMainController;
+import main.client.view.staff.personaltrainers.add.AddPersonalTrainerController;
+import main.client.view.staff.personaltrainers.list.PersonalTrainersListController;
+import main.client.view.staff.personaltrainers.main.PersonalTrainersMainController;
 
 
 import java.io.IOException;
@@ -32,7 +36,11 @@ public class ViewHandler {
     private Scene clientActivities;
     private Scene manageActivities;
     private Scene calculateBmi;
-
+    private Scene addStaffMember;
+    private Scene ownerStaffMembersList;
+    private Scene personalTrainersMain;
+    private Scene addPersonalTrainer;
+    private Scene personalTrainersList;
 
     public ViewHandler(Stage stage, ViewModelFactory vmf)
     {
@@ -210,6 +218,81 @@ public class ViewHandler {
 
         mainStage.setTitle("Manage personal info");
         mainStage.setScene(calculateBmi);
+    }
+
+    public void openOwnerAddAStaffMember() {
+        FXMLLoader loader = new FXMLLoader();
+
+        if(addStaffMember == null)
+        {
+            Parent root = getRootByPath("../view/owner/managestaff/addstaffmember.fxml", loader);
+            AddStaffMemberController controller = loader.getController();
+            controller.init(viewModelFactory.getAddStaffMemberViewModel(), this);
+            addStaffMember = new Scene(root);
+        }
+
+        mainStage.setTitle("Add Staff Member");
+        mainStage.setScene(addStaffMember);
+    }
+
+    public void openOwnerStaffMembersList() {
+        FXMLLoader loader = new FXMLLoader();
+
+        if(ownerStaffMembersList == null)
+        {
+            Parent root = getRootByPath("../view/owner/staffmemberlist/staffmemberlist.fxml", loader);
+            StaffMemberListController controller = loader.getController();
+            controller.init(viewModelFactory.getStaffMembersListViewModel(), this);
+            ownerStaffMembersList = new Scene(root);
+        }
+
+        mainStage.setTitle("Staff-Members List");
+        mainStage.setScene(ownerStaffMembersList);
+    }
+
+    public void openPersonalTrainers() {
+        FXMLLoader loader = new FXMLLoader();
+
+        if(personalTrainersMain == null)
+        {
+            Parent root = getRootByPath("../view/staff/personaltrainers/main/personaltrainersmain.fxml", loader);
+            PersonalTrainersMainController controller = loader.getController();
+            controller.init(this);
+            personalTrainersMain = new Scene(root);
+        }
+
+        mainStage.setTitle("Personal Trainers Main");
+        mainStage.setScene(personalTrainersMain);
+    }
+
+    public void openAddPersonalTrainer() {
+        FXMLLoader loader = new FXMLLoader();
+
+        if(addPersonalTrainer == null)
+        {
+            Parent root = getRootByPath("../view/staff/personaltrainers/add/addpersonaltrainer.fxml", loader);
+            AddPersonalTrainerController controller = loader.getController();
+            controller.init(viewModelFactory.getAddPersonalTrainerViewModel(),this);
+            addPersonalTrainer = new Scene(root);
+        }
+
+        mainStage.setTitle("Add a personal trainer");
+        mainStage.setScene(addPersonalTrainer);
+    }
+
+    public void openPersonalTrainersList() {
+        FXMLLoader loader = new FXMLLoader();
+
+        if(personalTrainersList == null)
+        {
+            Parent root = getRootByPath("../view/staff/personaltrainers/list/personaltrainerslist.fxml", loader);
+            PersonalTrainersListController controller = loader.getController();
+            controller.init(viewModelFactory.getPersonalTrainersListViewModel(),this);
+            personalTrainersList = new Scene(root);
+        }
+
+        mainStage.setTitle("Personal trainers list");
+        mainStage.setScene(personalTrainersList);
     }
 }
 

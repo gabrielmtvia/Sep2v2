@@ -11,11 +11,11 @@ public class OwnerMainController {
     }
 
     public void onAddStaffMember(ActionEvent actionEvent) {
-        //viewHandler.openOwnerAddAStaffMember();
+        viewHandler.openOwnerAddAStaffMember();
     }
 
     public void onStaffMembersList(ActionEvent actionEvent) {
-        //viewHandler.openOwnerStaffMembersList();
+        viewHandler.openOwnerStaffMembersList();
     }
 
     public void onBackButton(ActionEvent actionEvent) {

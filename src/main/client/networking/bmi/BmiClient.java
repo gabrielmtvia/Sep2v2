@@ -16,7 +16,7 @@ public class BmiClient implements BmiClientModel {
     @Override
     public String saveBmiData(BMIData bmiData) {
         try {
-            rmiClient.saveBmiData(bmiData);
+            return rmiClient.saveBmiData(bmiData);
         } catch (RemoteException e) {
             e.printStackTrace();
         }

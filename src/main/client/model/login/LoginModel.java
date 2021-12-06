@@ -7,6 +7,6 @@ public interface LoginModel {
     String loginClient(UserName userName, Password password);
     String loginOwner(UserName userName, Password password);
     String loginStaff(UserName userName, Password password);
-    void authenticate();
+    boolean authenticate();
     UserName getUserName();
 }

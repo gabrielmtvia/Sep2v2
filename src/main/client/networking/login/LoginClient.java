@@ -48,11 +48,12 @@ public class LoginClient implements LoginClientModel{
     }
 
     @Override
-    public void authenticate() {
+    public boolean authenticate() {
         try {
-            rmiClient.authenticate();
+            return rmiClient.authenticate();
         } catch (RemoteException e) {
             e.printStackTrace();
         }
+        return false;
     }
 }

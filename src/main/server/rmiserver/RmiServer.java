@@ -2,10 +2,7 @@ package main.server.rmiserver;
 
 import main.client.networking.rmi.RemoteClient;
 import main.server.core.ModelFactory;
-import main.shared.Activity;
-import main.shared.BMIData;
-import main.shared.Password;
-import main.shared.UserName;
+import main.shared.*;
 
 import java.net.MalformedURLException;
 import java.rmi.Naming;
@@ -62,13 +59,13 @@ public class RmiServer implements RemoteServer{
     }
 
     @Override
-    public void deleteActivity(Activity activity) throws RemoteException {
-        modelFactory.getActivitiesManager().deleteActivity(activity);
+    public String deleteActivity(Activity activity) throws RemoteException {
 
         for (RemoteClient client: clients) {
             client.activityDeleted(activity);
         }
 
+        return modelFactory.getActivitiesManager().deleteActivity(activity);
     }
 
     @Override
@@ -82,14 +79,57 @@ public class RmiServer implements RemoteServer{
     }
 
     @Override
-    public void authenticate(RemoteClient client) {
+    public boolean authenticate(RemoteClient client) throws RemoteException{
         if(!clients.contains(client)){
             clients.add(client);
         }
+        return true;
     }
 
     @Override
     public String saveBmiData(BMIData bmiData) throws RemoteException {
         return modelFactory.getBmiManager().saveBmiData(bmiData);
+    }
+
+    @Override
+    public String addStaffMember(StaffMember staffMember) throws RemoteException{
+        for (RemoteClient client: clients) {
+            client.staffMemberAdded(staffMember);
+        }
+        return modelFactory.getManageStaffManager().addStaffMember(staffMember);
+    }
+
+    @Override
+    public ArrayList<StaffMember> getStaffMembers() throws RemoteException {
+        return modelFactory.getManageStaffManager().getStaffMembers();
+    }
+
+    @Override
+    public String deleteStaffMember(StaffMember staffMember) throws RemoteException {
+        for (RemoteClient client: clients) {
+            client.staffMemberDeleted(staffMember);
+        }
+        return modelFactory.getManageStaffManager().deleteStaffMember(staffMember);
+    }
+
+    @Override
+    public String savePersonalTrainer(PersonalTrainer personalTrainer) throws RemoteException{
+        for (RemoteClient client: clients) {
+            client.personalTrainerAdded(personalTrainer);
+        }
+        return modelFactory.getPersonalTrainerManager().savePersonalTrainer(personalTrainer);
+    }
+
+    @Override
+    public ArrayList<PersonalTrainer> getPersonalTrainers() throws RemoteException {
+        return modelFactory.getPersonalTrainerManager().getPersonalTrainers();
+    }
+
+    @Override
+    public String removePersonalTrainer(PersonalTrainer personalTrainer) throws RemoteException {
+        for (RemoteClient client: clients) {
+            client.personalTrainerRemoved(personalTrainer);
+        }
+        return modelFactory.getPersonalTrainerManager().removePersonalTrainer(personalTrainer);
     }
 }

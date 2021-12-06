@@ -17,8 +17,8 @@ public class ActivitiesManager implements ActivitiesModel {
     }
 
     @Override
-    public void deleteActivity(Activity activity) {
-        activitiesDAO.deleteActivity(activity);
+    public String deleteActivity(Activity activity) {
+        return activitiesDAO.deleteActivity(activity);
     }
 
     @Override

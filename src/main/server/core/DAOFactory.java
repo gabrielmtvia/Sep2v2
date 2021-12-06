@@ -7,12 +7,18 @@ import main.server.databaseaccess.bmi.BmiDAOModel;
 import main.server.databaseaccess.database.DBConnectionModel;
 import main.server.databaseaccess.login.LoginDAO;
 import main.server.databaseaccess.login.LoginDAOModel;
+import main.server.databaseaccess.managestaff.ManageStaffDAO;
+import main.server.databaseaccess.managestaff.ManageStaffDAOModel;
+import main.server.databaseaccess.personaltrainer.PersonalTrainerDAO;
+import main.server.databaseaccess.personaltrainer.PersonalTrainerDAOModel;
 
 public class DAOFactory {
     private DBConnectionModel dbConnection;
     private LoginDAOModel loginDAO;
     private ActivitiesDAOModel activitiesDAO;
     private BmiDAOModel bmiDAO;
+    private ManageStaffDAOModel manageStaffDAO;
+    private PersonalTrainerDAOModel personalTrainerDAO;
 
     public DAOFactory(DBConnectionModel dbConnection){
         this.dbConnection = dbConnection;
@@ -36,4 +42,15 @@ public class DAOFactory {
         return bmiDAO;
     }
 
+    public ManageStaffDAOModel getManageStaffDAO(){
+        if(manageStaffDAO==null)
+            manageStaffDAO = new ManageStaffDAO(dbConnection);
+        return manageStaffDAO;
+    }
+
+    public PersonalTrainerDAOModel getPersonalTrainerDAO() {
+        if(personalTrainerDAO==null)
+            personalTrainerDAO = new PersonalTrainerDAO(dbConnection);
+        return personalTrainerDAO;
+    }
 }

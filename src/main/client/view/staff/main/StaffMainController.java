@@ -31,7 +31,7 @@ public class StaffMainController
 
   public void onPersonalTrainersButtonClick(ActionEvent actionEvent)
   {
-    //viewHandler.openPersonalTrainers();
+    viewHandler.openPersonalTrainers();
   }
 
   public void onBackButtonClick(ActionEvent actionEvent)

@@ -5,6 +5,10 @@ import main.server.model.bmi.BmiManager;
 import main.server.model.bmi.BmiModel;
 import main.server.model.login.LoginManager;
 import main.server.model.login.LoginModel;
+import main.server.model.managestaff.ManageStaffManager;
+import main.server.model.managestaff.ManageStaffModel;
+import main.server.model.personaltrainer.PersonalTrainerManager;
+import main.server.model.personaltrainer.PersonalTrainerModel;
 
 public class ModelFactory {
 
@@ -12,6 +16,8 @@ public class ModelFactory {
     private LoginModel loginManager;
     private ActivitiesModel activitiesManager;
     private BmiModel bmiManager;
+    private ManageStaffModel manageStaffManager;
+    private PersonalTrainerModel personalTrainerManager;
 
     public ModelFactory(DAOFactory daoFactory){
         this.daoFactory = daoFactory;
@@ -35,4 +41,15 @@ public class ModelFactory {
         return bmiManager;
     }
 
+    public ManageStaffModel getManageStaffManager(){
+        if(manageStaffManager==null)
+            manageStaffManager = new ManageStaffManager(daoFactory.getManageStaffDAO());
+        return manageStaffManager;
+    }
+
+    public PersonalTrainerModel getPersonalTrainerManager() {
+        if(personalTrainerManager==null)
+            personalTrainerManager = new PersonalTrainerManager(daoFactory.getPersonalTrainerDAO());
+        return personalTrainerManager;
+    }
 }

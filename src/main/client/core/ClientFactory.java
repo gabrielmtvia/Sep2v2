@@ -6,6 +6,10 @@ import main.client.networking.bmi.BmiClient;
 import main.client.networking.bmi.BmiClientModel;
 import main.client.networking.login.LoginClient;
 import main.client.networking.login.LoginClientModel;
+import main.client.networking.managestaff.ManageStaffClient;
+import main.client.networking.managestaff.ManageStaffClientModel;
+import main.client.networking.personaltrainer.PersonalTrainerClient;
+import main.client.networking.personaltrainer.PersonalTrainerClientModel;
 import main.client.networking.rmi.RemoteClient;
 import main.client.networking.rmi.RmiClient;
 
@@ -15,6 +19,8 @@ public class ClientFactory {
     private LoginClientModel loginClient;
     private ActivitiesClientModel activitiesClient;
     private BmiClientModel bmiClient;
+    private ManageStaffClientModel manageStaffClient;
+    private PersonalTrainerClientModel personalTrainerClient;
 
     public ClientFactory(){
         rmiClient = new RmiClient();
@@ -38,4 +44,15 @@ public class ClientFactory {
         return bmiClient;
     }
 
+    public ManageStaffClientModel getManageStaffClient() {
+        if(manageStaffClient==null)
+            manageStaffClient = new ManageStaffClient(rmiClient);
+        return manageStaffClient;
+    }
+
+    public PersonalTrainerClientModel getPersonalTrainerClient() {
+        if(personalTrainerClient==null)
+            personalTrainerClient = new PersonalTrainerClient(rmiClient);
+        return personalTrainerClient;
+    }
 }

@@ -4,6 +4,6 @@ import java.util.ArrayList;
 
 public interface ActivitiesModel {
     ArrayList<Activity> requestActivities();
-    void deleteActivity(Activity activity);
+    String deleteActivity(Activity activity);
     String saveActivity(Activity activity);
 }

@@ -6,6 +6,10 @@ import main.client.model.login.LoginManager;
 import main.client.model.login.LoginModel;
 import main.client.model.bmi.BmiManager;
 import main.client.model.bmi.BmiModel;
+import main.client.model.managestaff.ManageStaffManager;
+import main.client.model.managestaff.ManageStaffModel;
+import main.client.model.personaltrainer.PersonalTrainerManager;
+import main.client.model.personaltrainer.PersonalTrainerModel;
 
 public class ModelFactory {
 
@@ -13,6 +17,8 @@ public class ModelFactory {
     private LoginModel loginManager;
     private ActivitiesModel activitiesManager;
     private BmiModel bmiManager;
+    private ManageStaffModel manageStaffManager;
+    private PersonalTrainerModel personalTrainerManager;
 
     public ModelFactory(ClientFactory clientFactory){
         this.clientFactory = clientFactory;
@@ -36,4 +42,15 @@ public class ModelFactory {
         return bmiManager;
     }
 
+    public ManageStaffModel getManageStaffManager() {
+        if(manageStaffManager==null)
+            manageStaffManager = new ManageStaffManager(clientFactory.getManageStaffClient());
+        return manageStaffManager;
+    }
+
+    public PersonalTrainerModel getPersonalTrainerManager() {
+        if(personalTrainerManager==null)
+            personalTrainerManager = new PersonalTrainerManager(clientFactory.getPersonalTrainerClient());
+        return personalTrainerManager;
+    }
 }
