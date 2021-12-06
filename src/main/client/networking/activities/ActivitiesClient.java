@@ -27,8 +27,7 @@ public class ActivitiesClient implements ActivitiesClientModel {
     private void activityAdded(PropertyChangeEvent evt) {
         Activity activity = (Activity) evt.getNewValue();
         support.firePropertyChange("Activity Added", null, activity);
-        System.out.println("Fired activity from activities client");
-        System.out.println(activity);
+
     }
 
     private void activityDeleted(PropertyChangeEvent evt) {
