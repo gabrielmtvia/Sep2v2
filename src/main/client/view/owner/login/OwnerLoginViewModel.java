@@ -34,5 +34,9 @@ public class OwnerLoginViewModel {
     public void login(UserName userName, Password password){
         String response = loginManager.LoginOwner(userName, password);
         systemMessage.set(response);
+        if(response.contains("Successfully")){
+            systemMessage.set("");
+            viewHandler.openOwnerMain();
+        }
     }
 }

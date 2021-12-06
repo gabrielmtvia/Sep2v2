@@ -8,8 +8,10 @@ import main.client.view.client.login.ClientLoginController;
 import main.client.view.client.main.ClientMainController;
 import main.client.view.main.MainController;
 import main.client.view.owner.login.OwnerLoginController;
+import main.client.view.owner.main.OwnerMainController;
 import main.client.view.staff.login.StaffLoginController;
 import main.client.view.staff.login.StaffLoginViewModel;
+import main.client.view.staff.main.StaffMainController;
 
 
 import java.io.IOException;
@@ -22,6 +24,8 @@ public class ViewHandler {
     private Scene ownerLoginScene;
     private Scene staffLoginScene;
     private Scene clientMainScene;
+    private Scene ownerMainScene;
+    private Scene staffMainScene;
 
 
     public ViewHandler(Stage stage, ViewModelFactory vmf)
@@ -125,6 +129,36 @@ public class ViewHandler {
 
         mainStage.setTitle("Client Main Window");
         mainStage.setScene(clientMainScene);
+    }
+
+    public void openOwnerMain() {
+        FXMLLoader loader = new FXMLLoader();
+
+        if(ownerMainScene == null)
+        {
+            Parent root = getRootByPath("../view/owner/main/ownermain.fxml", loader);
+            OwnerMainController controller = loader.getController();
+            controller.init( this);
+            ownerMainScene = new Scene(root);
+        }
+
+        mainStage.setTitle("Owner Main Window");
+        mainStage.setScene(ownerMainScene);
+    }
+
+    public void openStaffMain() {
+        FXMLLoader loader = new FXMLLoader();
+
+        if(staffMainScene == null)
+        {
+            Parent root = getRootByPath("../view/staff/main/staffmain.fxml", loader);
+            StaffMainController controller = loader.getController();
+            controller.init( this);
+            staffMainScene = new Scene(root);
+        }
+
+        mainStage.setTitle("Staff Main Window");
+        mainStage.setScene(staffMainScene);
     }
 }
 

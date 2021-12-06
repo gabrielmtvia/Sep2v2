@@ -33,8 +33,10 @@ public class StaffLoginViewModel {
     public void login(UserName userName, Password password){
         String response = loginManager.LoginStaff(userName, password);
         systemMessage.set(response);
-
-        //Platform.runLater(()->viewHandler.openStaffMain()
+        if(response.contains("Successfully")){
+            systemMessage.set("");
+            viewHandler.openStaffMain();
+        }
     }
 
 }
