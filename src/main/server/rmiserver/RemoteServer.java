@@ -1,11 +1,9 @@
 package main.server.rmiserver;
-
 import main.client.networking.rmi.RemoteClient;
-import main.client.networking.rmi.RmiClient;
 import main.shared.Activity;
+import main.shared.BMIData;
 import main.shared.Password;
 import main.shared.UserName;
-
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
@@ -18,4 +16,5 @@ public interface RemoteServer extends Remote {
     void deleteActivity(Activity activity) throws RemoteException;
     String saveActivity(Activity activity) throws RemoteException;
     void authenticate(RemoteClient client) throws RemoteException;
+    String saveBmiData(BMIData bmiData) throws RemoteException;
 }

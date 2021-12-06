@@ -1,6 +1,6 @@
 package main.server.model.login;
 
-import main.server.persistence.login.LoginDAOModel;
+import main.server.databaseaccess.login.LoginDAOModel;
 import main.shared.Password;
 import main.shared.UserName;
 

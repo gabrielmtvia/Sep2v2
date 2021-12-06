@@ -1,6 +1,6 @@
-package main.server.persistence.login;
+package main.server.databaseaccess.login;
 
-import main.server.persistence.database.DBConnectionModel;
+import main.server.databaseaccess.database.DBConnectionModel;
 import main.shared.Password;
 import main.shared.UserName;
 

@@ -2,9 +2,8 @@ package main.server;
 
 import main.server.core.DAOFactory;
 import main.server.core.ModelFactory;
-import main.server.persistence.database.DBConnection;
-import main.server.persistence.database.DBConnectionModel;
-import main.server.rmiserver.RemoteServer;
+import main.server.databaseaccess.database.DBConnection;
+import main.server.databaseaccess.database.DBConnectionModel;
 import main.server.rmiserver.RmiServer;
 
 import java.rmi.RemoteException;

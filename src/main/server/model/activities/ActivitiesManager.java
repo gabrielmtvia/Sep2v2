@@ -1,14 +1,10 @@
 package main.server.model.activities;
-
-import main.server.persistence.activities.ActivitiesDAOModel;
+import main.server.databaseaccess.activities.ActivitiesDAOModel;
 import main.shared.Activity;
-
-import java.beans.PropertyChangeSupport;
 import java.util.ArrayList;
 
 public class ActivitiesManager implements ActivitiesModel {
 
-    private PropertyChangeSupport support = new PropertyChangeSupport(this);
     private ActivitiesDAOModel activitiesDAO;
 
     public ActivitiesManager(ActivitiesDAOModel activitiesDAO){

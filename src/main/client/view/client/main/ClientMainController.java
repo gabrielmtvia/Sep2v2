@@ -13,7 +13,7 @@ public class ClientMainController {
     }
 
     public void onPersonalData(ActionEvent actionEvent) {
-     // viewHandler.openCalculateBmi();
+      viewHandler.openCalculateBmi();
     }
 
     public void onActivities(ActionEvent actionEvent) {

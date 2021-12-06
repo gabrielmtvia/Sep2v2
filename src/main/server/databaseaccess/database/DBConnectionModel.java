@@ -1,4 +1,4 @@
-package main.server.persistence.database;
+package main.server.databaseaccess.database;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

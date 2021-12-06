@@ -1,6 +1,7 @@
 package main.client.core;
 
 import main.client.view.client.activities.ActivitiesViewModel;
+import main.client.view.client.bmi.CalculateBmiViewModel;
 import main.client.view.client.login.ClientLoginViewModel;
 import main.client.view.main.MainViewModel;
 import main.client.view.owner.login.OwnerLoginViewModel;
@@ -16,6 +17,7 @@ public class ViewModelFactory {
     private StaffLoginViewModel staffLoginViewModel;
     private ActivitiesViewModel activitiesViewModel;
     private ManageActivitiesViewModel manageActivitiesViewModel;
+    private CalculateBmiViewModel calculateBmiViewModel;
 
     public ViewModelFactory(ModelFactory modelFactory){
         this.modelFactory = modelFactory;
@@ -57,4 +59,11 @@ public class ViewModelFactory {
             manageActivitiesViewModel = new ManageActivitiesViewModel(modelFactory.getActivitiesManager());
         return manageActivitiesViewModel;
     }
+
+    public CalculateBmiViewModel getCalculateBmiViewModel(){
+        if(calculateBmiViewModel==null)
+            calculateBmiViewModel = new CalculateBmiViewModel(modelFactory.getBmiManager(), modelFactory.getLoginManager());
+        return calculateBmiViewModel;
+    }
+
 }

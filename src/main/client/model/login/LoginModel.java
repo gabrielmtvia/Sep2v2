@@ -8,4 +8,5 @@ public interface LoginModel {
     String loginOwner(UserName userName, Password password);
     String loginStaff(UserName userName, Password password);
     void authenticate();
+    UserName getUserName();
 }

@@ -1,16 +1,18 @@
 package main.server.core;
 
-import main.server.persistence.activities.ActivitiesDAO;
-import main.server.persistence.activities.ActivitiesDAOModel;
-import main.server.persistence.database.DBConnectionModel;
-import main.server.persistence.login.LoginDAO;
-import main.server.persistence.login.LoginDAOModel;
+import main.server.databaseaccess.activities.ActivitiesDAO;
+import main.server.databaseaccess.activities.ActivitiesDAOModel;
+import main.server.databaseaccess.bmi.BmiDAO;
+import main.server.databaseaccess.bmi.BmiDAOModel;
+import main.server.databaseaccess.database.DBConnectionModel;
+import main.server.databaseaccess.login.LoginDAO;
+import main.server.databaseaccess.login.LoginDAOModel;
 
 public class DAOFactory {
     private DBConnectionModel dbConnection;
-
     private LoginDAOModel loginDAO;
     private ActivitiesDAOModel activitiesDAO;
+    private BmiDAOModel bmiDAO;
 
     public DAOFactory(DBConnectionModel dbConnection){
         this.dbConnection = dbConnection;
@@ -26,6 +28,12 @@ public class DAOFactory {
         if(activitiesDAO==null)
             activitiesDAO = new ActivitiesDAO(dbConnection);
         return activitiesDAO;
+    }
+
+    public BmiDAOModel getBmiDAO(){
+        if(bmiDAO==null)
+            bmiDAO = new BmiDAO(dbConnection);
+        return bmiDAO;
     }
 
 }

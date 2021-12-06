@@ -1,6 +1,7 @@
 package main.client.networking.rmi;
 
 import main.shared.Activity;
+import main.shared.BMIData;
 import main.shared.Password;
 import main.shared.UserName;
 
@@ -20,4 +21,5 @@ public interface RemoteClient extends Remote {
     void activityAdded(Activity activity) throws RemoteException;
     void addListener(String eventName, PropertyChangeListener listener) throws RemoteException;
     void authenticate() throws RemoteException;
+    void saveBmiData(BMIData bmiData) throws RemoteException;
 }

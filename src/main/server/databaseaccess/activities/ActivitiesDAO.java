@@ -1,10 +1,8 @@
-package main.server.persistence.activities;
+package main.server.databaseaccess.activities;
 
-import main.server.persistence.database.DBConnectionModel;
+import main.server.databaseaccess.database.DBConnectionModel;
 import main.shared.Activity;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;

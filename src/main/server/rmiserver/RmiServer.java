@@ -3,6 +3,7 @@ package main.server.rmiserver;
 import main.client.networking.rmi.RemoteClient;
 import main.server.core.ModelFactory;
 import main.shared.Activity;
+import main.shared.BMIData;
 import main.shared.Password;
 import main.shared.UserName;
 
@@ -85,5 +86,10 @@ public class RmiServer implements RemoteServer{
         if(!clients.contains(client)){
             clients.add(client);
         }
+    }
+
+    @Override
+    public String saveBmiData(BMIData bmiData) throws RemoteException {
+        return modelFactory.getBmiManager().saveBmiData(bmiData);
     }
 }

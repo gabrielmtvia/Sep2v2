@@ -2,6 +2,8 @@ package main.client.core;
 
 import main.client.networking.activities.ActivitiesClient;
 import main.client.networking.activities.ActivitiesClientModel;
+import main.client.networking.bmi.BmiClient;
+import main.client.networking.bmi.BmiClientModel;
 import main.client.networking.login.LoginClient;
 import main.client.networking.login.LoginClientModel;
 import main.client.networking.rmi.RemoteClient;
@@ -12,6 +14,7 @@ public class ClientFactory {
     private RemoteClient rmiClient;
     private LoginClientModel loginClient;
     private ActivitiesClientModel activitiesClient;
+    private BmiClientModel bmiClient;
 
     public ClientFactory(){
         rmiClient = new RmiClient();
@@ -27,6 +30,12 @@ public class ClientFactory {
         if(activitiesClient==null)
             activitiesClient = new ActivitiesClient(rmiClient);
         return activitiesClient;
+    }
+
+    public BmiClientModel getBmiClient(){
+        if(bmiClient==null)
+            bmiClient = new BmiClient(rmiClient);
+        return bmiClient;
     }
 
 }

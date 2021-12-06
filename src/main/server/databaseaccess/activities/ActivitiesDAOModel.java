@@ -1,4 +1,4 @@
-package main.server.persistence.activities;
+package main.server.databaseaccess.activities;
 
 import main.shared.Activity;
 

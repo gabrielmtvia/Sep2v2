@@ -5,6 +5,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import main.client.view.client.activities.ActivitiesController;
+import main.client.view.client.bmi.CalculateBmiController;
 import main.client.view.client.login.ClientLoginController;
 import main.client.view.client.main.ClientMainController;
 import main.client.view.main.MainController;
@@ -30,6 +31,7 @@ public class ViewHandler {
     private Scene staffMainScene;
     private Scene clientActivities;
     private Scene manageActivities;
+    private Scene calculateBmi;
 
 
     public ViewHandler(Stage stage, ViewModelFactory vmf)
@@ -193,6 +195,21 @@ public class ViewHandler {
 
         mainStage.setTitle("Staff Manage Activities");
         mainStage.setScene(manageActivities);
+    }
+
+    public void openCalculateBmi() {
+        FXMLLoader loader = new FXMLLoader();
+
+        if(calculateBmi == null)
+        {
+            Parent root = getRootByPath("../view/client/bmi/calculatebmi.fxml", loader);
+            CalculateBmiController controller = loader.getController();
+            controller.init(viewModelFactory.getCalculateBmiViewModel(), this);
+            calculateBmi = new Scene(root);
+        }
+
+        mainStage.setTitle("Manage personal info");
+        mainStage.setScene(calculateBmi);
     }
 }
 

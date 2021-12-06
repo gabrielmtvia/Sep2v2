@@ -2,6 +2,7 @@ package main.client.networking.rmi;
 
 import main.server.rmiserver.RemoteServer;
 import main.shared.Activity;
+import main.shared.BMIData;
 import main.shared.Password;
 import main.shared.UserName;
 
@@ -82,5 +83,10 @@ public class RmiClient implements RemoteClient {
     public void authenticate() throws RemoteException {
         serverStub.authenticate(this);
         System.out.println("System authenticated");
+    }
+
+    @Override
+    public void saveBmiData(BMIData bmiData) throws RemoteException {
+        serverStub.saveBmiData(bmiData);
     }
 }

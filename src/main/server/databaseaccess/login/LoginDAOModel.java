@@ -1,4 +1,4 @@
-package main.server.persistence.login;
+package main.server.databaseaccess.login;
 
 import main.shared.Password;
 import main.shared.UserName;
