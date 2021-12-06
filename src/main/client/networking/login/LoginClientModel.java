@@ -5,7 +5,8 @@ import main.shared.UserName;
 
 
 public interface LoginClientModel {
-    String LoginClient(UserName userName, Password password);
-    String LoginOwner(UserName userName, Password password);
-    String LoginStaff(UserName userName, Password password);
+    String loginClient(UserName userName, Password password);
+    String loginOwner(UserName userName, Password password);
+    String loginStaff(UserName userName, Password password);
+    void authenticate();
 }

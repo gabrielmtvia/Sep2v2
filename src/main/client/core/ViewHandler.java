@@ -4,6 +4,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import main.client.view.client.activities.ActivitiesController;
 import main.client.view.client.login.ClientLoginController;
 import main.client.view.client.main.ClientMainController;
 import main.client.view.main.MainController;
@@ -26,6 +27,7 @@ public class ViewHandler {
     private Scene clientMainScene;
     private Scene ownerMainScene;
     private Scene staffMainScene;
+    private Scene clientActivities;
 
 
     public ViewHandler(Stage stage, ViewModelFactory vmf)
@@ -159,6 +161,21 @@ public class ViewHandler {
 
         mainStage.setTitle("Staff Main Window");
         mainStage.setScene(staffMainScene);
+    }
+
+    public void openClientActivities() {
+        FXMLLoader loader = new FXMLLoader();
+
+        if(clientActivities == null)
+        {
+            Parent root = getRootByPath("../view/client/activities/activities.fxml", loader);
+            ActivitiesController controller = loader.getController();
+            controller.init(viewModelFactory.getActivitiesViewModel(), this);
+            clientActivities = new Scene(root);
+        }
+
+        mainStage.setTitle("Activities Main Window");
+        mainStage.setScene(clientActivities);
     }
 }
 

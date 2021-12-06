@@ -17,7 +17,7 @@ public class ClientMainController {
     }
 
     public void onActivities(ActionEvent actionEvent) {
-       // viewHandler.openClientActivities();
+       viewHandler.openClientActivities();
     }
 
     public void onPersonalTraining(ActionEvent actionEvent) {

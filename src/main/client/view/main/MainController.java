@@ -20,6 +20,7 @@ public class MainController {
     public void init(MainViewModel mainViewModel, ViewHandler viewHandler){
         this.mainViewModel = mainViewModel;
         this.viewHandler = viewHandler;
+        mainViewModel.authenticate();
     }
 
 

@@ -15,9 +15,9 @@ public class LoginClient implements LoginClientModel{
     }
 
     @Override
-    public String LoginClient(UserName userName, Password password) {
+    public String loginClient(UserName userName, Password password) {
         try {
-            return rmiClient.LoginClient(userName, password);
+            return rmiClient.loginClient(userName, password);
         } catch (RemoteException e) {
             e.printStackTrace();
         }
@@ -26,9 +26,9 @@ public class LoginClient implements LoginClientModel{
     }
 
     @Override
-    public String LoginOwner(UserName userName, Password password) {
+    public String loginOwner(UserName userName, Password password) {
         try {
-            return rmiClient.LoginOwner(userName, password);
+            return rmiClient.loginOwner(userName, password);
         } catch (RemoteException e) {
             e.printStackTrace();
         }
@@ -37,13 +37,22 @@ public class LoginClient implements LoginClientModel{
     }
 
     @Override
-    public String LoginStaff(UserName userName, Password password) {
+    public String loginStaff(UserName userName, Password password) {
         try {
-            return rmiClient.LoginStaff(userName, password);
+            return rmiClient.loginStaff(userName, password);
         } catch (RemoteException e) {
             e.printStackTrace();
         }
 
         return "Connection failed";
+    }
+
+    @Override
+    public void authenticate() {
+        try {
+            rmiClient.authenticate();
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
     }
 }

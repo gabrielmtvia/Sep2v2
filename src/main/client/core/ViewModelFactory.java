@@ -1,5 +1,6 @@
 package main.client.core;
 
+import main.client.view.client.activities.ActivitiesViewModel;
 import main.client.view.client.login.ClientLoginViewModel;
 import main.client.view.main.MainViewModel;
 import main.client.view.owner.login.OwnerLoginViewModel;
@@ -12,6 +13,7 @@ public class ViewModelFactory {
     private ClientLoginViewModel clientLoginViewModel;
     private OwnerLoginViewModel ownerLoginViewModel;
     private StaffLoginViewModel staffLoginViewModel;
+    private ActivitiesViewModel activitiesViewModel;
 
     public ViewModelFactory(ModelFactory modelFactory){
         this.modelFactory = modelFactory;
@@ -19,26 +21,32 @@ public class ViewModelFactory {
 
     public MainViewModel getMainViewModel(){
         if(mainViewModel==null)
-            mainViewModel = new MainViewModel();
+            mainViewModel = new MainViewModel(modelFactory.getLoginManager());
         return mainViewModel;
     }
 
     public ClientLoginViewModel getClientLoginViewModel(){
         if(clientLoginViewModel==null)
-            clientLoginViewModel = new ClientLoginViewModel(modelFactory);
+            clientLoginViewModel = new ClientLoginViewModel(modelFactory.getLoginManager());
         return clientLoginViewModel;
     }
 
 
     public OwnerLoginViewModel getOwnerLoginViewModel() {
         if(ownerLoginViewModel==null)
-            ownerLoginViewModel = new OwnerLoginViewModel(modelFactory);
+            ownerLoginViewModel = new OwnerLoginViewModel(modelFactory.getLoginManager());
         return ownerLoginViewModel;
     }
 
     public StaffLoginViewModel getStaffLoginViewModel() {
         if(staffLoginViewModel== null)
-            staffLoginViewModel = new StaffLoginViewModel(modelFactory);
+            staffLoginViewModel = new StaffLoginViewModel(modelFactory.getLoginManager());
         return staffLoginViewModel;
+    }
+
+    public ActivitiesViewModel getActivitiesViewModel() {
+        if(activitiesViewModel==null)
+            activitiesViewModel = new ActivitiesViewModel(modelFactory.getActivitiesManager());
+        return activitiesViewModel;
     }
 }

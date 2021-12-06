@@ -14,17 +14,22 @@ public class LoginManager implements LoginModel{
     }
 
     @Override
-    public String LoginClient(UserName userName, Password password) {
-        return loginClient.LoginClient(userName, password);
+    public String loginClient(UserName userName, Password password) {
+        return loginClient.loginClient(userName, password);
     }
 
     @Override
-    public String LoginOwner(UserName userName, Password password) {
-        return loginClient.LoginOwner(userName, password);
+    public String loginOwner(UserName userName, Password password) {
+        return loginClient.loginOwner(userName, password);
     }
 
     @Override
-    public String LoginStaff(UserName userName, Password password) {
-        return loginClient.LoginStaff(userName, password);
+    public String loginStaff(UserName userName, Password password) {
+        return loginClient.loginStaff(userName, password);
+    }
+
+    @Override
+    public void authenticate() {
+        loginClient.authenticate();
     }
 }

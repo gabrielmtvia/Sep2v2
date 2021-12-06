@@ -2,6 +2,7 @@ package main.server.rmiserver;
 
 import main.client.networking.rmi.RemoteClient;
 import main.server.core.ModelFactory;
+import main.shared.Activity;
 import main.shared.Password;
 import main.shared.UserName;
 
@@ -52,5 +53,35 @@ public class RmiServer implements RemoteServer{
     @Override
     public String LoginStaff(UserName userName, Password password) throws RemoteException {
         return modelFactory.getLoginManager().validateLoginStaff(userName, password);
+    }
+
+    @Override
+    public ArrayList<Activity> requestActivities() throws RemoteException {
+        return modelFactory.getActivitiesManager().requestActivities();
+    }
+
+    @Override
+    public void deleteActivity(Activity activity) throws RemoteException {
+        modelFactory.getActivitiesManager().deleteActivity(activity);
+
+        for (RemoteClient client: clients) {
+            client.activityDeleted(activity);
+        }
+
+    }
+
+    @Override
+    public String saveActivity(Activity activity) throws RemoteException {
+
+        for (RemoteClient client: clients) {
+            client.activityAdded(activity);
+        }
+
+        return modelFactory.getActivitiesManager().saveActivity(activity);
+    }
+
+    @Override
+    public void authenticate(RemoteClient client) {
+        clients.add(client);
     }
 }
