@@ -1,5 +1,9 @@
 package main.server;
 
+import main.server.core.DAOFactory;
+import main.server.core.ModelFactory;
+import main.server.persistence.database.DBConnection;
+import main.server.persistence.database.DBConnectionModel;
 import main.server.rmiserver.RemoteServer;
 import main.server.rmiserver.RmiServer;
 
@@ -12,7 +16,10 @@ public class RunServer {
     public static void main(String[] args) throws RemoteException{
 
         startRegistry();
-        RmiServer server = new RmiServer();
+        DBConnectionModel dbConnection = new DBConnection();
+        DAOFactory daoFactory = new DAOFactory(dbConnection);
+        ModelFactory modelFactory = new ModelFactory(daoFactory);
+        RmiServer server = new RmiServer(modelFactory);
         server.start();
         System.out.println("Server Started");
 

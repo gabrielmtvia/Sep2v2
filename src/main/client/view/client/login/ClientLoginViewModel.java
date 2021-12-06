@@ -12,7 +12,7 @@ import main.shared.UserName;
 import java.beans.PropertyChangeEvent;
 
 public class ClientLoginViewModel {
-    private StringProperty systemMessage;
+    private SimpleStringProperty systemMessage;
     private LoginModel loginManager;
     private ViewHandler viewHandler;
 
@@ -27,14 +27,12 @@ public class ClientLoginViewModel {
     }
 
 
-    public StringProperty getSystemMessage(){return systemMessage;}
+    public SimpleStringProperty getSystemMessage(){return systemMessage;}
 
     public void login(UserName userName, Password password){
         String response = loginManager.LoginClient(userName, password);
-        if(response.contains("Successfully")){
-            System.out.println("Client login successfully");
-        }else {
-            System.out.println("Wrong credentials");
-        }
+        systemMessage.setValue(response);
+
+        System.out.println(response);
     }
 }
