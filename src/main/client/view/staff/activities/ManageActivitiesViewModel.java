@@ -3,6 +3,7 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.control.Alert;
 import main.client.model.activities.ActivitiesModel;
 import main.shared.Activity;
 
@@ -57,11 +58,17 @@ public class ManageActivitiesViewModel {
     public void saveActivity() throws RemoteException {
 
         Activity activity = new Activity(type.getValue(), price.getValue(), date.getValue(), time.getValue());
-        activitiesManager.saveActivity(activity);
+        String result = activitiesManager.saveActivity(activity);
         type.setValue("");
         price.setValue("");
         date.setValue("");
         time.setValue("");
+        System.out.println(result);
+
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Save operation");
+        alert.setContentText(result);
+        alert.showAndWait();
 
     }
 

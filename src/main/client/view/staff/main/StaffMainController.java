@@ -21,7 +21,7 @@ public class StaffMainController
 
   public void onActivitiesButtonClick(ActionEvent actionEvent)
   {
-    //viewHandler.openOrganizingActivities();
+     viewHandler.openManageActivities();
   }
 
   public void onClientsButtonClick(ActionEvent actionEvent)

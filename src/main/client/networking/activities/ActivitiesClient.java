@@ -26,12 +26,14 @@ public class ActivitiesClient implements ActivitiesClientModel {
 
     private void activityAdded(PropertyChangeEvent evt) {
         Activity activity = (Activity) evt.getNewValue();
-        support.firePropertyChange("Activity Deleted", null, activity);
+        support.firePropertyChange("Activity Added", null, activity);
+        System.out.println("Fired activity from activities client");
+        System.out.println(activity);
     }
 
     private void activityDeleted(PropertyChangeEvent evt) {
         Activity activity = (Activity) evt.getNewValue();
-        support.firePropertyChange("Activity Added", null, activity);
+        support.firePropertyChange("Activity Deleted", null, activity);
     }
 
     @Override
@@ -51,7 +53,12 @@ public class ActivitiesClient implements ActivitiesClientModel {
 
     @Override
     public String saveActivity(Activity activity) {
-        return null;
+        try {
+            return rmiClient.saveActivity(activity);
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
+        return "Connection Lost";
     }
 
 

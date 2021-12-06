@@ -82,6 +82,8 @@ public class RmiServer implements RemoteServer{
 
     @Override
     public void authenticate(RemoteClient client) {
-        clients.add(client);
+        if(!clients.contains(client)){
+            clients.add(client);
+        }
     }
 }

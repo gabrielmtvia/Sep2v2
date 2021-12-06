@@ -10,6 +10,7 @@ import main.client.view.client.main.ClientMainController;
 import main.client.view.main.MainController;
 import main.client.view.owner.login.OwnerLoginController;
 import main.client.view.owner.main.OwnerMainController;
+import main.client.view.staff.activities.ManageActivitiesController;
 import main.client.view.staff.login.StaffLoginController;
 import main.client.view.staff.login.StaffLoginViewModel;
 import main.client.view.staff.main.StaffMainController;
@@ -28,6 +29,7 @@ public class ViewHandler {
     private Scene ownerMainScene;
     private Scene staffMainScene;
     private Scene clientActivities;
+    private Scene manageActivities;
 
 
     public ViewHandler(Stage stage, ViewModelFactory vmf)
@@ -176,6 +178,21 @@ public class ViewHandler {
 
         mainStage.setTitle("Activities Main Window");
         mainStage.setScene(clientActivities);
+    }
+
+    public void openManageActivities() {
+        FXMLLoader loader = new FXMLLoader();
+
+        if(manageActivities == null)
+        {
+            Parent root = getRootByPath("../view/staff/activities/manageactivities.fxml", loader);
+            ManageActivitiesController controller = loader.getController();
+            controller.init(viewModelFactory.getManageActivitiesViewModel(), this);
+            manageActivities = new Scene(root);
+        }
+
+        mainStage.setTitle("Staff Manage Activities");
+        mainStage.setScene(manageActivities);
     }
 }
 

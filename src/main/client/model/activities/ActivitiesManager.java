@@ -22,12 +22,17 @@ public class ActivitiesManager implements ActivitiesModel{
 
     private void activityAdded(PropertyChangeEvent evt) {
         Activity activity = (Activity) evt.getNewValue();
+        System.out.println("Fired activity from Activities manager");
         System.out.println(activity);
+
+        support.firePropertyChange("Activity Added", null, activity);
     }
 
     private void activityDeleted(PropertyChangeEvent evt) {
         Activity activity = (Activity) evt.getNewValue();
         System.out.println(activity);
+
+        support.firePropertyChange("Activity Deleted", null, activity);
     }
 
 

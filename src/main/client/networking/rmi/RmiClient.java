@@ -66,6 +66,8 @@ public class RmiClient implements RemoteClient {
     @Override
     public void activityAdded(Activity activity) throws RemoteException {
         support.firePropertyChange("Activity Added", null, activity);
+        System.out.println("Fired activity from RMI client");
+        System.out.println(activity);
     }
 
 
@@ -81,5 +83,6 @@ public class RmiClient implements RemoteClient {
     @Override
     public void authenticate() throws RemoteException {
         serverStub.authenticate(this);
+        System.out.println("System authenticated");
     }
 }

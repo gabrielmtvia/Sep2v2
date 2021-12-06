@@ -4,6 +4,7 @@ import main.client.view.client.activities.ActivitiesViewModel;
 import main.client.view.client.login.ClientLoginViewModel;
 import main.client.view.main.MainViewModel;
 import main.client.view.owner.login.OwnerLoginViewModel;
+import main.client.view.staff.activities.ManageActivitiesViewModel;
 import main.client.view.staff.login.StaffLoginViewModel;
 
 public class ViewModelFactory {
@@ -14,6 +15,7 @@ public class ViewModelFactory {
     private OwnerLoginViewModel ownerLoginViewModel;
     private StaffLoginViewModel staffLoginViewModel;
     private ActivitiesViewModel activitiesViewModel;
+    private ManageActivitiesViewModel manageActivitiesViewModel;
 
     public ViewModelFactory(ModelFactory modelFactory){
         this.modelFactory = modelFactory;
@@ -48,5 +50,11 @@ public class ViewModelFactory {
         if(activitiesViewModel==null)
             activitiesViewModel = new ActivitiesViewModel(modelFactory.getActivitiesManager());
         return activitiesViewModel;
+    }
+
+    public ManageActivitiesViewModel getManageActivitiesViewModel() {
+        if(manageActivitiesViewModel==null)
+            manageActivitiesViewModel = new ManageActivitiesViewModel(modelFactory.getActivitiesManager());
+        return manageActivitiesViewModel;
     }
 }

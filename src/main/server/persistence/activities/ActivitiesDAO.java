@@ -3,6 +3,8 @@ package main.server.persistence.activities;
 import main.server.persistence.database.DBConnectionModel;
 import main.shared.Activity;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
@@ -46,6 +48,26 @@ public class ActivitiesDAO implements ActivitiesDAOModel{
 
     @Override
     public String saveActivity(Activity activity) {
-        return null;
+        PreparedStatement statement;
+
+        try {
+            String query = "INSERT INTO activities (activityName, price, date, time) VALUES (?,?,?,?)";
+            statement = dbConnection.createPreparedStatement(query);
+            statement.setString(1, activity.getActivityName());
+            statement.setString(2, activity.getPrice());
+            statement.setString(3, activity.getDate());
+            statement.setString(4, activity.getTime());
+            statement.executeQuery();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+
+        } finally {
+            dbConnection.closeConnection();
+        }
+
+        return "Activity saved successfully";
     }
+
+
 }
