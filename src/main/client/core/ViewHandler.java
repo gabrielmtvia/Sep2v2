@@ -5,6 +5,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import main.client.view.client.login.ClientLoginController;
+import main.client.view.client.main.ClientMainController;
 import main.client.view.main.MainController;
 import main.client.view.owner.login.OwnerLoginController;
 import main.client.view.staff.login.StaffLoginController;
@@ -20,6 +21,7 @@ public class ViewHandler {
     private Scene clientLoginScene;
     private Scene ownerLoginScene;
     private Scene staffLoginScene;
+    private Scene clientMainScene;
 
 
     public ViewHandler(Stage stage, ViewModelFactory vmf)
@@ -87,11 +89,11 @@ public class ViewHandler {
             Parent root = getRootByPath("../view/owner/login/ownerlogin.fxml", loader);
             OwnerLoginController controller = loader.getController();
             controller.init(viewModelFactory.getOwnerLoginViewModel(), this);
-            clientLoginScene = new Scene(root);
+            ownerLoginScene = new Scene(root);
         }
 
         mainStage.setTitle("Owner Login");
-        mainStage.setScene(clientLoginScene);
+        mainStage.setScene(ownerLoginScene);
     }
 
 
@@ -108,6 +110,21 @@ public class ViewHandler {
 
         mainStage.setTitle("Staff Login");
         mainStage.setScene(staffLoginScene);
+    }
+
+    public void openClientMain() {
+        FXMLLoader loader = new FXMLLoader();
+
+        if(clientMainScene == null)
+        {
+            Parent root = getRootByPath("../view/client/main/clientmain.fxml", loader);
+            ClientMainController controller = loader.getController();
+            controller.init( this);
+            clientMainScene = new Scene(root);
+        }
+
+        mainStage.setTitle("Client Main Window");
+        mainStage.setScene(clientMainScene);
     }
 }
 

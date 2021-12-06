@@ -33,6 +33,9 @@ public class ClientLoginViewModel {
         String response = loginManager.LoginClient(userName, password);
         systemMessage.setValue(response);
 
-        System.out.println(response);
+        if(response.contains("Successfully")){
+            systemMessage.setValue("");
+            viewHandler.openClientMain();
+        }
     }
 }
