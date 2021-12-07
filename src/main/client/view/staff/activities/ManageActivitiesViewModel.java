@@ -1,21 +1,15 @@
 package main.client.view.staff.activities;
-import javafx.beans.property.ObjectProperty;
-import javafx.beans.property.SimpleObjectProperty;
+
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.Alert;
-import javafx.scene.control.DatePicker;
-import javafx.util.converter.LocalDateStringConverter;
 import main.client.model.activities.ActivitiesModel;
 import main.shared.Activity;
-
 import java.beans.PropertyChangeEvent;
-import java.rmi.RemoteException;
-import java.text.SimpleDateFormat;
-import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.regex.PatternSyntaxException;
 
 public class ManageActivitiesViewModel {
 
@@ -23,12 +17,8 @@ public class ManageActivitiesViewModel {
     private StringProperty type;
     private StringProperty price;
     private StringProperty time;
-
     private ActivitiesModel activitiesManager;
-
     private ObservableList<Activity> items;
-
-
     private StringProperty date;
 
 
@@ -58,16 +48,31 @@ public class ManageActivitiesViewModel {
     }
 
 
-    public void saveActivity() throws RemoteException {
+    public void saveActivity() {
 
-        String dates = date.getValue();
-        String[] dateSplit = dates.split("/");
+        String[] dateSplit = date.getValue().split("/");
         String day = dateSplit[0];
         String month = dateSplit[1];
         String year = dateSplit[2];
         String dbFormat = year+"-"+month+"-"+day;
+        String[] timeSplit = null;
 
-        Activity activity = new Activity(type.getValue(),time.getValue(),price.getValue(),dbFormat,"dummy", "dummy");
+        try{
+            timeSplit = time.getValue().split(":");
+        }catch (PatternSyntaxException e){
+            alert(e.getMessage());
+        }
+
+
+        Integer.parseInt(timeSplit[0]);
+        Integer.parseInt(timeSplit[1]);
+
+
+        //String response = "Please fill the date in HH:MM format";
+        //alert(response);
+
+
+        Activity activity = new Activity(type.getValue(),price.getValue(),dbFormat,time.getValue());
         String result = activitiesManager.saveActivity(activity);
         type.setValue("");
         price.setValue("");
