@@ -78,12 +78,16 @@ public class RmiClient implements RemoteClient {
 
     @Override
     public boolean authenticate() throws RemoteException {
-        try{
-            serverStub.authenticate(this);
-            System.out.println("System authenticated");
-            return true;
-        } catch (RemoteException e) {
-            e.printStackTrace();
+        if(serverStub==null){
+        }
+         else {
+            try{
+                serverStub.authenticate(this);
+                System.out.println("System authenticated");
+                return true;
+            } catch (RemoteException e) {
+                e.printStackTrace();
+            }
         }
         return false;
     }

@@ -57,7 +57,7 @@ public class ManageActivitiesViewModel {
 
     public void saveActivity() throws RemoteException {
 
-        Activity activity = new Activity(type.getValue(), price.getValue(), date.getValue(), time.getValue());
+        Activity activity = new Activity(type.getValue(), price.getValue(), date.getValue(), time.getValue(), "dummy","dummy");
         String result = activitiesManager.saveActivity(activity);
         type.setValue("");
         price.setValue("");

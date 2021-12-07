@@ -30,9 +30,25 @@ public class Activity implements Serializable {
         this.activityName = activityName;
     }
 
+    public String getPrice() {
+        return price;
+    }
 
+    public String getDay() {
+        return day;
+    }
 
+    public String getMonth() {
+        return month;
+    }
 
+    public String getYear() {
+        return year;
+    }
+
+    public String getTime() {
+        return time;
+    }
 
     public Activity(String activityName, String time, String price, String day, String month, String year) {
         this.activityName = activityName;

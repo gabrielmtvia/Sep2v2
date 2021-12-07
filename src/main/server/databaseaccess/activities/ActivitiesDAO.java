@@ -26,7 +26,7 @@ public class ActivitiesDAO implements ActivitiesDAOModel{
             resultSet = statement.executeQuery();
 
             while (resultSet.next()) {
-                Activity activity = new Activity(resultSet.getString("activityname"),resultSet.getString("price"),resultSet.getString("date"),resultSet.getString("time"));
+                Activity activity = new Activity(resultSet.getString("activityname"),resultSet.getString("price"),resultSet.getString("date"),resultSet.getString("time"), "dummy", "dummy");
                 list.add(activity);
             }
 
@@ -53,7 +53,7 @@ public class ActivitiesDAO implements ActivitiesDAOModel{
             statement = dbConnection.createPreparedStatement(query);
             statement.setString(1, activity.getActivityName());
             statement.setString(2, activity.getPrice());
-            statement.setString(3, activity.getDate());
+            statement.setString(3, activity.getYear() + "-" +activity.getMonth()+ "-" +activity.getDay());
             statement.setString(4, activity.getTime());
             statement.executeQuery();
 
