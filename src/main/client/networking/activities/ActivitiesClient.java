@@ -46,7 +46,13 @@ public class ActivitiesClient implements ActivitiesClientModel {
     }
 
     @Override
-    public void deleteActivity(Activity activity) {
+    public String deleteActivity(Activity activity) {
+        try {
+            return rmiClient.deleteActivity(activity);
+        } catch (RemoteException e) {
+            e.printStackTrace();
+            return "Connection Lost";
+        }
 
     }
 
@@ -56,8 +62,9 @@ public class ActivitiesClient implements ActivitiesClientModel {
             return rmiClient.saveActivity(activity);
         } catch (RemoteException e) {
             e.printStackTrace();
+            return "Connection Lost";
         }
-        return "Connection Lost";
+
     }
 
 

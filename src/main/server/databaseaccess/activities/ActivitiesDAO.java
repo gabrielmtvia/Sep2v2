@@ -1,5 +1,6 @@
 package main.server.databaseaccess.activities;
 
+import javafx.scene.control.DatePicker;
 import main.server.databaseaccess.database.DBConnectionModel;
 import main.shared.Activity;
 
@@ -41,7 +42,7 @@ public class ActivitiesDAO implements ActivitiesDAOModel{
 
     @Override
     public String deleteActivity(Activity activity) {
-        return "Activity deleted successfully";
+        return "Need to implement delete activity in ActivitiesDAO";
     }
 
     @Override
@@ -53,9 +54,10 @@ public class ActivitiesDAO implements ActivitiesDAOModel{
             statement = dbConnection.createPreparedStatement(query);
             statement.setString(1, activity.getActivityName());
             statement.setString(2, activity.getPrice());
-            statement.setString(3, activity.getYear() + "-" +activity.getMonth()+ "-" +activity.getDay());
+            statement.setString(3, activity.getYear());
             statement.setString(4, activity.getTime());
             statement.executeQuery();
+
 
         } catch (Exception e) {
             e.printStackTrace();

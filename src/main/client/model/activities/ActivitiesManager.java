@@ -40,8 +40,8 @@ public class ActivitiesManager implements ActivitiesModel{
     }
 
     @Override
-    public void deleteActivity(Activity activity) {
-        activitiesClient.deleteActivity(activity);
+    public String deleteActivity(Activity activity) {
+        return activitiesClient.deleteActivity(activity);
     }
 
     @Override

@@ -30,19 +30,12 @@ public class ActivitiesController {
         price.setCellValueFactory(new PropertyValueFactory<>("price"));
         date.setCellValueFactory(new PropertyValueFactory<>("date"));
         time.setCellValueFactory(new PropertyValueFactory<>("time"));
-        date.setCellValueFactory(new PropertyValueFactory<>("date") );
+        date.setCellValueFactory(new PropertyValueFactory<>("day") );
 
         activitiesViewModel.loadActivities();
-
         tableView.setItems(activitiesViewModel.getItemsList());
 
     }
-
-
-
-
-
-
 
     public void backButton(ActionEvent actionEvent) {
         viewHandler.openClientMain();

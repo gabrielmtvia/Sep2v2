@@ -1,14 +1,20 @@
 package main.client.view.staff.activities;
+import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.Alert;
+import javafx.scene.control.DatePicker;
+import javafx.util.converter.LocalDateStringConverter;
 import main.client.model.activities.ActivitiesModel;
 import main.shared.Activity;
 
 import java.beans.PropertyChangeEvent;
 import java.rmi.RemoteException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class ManageActivitiesViewModel {
@@ -17,26 +23,23 @@ public class ManageActivitiesViewModel {
     private StringProperty type;
     private StringProperty price;
     private StringProperty time;
-    private StringProperty date;
 
     private ActivitiesModel activitiesManager;
 
     private ObservableList<Activity> items;
 
 
-    //private ObjectProperty<LocalDate> date;
+    private StringProperty date;
 
 
     public ManageActivitiesViewModel(ActivitiesModel activitiesManager) {
         this.activitiesManager = activitiesManager;
         items = FXCollections.observableArrayList();
 
-        //date = new SimpleObjectProperty<>();
         date = new SimpleStringProperty();
         type = new SimpleStringProperty();
         price = new SimpleStringProperty();
         time = new SimpleStringProperty();
-        //model.addListener("addingActivity", evt -> updatedTable(evt));
         items.addAll(activitiesManager.requestActivities());
 
         activitiesManager.addListener("Activity Deleted", evt -> activityDeleted(evt));
@@ -57,30 +60,42 @@ public class ManageActivitiesViewModel {
 
     public void saveActivity() throws RemoteException {
 
-        Activity activity = new Activity(type.getValue(), price.getValue(), date.getValue(), time.getValue(), "dummy","dummy");
+        String dates = date.getValue();
+        String[] dateSplit = dates.split("/");
+        String day = dateSplit[0];
+        String month = dateSplit[1];
+        String year = dateSplit[2];
+        String dbFormat = year+"-"+month+"-"+day;
+
+        Activity activity = new Activity(type.getValue(),time.getValue(),price.getValue(),dbFormat,"dummy", "dummy");
         String result = activitiesManager.saveActivity(activity);
         type.setValue("");
         price.setValue("");
-        date.setValue("");
         time.setValue("");
-        System.out.println(result);
 
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Save operation");
-        alert.setContentText(result);
-        alert.showAndWait();
+        alert(result);
+
+        System.out.println(result);
+        System.out.println(date.getValue());
+        System.out.println(dbFormat);
 
     }
 
-    public ArrayList<Activity> requestActivities() throws RemoteException {
+    public void alert(String response){
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Information");
+        alert.setContentText(response);
+        alert.showAndWait();
+    }
+
+    public ArrayList<Activity> requestActivities() {
         return  activitiesManager.requestActivities();
     }
 
 
-    public void deleteAnActivity(Activity activity) throws RemoteException {
-
-        activitiesManager.deleteActivity(activity);
-
+    public void deleteAnActivity(Activity activity) {
+        String response = activitiesManager.deleteActivity(activity);
+        alert(response);
     }
 
     public StringProperty dateProperty() {
@@ -106,11 +121,4 @@ public class ManageActivitiesViewModel {
     }
 
 
-
-/*
-    public ObjectProperty<LocalDate> dateProperty() {
-        return date;
-    }
-
- */
 }

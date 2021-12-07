@@ -11,6 +11,7 @@ import main.client.core.ViewHandler;
 import main.shared.Activity;
 
 import java.rmi.RemoteException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class ManageActivitiesController {
@@ -39,28 +40,26 @@ public class ManageActivitiesController {
         manageActivitiesViewModel.typeFieldProperty().bindBidirectional(typeField.textProperty());
         manageActivitiesViewModel.priceFieldProperty().bindBidirectional(priceField.textProperty());
         manageActivitiesViewModel.timeProperty().bindBidirectional(timeField.textProperty());
-        manageActivitiesViewModel.dateProperty().bindBidirectional(dateField.textProperty());
+        manageActivitiesViewModel.dateProperty().bind(datePicker.getEditor().textProperty());
 
-        //datePicker.valueProperty().bindBidirectional(organizingActivitiesViewModel.dateProperty());
 
         tableView.setItems(manageActivitiesViewModel.getItemsList());
 
 
         type.setCellValueFactory(new PropertyValueFactory<>("activityName"));
         price.setCellValueFactory(new PropertyValueFactory<>("price"));
-        date.setCellValueFactory(new PropertyValueFactory<>("date"));
+        date.setCellValueFactory(new PropertyValueFactory<>("day"));
         time.setCellValueFactory(new PropertyValueFactory<>("time"));
-        //date.setCellValueFactory(new PropertyValueFactory<>("date") );
 
     }
 
-/*
+
     public void date(){
         LocalDate startingDate = datePicker.getValue();
         System.out.println(startingDate);
     }
 
- */
+
 
     public void backButton(ActionEvent actionEvent) {
         viewHandler.openStaffMain();
@@ -81,13 +80,9 @@ public class ManageActivitiesController {
         manageActivitiesViewModel.deleteAnActivity(deletedActivity);
         tableView.getItems().remove(position);
 
-
-
-
     }
 
     public void saveButton(ActionEvent actionEvent) throws RemoteException {
         manageActivitiesViewModel.saveActivity();
-
     }
 }

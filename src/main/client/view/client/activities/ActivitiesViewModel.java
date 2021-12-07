@@ -2,7 +2,6 @@ package main.client.view.client.activities;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import main.client.model.activities.ActivitiesModel;
-import main.client.model.login.LoginModel;
 import main.shared.Activity;
 
 import java.beans.PropertyChangeEvent;
