@@ -16,7 +16,12 @@ public class ManageActivitiesViewModel {
 
     private StringProperty type;
     private StringProperty price;
-    private StringProperty time;
+
+    private StringProperty startTimeField;
+    private StringProperty endTimeField;
+
+    private StringProperty response;
+
     private ActivitiesModel activitiesManager;
     private ObservableList<Activity> items;
     private StringProperty date;
@@ -26,10 +31,15 @@ public class ManageActivitiesViewModel {
         this.activitiesManager = activitiesManager;
         items = FXCollections.observableArrayList();
 
+        startTimeField = new SimpleStringProperty();
+        endTimeField = new SimpleStringProperty();
+
+        response = new SimpleStringProperty();
+
         date = new SimpleStringProperty();
         type = new SimpleStringProperty();
         price = new SimpleStringProperty();
-        time = new SimpleStringProperty();
+
         items.addAll(activitiesManager.requestActivities());
 
         activitiesManager.addListener("Activity Deleted", evt -> activityDeleted(evt));
@@ -48,6 +58,11 @@ public class ManageActivitiesViewModel {
     }
 
 
+
+    public StringProperty responseProperty() {
+        return response;
+    }
+
     public void saveActivity() {
 
         String[] dateSplit = date.getValue().split("/");
@@ -58,7 +73,7 @@ public class ManageActivitiesViewModel {
         String[] timeSplit = null;
 
         try{
-            timeSplit = time.getValue().split(":");
+            timeSplit = startTimeField.getValue().split(":");
         }catch (PatternSyntaxException e){
             alert(e.getMessage());
         }
@@ -70,19 +85,53 @@ public class ManageActivitiesViewModel {
 
         //String response = "Please fill the date in HH:MM format";
         //alert(response);
+/*
+        if (price.getValue() != null){
+
+            if (price.get().length() > 0 && price.get().length() < 5){
+
+                if (startTimeField.getValue()!= null && endTimeFieldProperty() != null && startTimeField.get().length() > 0 && startTimeField.get().length() < 2 && endTimeField.get().length() > 0 && endTimeField.get().length() < 2){
+                    Activity activity = new Activity(type.getValue(),price.getValue(),dbFormat,startTimeField.getValue(),endTimeField.getValue());
+                    String result = activitiesManager.saveActivity(activity);
+                    type.setValue("");
+                    price.setValue("");
+                    startTimeField.setValue("");
+                    endTimeField.setValue("");
+
+                    alert(result);
+
+                    System.out.println(result);
+                    System.out.println(date.getValue());
+                    System.out.println(dbFormat);
+
+                }else {
+                    response.setValue("add correct Time");
+                }
 
 
-        Activity activity = new Activity(type.getValue(),price.getValue(),dbFormat,time.getValue());
+            }else {
+                response.setValue("value could not be negative ");
+            }
+
+        }else {
+            response.setValue("value could not be null");
+        }
+*/
+
+        Activity activity = new Activity(type.getValue(),price.getValue(),dbFormat,startTimeField.getValue(),endTimeField.getValue());
         String result = activitiesManager.saveActivity(activity);
         type.setValue("");
         price.setValue("");
-        time.setValue("");
+        startTimeField.setValue("");
+        endTimeField.setValue("");
 
         alert(result);
 
         System.out.println(result);
         System.out.println(date.getValue());
         System.out.println(dbFormat);
+
+
 
     }
 
@@ -116,14 +165,20 @@ public class ManageActivitiesViewModel {
         return price;
     }
 
-
-    public StringProperty timeProperty() {
-        return time;
+    public StringProperty startTimeFieldProperty() {
+        return startTimeField;
     }
+
+
+    public StringProperty endTimeFieldProperty() {
+        return endTimeField;
+    }
+
 
     public ObservableList<Activity> getItemsList() {
         return items;
     }
+
 
 
 }

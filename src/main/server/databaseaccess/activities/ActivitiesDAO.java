@@ -1,11 +1,9 @@
 package main.server.databaseaccess.activities;
 
-import javafx.scene.control.DatePicker;
 import main.server.databaseaccess.database.DBConnectionModel;
 import main.shared.Activity;
 
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
+import java.sql.*;
 import java.util.ArrayList;
 
 public class ActivitiesDAO implements ActivitiesDAOModel{
@@ -27,7 +25,7 @@ public class ActivitiesDAO implements ActivitiesDAOModel{
             resultSet = statement.executeQuery();
 
             while (resultSet.next()) {
-                Activity activity = new Activity(resultSet.getString("activityname"),resultSet.getString("price"),resultSet.getString("date"),resultSet.getString("time"));
+                Activity activity = new Activity(resultSet.getString("type"),resultSet.getString("price"),resultSet.getString("date"),resultSet.getString("startTime"),resultSet.getString("endTime"));
                 list.add(activity);
             }
 
@@ -42,7 +40,20 @@ public class ActivitiesDAO implements ActivitiesDAOModel{
 
     @Override
     public String deleteActivity(Activity activity) {
-        return "Need to implement delete activity in ActivitiesDAO";
+        PreparedStatement statement;
+        try
+        {
+            String query = " DELETE FROM activities WHERE type = ?";
+            statement =dbConnection.createPreparedStatement(query);
+            statement.setString(1, activity.getActivityName());
+            statement.executeQuery();
+
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return "Activity deleted successfully";
     }
 
     @Override
@@ -50,12 +61,13 @@ public class ActivitiesDAO implements ActivitiesDAOModel{
         PreparedStatement statement;
 
         try {
-            String query = "INSERT INTO activities (activityName, price, date, time) VALUES (?,?,?,?)";
+            String query = "INSERT INTO activities (type, price, date, starttime, endtime) VALUES (?,?,?,?,?)";
             statement = dbConnection.createPreparedStatement(query);
             statement.setString(1, activity.getActivityName());
             statement.setString(2, activity.getPrice());
-            statement.setString(3, activity.getDate());
-            statement.setString(4, activity.getTime());
+            statement.setDate(3, Date.valueOf(activity.getDate()));
+            statement.setString(4, activity.getStartTime());
+            statement.setString(5, activity.getEndTime());
             statement.executeQuery();
 
 

@@ -6,17 +6,8 @@ public class Activity implements Serializable {
     private String activityName;
     private String price;
     private String date;
-    private String time;
-
-    @Override
-    public String toString() {
-        return "Activity {" +
-                "activityName='" + activityName + '\'' +
-                ", price='" + price + '\'' +
-                ", date='" + date + '\'' +
-                ", time='" + time + '\'' +
-                '}';
-    }
+    private String startTime;
+    private String endTime;
 
 
 
@@ -43,19 +34,20 @@ public class Activity implements Serializable {
         this.date = date;
     }
 
-
-    public String getTime() {
-        return time;
+    public String getStartTime() {
+        return startTime;
     }
 
-    public void setTime(String time) {
-        this.time = time;
+    public String getEndTime() {
+        return endTime;
     }
 
-    public Activity(String activityName, String price, String date, String time) {
+
+    public Activity(String activityName, String price, String date, String startTime, String endTime) {
         this.activityName = activityName;
         this.price = price;
         this.date = date;
-        this.time = time;
+        this.startTime = startTime;
+        this.endTime = endTime;
     }
 }

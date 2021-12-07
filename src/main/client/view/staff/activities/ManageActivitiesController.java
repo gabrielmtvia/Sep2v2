@@ -1,31 +1,41 @@
 package main.client.view.staff.activities;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import main.client.core.ViewHandler;
 import main.shared.Activity;
 
 import java.rmi.RemoteException;
-import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class ManageActivitiesController {
 
+
+
+    @FXML private ComboBox<String> selectTypeBox = new ComboBox<>();
+
     @FXML private TableView<Activity> tableView;
-    @FXML private TableColumn<Activity, String> time;
+
     @FXML private TableColumn<Activity, String> type ;
     @FXML private TableColumn<Activity, String> date ;
     @FXML private TableColumn<Activity, String> price ;
-    @FXML private TextField typeField;
+
+    @FXML private TableColumn<Activity, String> startTime;
+    @FXML private TableColumn<Activity, String> endTime;
+
+    @FXML private TextField startTimeField;
+    @FXML private TextField endTimeField;
+
     @FXML private TextField priceField;
+
+    @FXML private Label response;
+
     @FXML private DatePicker datePicker;
-    @FXML private TextField timeField;
-    @FXML private TextField dateField;
+
+
 
     private ManageActivitiesViewModel manageActivitiesViewModel;
 
@@ -34,13 +44,27 @@ public class ManageActivitiesController {
 
     public void init(ManageActivitiesViewModel manageActivitiesViewModel, ViewHandler viewHandler)
     {
+
+
+
+        selectTypeBox.setItems( FXCollections.observableArrayList("run","jump","lift", "ds"));
+
+
+
         this.manageActivitiesViewModel = manageActivitiesViewModel;
         this.viewHandler = viewHandler;
 
-        manageActivitiesViewModel.typeFieldProperty().bindBidirectional(typeField.textProperty());
+        manageActivitiesViewModel.typeFieldProperty().bindBidirectional(selectTypeBox.valueProperty());
+
         manageActivitiesViewModel.priceFieldProperty().bindBidirectional(priceField.textProperty());
-        manageActivitiesViewModel.timeProperty().bindBidirectional(timeField.textProperty());
+
+        manageActivitiesViewModel.startTimeFieldProperty().bindBidirectional(startTimeField.textProperty());
+        manageActivitiesViewModel.endTimeFieldProperty().bindBidirectional(endTimeField.textProperty());
+
+        manageActivitiesViewModel.responseProperty().bind(response.textProperty());
+
         manageActivitiesViewModel.dateProperty().bind(datePicker.getEditor().textProperty());
+
 
 
         tableView.setItems(manageActivitiesViewModel.getItemsList());
@@ -48,29 +72,29 @@ public class ManageActivitiesController {
 
         type.setCellValueFactory(new PropertyValueFactory<>("activityName"));
         price.setCellValueFactory(new PropertyValueFactory<>("price"));
-        date.setCellValueFactory(new PropertyValueFactory<>("day"));
-        time.setCellValueFactory(new PropertyValueFactory<>("time"));
+        date.setCellValueFactory(new PropertyValueFactory<>("date"));
+        startTime.setCellValueFactory(new PropertyValueFactory<>("startTime"));
+        endTime.setCellValueFactory(new PropertyValueFactory<>("endTime"));
 
     }
 
 
-    public void date(){
-        LocalDate startingDate = datePicker.getValue();
-        System.out.println(startingDate);
-    }
 
 
 
-    public void backButton(ActionEvent actionEvent) {
+
+    public void backButton() {
         viewHandler.openStaffMain();
     }
 
     public void deleteButton() throws RemoteException {
+        //converting the selected row to int (index)
 
         ObservableList<Integer> items = tableView.getSelectionModel().getSelectedIndices();
 
+        //getting the all array elements in order to wrap in Object[]
         Object[] array = items.toArray();
-        //converting objects to number and assign to a position
+        //getting index of that element  and assign to a position after casting to (int)
         int position = (int) array[0];
 
         ArrayList<Activity> activities = manageActivitiesViewModel.requestActivities();
