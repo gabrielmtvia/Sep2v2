@@ -7,24 +7,25 @@ import javafx.collections.ObservableList;
 import javafx.scene.control.Alert;
 import main.client.model.activities.ActivitiesModel;
 import main.shared.Activity;
+
 import java.beans.PropertyChangeEvent;
 import java.util.ArrayList;
 import java.util.regex.PatternSyntaxException;
 
 public class ManageActivitiesViewModel {
 
-
+    private StringProperty date;
     private StringProperty type;
     private StringProperty price;
-
     private StringProperty startTimeField;
     private StringProperty endTimeField;
 
     private StringProperty response;
 
+
     private ActivitiesModel activitiesManager;
     private ObservableList<Activity> items;
-    private StringProperty date;
+
 
 
     public ManageActivitiesViewModel(ActivitiesModel activitiesManager) {
@@ -72,11 +73,14 @@ public class ManageActivitiesViewModel {
         String dbFormat = year+"-"+month+"-"+day;
         String[] timeSplit = null;
 
+
         try{
             timeSplit = startTimeField.getValue().split(":");
         }catch (PatternSyntaxException e){
             alert(e.getMessage());
         }
+
+
 
 
         Integer.parseInt(timeSplit[0]);
@@ -85,7 +89,8 @@ public class ManageActivitiesViewModel {
 
         //String response = "Please fill the date in HH:MM format";
         //alert(response);
-/*
+          //  int priceint = (int) price.getValue();
+            /*
         if (price.getValue() != null){
 
             if (price.get().length() > 0 && price.get().length() < 5){
@@ -116,9 +121,11 @@ public class ManageActivitiesViewModel {
         }else {
             response.setValue("value could not be null");
         }
-*/
 
-        Activity activity = new Activity(type.getValue(),price.getValue(),dbFormat,startTimeField.getValue(),endTimeField.getValue());
+             */
+
+/*
+        Activity activity = new Activity(type.getValue(), price.getValue(),dbFormat,startTimeField.getValue(),endTimeField.getValue());
         String result = activitiesManager.saveActivity(activity);
         type.setValue("");
         price.setValue("");
@@ -130,6 +137,21 @@ public class ManageActivitiesViewModel {
         System.out.println(result);
         System.out.println(date.getValue());
         System.out.println(dbFormat);
+
+ */
+        Activity activity = new Activity(type.getValue(),price.getValue(),dbFormat,startTimeField.getValue(),endTimeField.getValue());
+        String result = activitiesManager.saveActivity(activity);
+        type.setValue("");
+        price.setValue(null);
+        startTimeField.setValue(null);
+        endTimeField.setValue(null);
+
+        alert(result);
+
+        System.out.println(result);
+        System.out.println(date.getValue());
+        System.out.println(dbFormat);
+
 
 
 
@@ -173,6 +195,8 @@ public class ManageActivitiesViewModel {
     public StringProperty endTimeFieldProperty() {
         return endTimeField;
     }
+
+
 
 
     public ObservableList<Activity> getItemsList() {

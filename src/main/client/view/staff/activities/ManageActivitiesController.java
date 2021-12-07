@@ -15,22 +15,21 @@ public class ManageActivitiesController {
 
 
 
-    @FXML private ComboBox<String> selectTypeBox = new ComboBox<>();
+
 
     @FXML private TableView<Activity> tableView;
 
     @FXML private TableColumn<Activity, String> type ;
     @FXML private TableColumn<Activity, String> date ;
     @FXML private TableColumn<Activity, String> price ;
-
     @FXML private TableColumn<Activity, String> startTime;
     @FXML private TableColumn<Activity, String> endTime;
 
+
+    @FXML private ComboBox<String> selectTypeBox = new ComboBox<>();
     @FXML private TextField startTimeField;
     @FXML private TextField endTimeField;
-
     @FXML private TextField priceField;
-
     @FXML private Label response;
 
     @FXML private DatePicker datePicker;
@@ -55,11 +54,12 @@ public class ManageActivitiesController {
         this.viewHandler = viewHandler;
 
         manageActivitiesViewModel.typeFieldProperty().bindBidirectional(selectTypeBox.valueProperty());
-
-        manageActivitiesViewModel.priceFieldProperty().bindBidirectional(priceField.textProperty());
+      manageActivitiesViewModel.priceFieldProperty().bindBidirectional(priceField.textProperty());
 
         manageActivitiesViewModel.startTimeFieldProperty().bindBidirectional(startTimeField.textProperty());
         manageActivitiesViewModel.endTimeFieldProperty().bindBidirectional(endTimeField.textProperty());
+
+
 
         manageActivitiesViewModel.responseProperty().bind(response.textProperty());
 

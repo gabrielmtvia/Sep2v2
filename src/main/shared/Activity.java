@@ -22,16 +22,16 @@ public class Activity implements Serializable {
         return price;
     }
 
-    public void setPrice(String price) {
-        this.price = price;
+    public String setPrice(String price) {
+        return this.price = price;
     }
 
     public String getDate() {
         return date;
     }
 
-    public void setDate(String date) {
-        this.date = date;
+    public String setDate(String date) {
+        return  this.date = date;
     }
 
     public String getStartTime() {

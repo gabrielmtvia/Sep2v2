@@ -25,6 +25,7 @@ public class ActivitiesDAO implements ActivitiesDAOModel{
             resultSet = statement.executeQuery();
 
             while (resultSet.next()) {
+                //Activity activity = new Activity(resultSet.getString("type"),resultSet.getString("price"),resultSet.getString("date"),resultSet.getString("startTime"),resultSet.getString("endTime"));
                 Activity activity = new Activity(resultSet.getString("type"),resultSet.getString("price"),resultSet.getString("date"),resultSet.getString("startTime"),resultSet.getString("endTime"));
                 list.add(activity);
             }
@@ -64,9 +65,9 @@ public class ActivitiesDAO implements ActivitiesDAOModel{
             String query = "INSERT INTO activities (type, price, date, starttime, endtime) VALUES (?,?,?,?,?)";
             statement = dbConnection.createPreparedStatement(query);
             statement.setString(1, activity.getActivityName());
-            statement.setString(2, activity.getPrice());
-            statement.setDate(3, Date.valueOf(activity.getDate()));
-            statement.setString(4, activity.getStartTime());
+            statement.setString(2,  activity.getPrice());
+            statement.setDate(3,    Date.valueOf(activity.getDate()));
+            statement.setString(4,  activity.getStartTime());
             statement.setString(5, activity.getEndTime());
             statement.executeQuery();
 
