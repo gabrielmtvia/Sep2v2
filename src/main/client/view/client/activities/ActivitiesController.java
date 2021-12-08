@@ -15,10 +15,7 @@ public class ActivitiesController {
     @FXML private  TableColumn endTime;
     @FXML private  TableColumn activityName;
     @FXML private  TableColumn price;
-    @FXML
-    private TableView<Activity> tableView;
-
-
+    @FXML private TableView<Activity> tableView;
 
 
     private ViewHandler viewHandler;
