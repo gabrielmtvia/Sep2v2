@@ -154,4 +154,10 @@ public class RmiServer implements RemoteServer{
         }
         return modelFactory.getClientManager().removeClient(theClient);
     }
+
+    @Override
+    public String registerActivities(Activity activity) throws RemoteException {
+        return null; //todo
+
+    }
 }

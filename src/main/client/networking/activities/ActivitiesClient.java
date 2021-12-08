@@ -67,6 +67,11 @@ public class ActivitiesClient implements ActivitiesClientModel {
 
     }
 
+    @Override
+    public String registerActivities(Activity activity) {
+        return null; //todo
+    }
+
 
     @Override
     public void addListener(String eventName, PropertyChangeListener listener) {

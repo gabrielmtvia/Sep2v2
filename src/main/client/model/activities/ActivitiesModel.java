@@ -9,5 +9,7 @@ public interface ActivitiesModel {
     ArrayList<Activity> requestActivities();
     String deleteActivity(Activity activity);
     String saveActivity(Activity activity);
+    String registerActivities(Activity activity);
     void addListener(String eventName, PropertyChangeListener listener);
+
 }

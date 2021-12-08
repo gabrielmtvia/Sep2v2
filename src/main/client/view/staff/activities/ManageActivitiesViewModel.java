@@ -98,10 +98,34 @@ public class ManageActivitiesViewModel {
         //String response = "Please fill the date in HH:MM format";
         //alert(response);
 
-        if (timeSplit.length != 0 || timeSplit.length != 1){
-            if (price.get().length() > 0 && price.get().length() < 4 ){
+        boolean isValid = true;
+        StringBuilder infoMessage = new StringBuilder();
+        Integer priceField = 0;
+        Integer startTimeHours = 0;
+        Integer startTimeMinutes = 0;
+        Integer endTimeHours = 0;
+        Integer endTimeMinutes = 0;
 
-                if (startTimeField.getValue()!= null && endTimeFieldProperty() != null){
+        try{
+            priceField = Integer.parseInt(price.getValue());
+/*
+            Integer startTimeHours = 0;
+            Integer startTimeMinutes = 0;
+            Integer endTimeHours = 0;
+            Integer endTimeMinutes = 0;
+
+ */
+
+        }catch (Exception e){
+            infoMessage.append(e.getMessage());
+            isValid = false;
+        }
+
+
+        if(isValid)
+        {
+                if (priceField<=500 && priceField>=50)
+                {
                     Activity activity = new Activity(type.getValue(),price.getValue(),dbFormat,startTimeField.getValue(),endTimeField.getValue());
                     String result = activitiesManager.saveActivity(activity);
                     type.setValue("");
@@ -116,21 +140,58 @@ public class ManageActivitiesViewModel {
                     System.out.println(dbFormat);
 
                 }else {
-                    alert("add correct Time");
-                    // response.setValue("add correct Time");
+                    alert("put the correct value");
                 }
+
+        }
+        else
+        {
+            alert(infoMessage.toString());
+        }
+
+
+
+
+
+
+
+
+
+
+
+           /* if (startTimeField.getValue()!= null && endTimeFieldProperty() != null){
 
 
             }else {
-                alert("The price could not be null or more than 4 integer");
-                alert("Please add a price no more than 500 ");
-                //response.setValue("value could not be negative ");
+                alert("add correct Time");
+                // response.setValue("add correct Time");
             }
+
+
+        }
+
+         else {
+            alert("The price could not be null or more than 4 integer");
+            alert("Please add a price no more than 500 ");
+            //response.setValue("value could not be negative ");
+        }
+
+         */
+
+
+
+
+
+/*
+        if (timeSplit.length != 0 || timeSplit.length != 1){
+
 
         }
         else {
 
         }
+
+ */
 
 
 

@@ -83,4 +83,16 @@ public class ActivitiesDAO implements ActivitiesDAOModel{
     }
 
 
+    @Override
+    public String registerActivities(Activity activity) {
+
+
+        return "Activity has been registered successfully";
+          //todo
+
+    }
+
+
+
+
 }

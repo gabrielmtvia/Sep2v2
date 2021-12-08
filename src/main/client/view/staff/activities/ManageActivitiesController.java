@@ -46,6 +46,8 @@ public class ManageActivitiesController {
 
 
 
+
+
         selectTypeBox.setItems( FXCollections.observableArrayList("Squat","Stretching","Balance exercises", "Yoga", "Running", "Jumping"));
 
 
@@ -92,16 +94,17 @@ public class ManageActivitiesController {
 
         ObservableList<Integer> items = tableView.getSelectionModel().getSelectedIndices();
 
-        //getting the all array elements in order to wrap in Object[]
+        //getting the all array elements (int) in order to wrap in Object[]
         Object[] array = items.toArray();
         //getting index of that element  and assign to a position after casting to (int)
         int position = (int) array[0];
-
+        //getting all requested requestedActivities from database wrap them in an array
         ArrayList<Activity> activities = manageActivitiesViewModel.requestActivities();
-
+        //we target the position of the selected activity
         Activity deletedActivity = activities.get(position);
-
+        // call deleting
         manageActivitiesViewModel.deleteAnActivity(deletedActivity);
+        //finally removing
         tableView.getItems().remove(position);
 
     }

@@ -50,6 +50,12 @@ public class ActivitiesManager implements ActivitiesModel{
     }
 
     @Override
+    public String registerActivities(Activity activity) {
+        return null; //todo
+    }
+
+
+    @Override
     public void addListener(String eventName, PropertyChangeListener listener) {
         if(eventName == null || "".equals(eventName)) {
             support.addPropertyChangeListener(listener);

@@ -8,4 +8,5 @@ public interface ActivitiesDAOModel {
     ArrayList<Activity> requestActivities();
     String deleteActivity(Activity activity);
     String saveActivity(Activity activity);
+    String registerActivities(Activity activity);
 }

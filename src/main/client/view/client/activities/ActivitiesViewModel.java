@@ -5,6 +5,7 @@ import main.client.model.activities.ActivitiesModel;
 import main.shared.Activity;
 
 import java.beans.PropertyChangeEvent;
+import java.util.ArrayList;
 
 
 public class ActivitiesViewModel {
@@ -31,6 +32,10 @@ public class ActivitiesViewModel {
     private void activityDeleted(PropertyChangeEvent evt) {
         Activity activityDeleted = (Activity) evt.getNewValue();
         items.remove(activityDeleted);
+    }
+
+    public ArrayList<Activity> requestActivities() {
+        return  activitiesManager.requestActivities();
     }
 
 

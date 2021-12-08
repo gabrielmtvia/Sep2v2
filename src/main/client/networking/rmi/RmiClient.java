@@ -216,4 +216,9 @@ public class RmiClient implements RemoteClient {
         }
         return "Connection error";
     }
+
+    @Override
+    public String registerActivities(Activity activity) throws RemoteException {
+        return null;
+    }
 }
