@@ -13,6 +13,6 @@ public class BmiDAO implements BmiDAOModel {
 
     @Override
     public String saveBmiData(BMIData bmiData) {
-        return null;
+        return "Dummy Database";
     }
 }

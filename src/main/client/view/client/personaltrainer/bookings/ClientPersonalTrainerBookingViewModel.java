@@ -18,4 +18,7 @@ public class ClientPersonalTrainerBookingViewModel {
     public ObservableList<Activity> getItemsList() {
         return items;
     }
+
+    public void cancelBooking() {
+    }
 }

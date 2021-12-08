@@ -1,6 +1,8 @@
 package main.client.view.client.bmi;
 
 
+import javafx.beans.property.SimpleStringProperty;
+import javafx.scene.control.Alert;
 import main.client.model.bmi.BmiModel;
 import main.client.model.login.LoginModel;
 import main.shared.BMIData;
@@ -12,19 +14,83 @@ public class CalculateBmiViewModel
   private LoginModel loginManager;
   private UserName userName;
 
+  private SimpleStringProperty height;
+  private SimpleStringProperty weight;
+  private SimpleStringProperty result;
+
   public CalculateBmiViewModel(BmiModel bmiManager, LoginModel loginManager){
     this.bmiManager = bmiManager;
     this.loginManager = loginManager;
+
+    height = new SimpleStringProperty();
+    weight = new SimpleStringProperty();
+    result = new SimpleStringProperty();
   }
 
-  public void Save(BMIData data){
-    BMIData bmiData = data;
+  public void calculateBMI() {
+    double inputHeight = 0;
+    double inputWeight = 0;
+    try{
+      inputHeight = Double.valueOf(height.getValue());
+      System.out.println(height);
+      inputWeight = Double.valueOf(weight.getValue());
+      System.out.println(weight);
+    }catch (Exception e){
+      alert("Input error", "Please input a numeric value");
+    }
+
+
+    double dividend = inputWeight;
+    double divisor = inputHeight * inputHeight;
+    double bmi = dividend / divisor;
+
+    int roundedBmi = (int) (bmi * 10000);
+    result.set(String.valueOf(roundedBmi));
+
+    alert("BMI Result", "Less than 15 = Very severely underweight \n"
+            + "bmi >= 15 but bmi < 16 = Severely underweight\n"
+            + "bmi >= 16 but bmi < 18.5 =  Underweight\n"
+            + "bmi >= 18.5 but bmi < 25 = Normal (healthy weight)\n"
+            + "bmi >= 25 but bmi < 30 = Overweight\n"
+            + "bmi >= 30 but bmi < 35 = Moderately obese\n"
+            + "bmi >= 35 but bmi < 40 = Severely obese\n"
+            + "bmi > 40 = Very severely obese");
+  }
+
+  public void alert(String title, String text){
+    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+    alert.setTitle(title);
+    alert.setContentText(text);
+    alert.showAndWait();
+  }
+
+  public void save(){
+    BMIData bmiData = new BMIData(weight.getValue(), height.getValue());
     userName = loginManager.getUserName();
     bmiData.setUserName(userName.getUserName());
 
-    System.out.println(userName.getUserName());
     String response = bmiManager.saveBmiData(bmiData);
-    System.out.println(response);
+    alert("Save operation", response);
   }
+
+  public void load() {
+  }
+
+  public void delete() {
+  }
+
+
+  public SimpleStringProperty heightProperty() {
+    return height;
+  }
+
+  public SimpleStringProperty weightProperty() {
+    return weight;
+  }
+
+  public SimpleStringProperty resultProperty() {
+    return result;
+  }
+
 
 }

@@ -33,4 +33,8 @@ public class ClientPersonalTrainerBookingController {
     public void onButtonBack(ActionEvent actionEvent) {
         viewHandler.openClientPersonalTrainer();
     }
+
+    public void onCancelBooking(ActionEvent actionEvent) {
+        viewModel.cancelBooking();
+    }
 }

@@ -13,6 +13,6 @@ public class BmiManager implements BmiModel {
 
     @Override
     public String saveBmiData(BMIData bmiData) {
-        return null;
+        return bmiClient.saveBmiData(bmiData);
     }
 }
