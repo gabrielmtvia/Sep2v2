@@ -65,7 +65,7 @@ public class ViewModelFactory {
 
     public ActivitiesViewModel getActivitiesViewModel() {
         if(activitiesViewModel==null)
-            activitiesViewModel = new ActivitiesViewModel(modelFactory.getActivitiesManager());
+            activitiesViewModel = new ActivitiesViewModel(modelFactory.getActivitiesManager(), modelFactory.getLoginManager());
         return activitiesViewModel;
     }
 

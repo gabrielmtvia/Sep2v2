@@ -65,6 +65,7 @@ public class ActivitiesController {
 
         //get the activity by position
         Activity registerActivity = activities.get(position);
+        activitiesViewModel.registerActivity(registerActivity);
 
     }
 }

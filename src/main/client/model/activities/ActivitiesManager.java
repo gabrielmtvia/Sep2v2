@@ -2,6 +2,7 @@ package main.client.model.activities;
 
 import main.client.networking.activities.ActivitiesClientModel;
 import main.shared.Activity;
+import main.shared.UserName;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
@@ -50,7 +51,7 @@ public class ActivitiesManager implements ActivitiesModel{
     }
 
     @Override
-    public String registerActivities(Activity activity) {
+    public String registerActivities(Activity activity, UserName userName) {
         return null; //todo
     }
 

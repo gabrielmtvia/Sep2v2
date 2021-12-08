@@ -1,8 +1,11 @@
 package main.client.view.client.activities;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import main.client.model.activities.ActivitiesModel;
+import main.client.model.login.LoginModel;
 import main.shared.Activity;
+import main.shared.UserName;
 
 import java.beans.PropertyChangeEvent;
 import java.util.ArrayList;
@@ -12,11 +15,15 @@ public class ActivitiesViewModel {
 
 
     private ActivitiesModel activitiesManager;
-
+    private LoginModel loginManager;
+    private UserName userName;
     private ObservableList<Activity> items;
 
-    public ActivitiesViewModel(ActivitiesModel activitiesManager){
+    public ActivitiesViewModel(ActivitiesModel activitiesManager, LoginModel loginManager){
         this.activitiesManager = activitiesManager;
+        this.loginManager = loginManager;
+        userName = loginManager.getUserName();
+
         items = FXCollections.observableArrayList();
         activitiesManager.addListener("Activity Deleted", evt -> activityDeleted(evt));
         activitiesManager.addListener("Activity Added", evt -> activityAdded(evt));
@@ -43,6 +50,10 @@ public class ActivitiesViewModel {
         return items;
     }
 
+    public void registerActivity(Activity activity){
+
+        activitiesManager.registerActivities(activity,userName);
+    }
     public void loadActivities() {
         items.addAll(activitiesManager.requestActivities());
     }

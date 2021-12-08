@@ -2,6 +2,7 @@ package main.server.databaseaccess.activities;
 
 import main.server.databaseaccess.database.DBConnectionModel;
 import main.shared.Activity;
+import main.shared.UserName;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -84,7 +85,25 @@ public class ActivitiesDAO implements ActivitiesDAOModel{
 
 
     @Override
-    public String registerActivities(Activity activity) {
+    public String registerActivities(Activity activity, UserName userName) {
+        PreparedStatement statement;
+        try {
+            String query = "INSERT INTO activities (type, price, date, starttime, endtime) VALUES (?,?,?,?,?)";
+            statement = dbConnection.createPreparedStatement(query);
+            statement.setString(1, String.valueOf(userName));
+
+            statement.executeQuery();
+
+
+        } catch (Exception e) {
+            e.printStackTrace();
+
+        } finally {
+            dbConnection.closeConnection();
+        }
+
+
+
 
 
         return "Activity has been registered successfully";

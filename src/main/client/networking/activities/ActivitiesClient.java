@@ -2,6 +2,7 @@ package main.client.networking.activities;
 
 import main.client.networking.rmi.RemoteClient;
 import main.shared.Activity;
+import main.shared.UserName;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
@@ -68,7 +69,7 @@ public class ActivitiesClient implements ActivitiesClientModel {
     }
 
     @Override
-    public String registerActivities(Activity activity) {
+    public String registerActivities(Activity activity, UserName userName) {
         return null; //todo
     }
 
