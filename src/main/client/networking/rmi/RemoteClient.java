@@ -35,5 +35,6 @@ public interface RemoteClient extends Remote {
     ArrayList<TheClient> getClients() throws RemoteException;
     String removeClient(TheClient theClient) throws RemoteException;
 
-    String registerActivities(Activity activity) throws RemoteException;
+    BMIData loadBmiData(UserName userName) throws RemoteException;
+    String deleteBmiData(UserName userName) throws RemoteException;
 }

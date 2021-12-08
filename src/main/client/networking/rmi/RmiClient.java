@@ -218,7 +218,22 @@ public class RmiClient implements RemoteClient {
     }
 
     @Override
-    public String registerActivities(Activity activity) throws RemoteException {
+    public BMIData loadBmiData(UserName userName) throws RemoteException {
+        try {
+            return serverStub.loadBmiData(userName);
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
         return null;
+    }
+
+    @Override
+    public String deleteBmiData(UserName userName) throws RemoteException {
+        try {
+            return serverStub.deleteBmiData(userName);
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
+        return "Connection error";
     }
 }

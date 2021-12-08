@@ -9,6 +9,8 @@ import main.client.view.client.activities.ActivitiesController;
 import main.client.view.client.bmi.CalculateBmiController;
 import main.client.view.client.login.ClientLoginController;
 import main.client.view.client.main.ClientMainController;
+import main.client.view.client.personaltrainer.bookings.ClientPersonalTrainerBookingController;
+import main.client.view.client.personaltrainer.list.ClientPersonalTrainerListController;
 import main.client.view.main.MainController;
 import main.client.view.owner.login.OwnerLoginController;
 import main.client.view.owner.main.OwnerMainController;
@@ -46,6 +48,9 @@ public class ViewHandler {
     private Scene personalTrainersList;
     private Scene addClient;
     private Scene clientMain;
+
+    private Scene clientPersonalTrainer;
+    private Scene clientPersonalTrainerBooking;
 
     public ViewHandler(Stage stage, ViewModelFactory vmf)
     {
@@ -330,6 +335,36 @@ public class ViewHandler {
 
         mainStage.setTitle("Client Main");
         mainStage.setScene(clientMain);
+    }
+
+    public void openClientPersonalTrainer() {
+        FXMLLoader loader = new FXMLLoader();
+
+        if (clientPersonalTrainer == null)
+        {
+            Parent root = getRootByPath("../view/client/personaltrainer/list/personaltrainerlist.fxml", loader);
+            ClientPersonalTrainerListController controller = loader.getController();
+            controller.init(viewModelFactory.getClientPersonalTrainerListViewModel(), this);
+            clientPersonalTrainer = new Scene(root);
+        }
+
+        mainStage.setTitle("Client Personal Trainer");
+        mainStage.setScene(clientPersonalTrainer);
+    }
+
+    public void openClientPersonalTrainerBooking() {
+        FXMLLoader loader = new FXMLLoader();
+
+        if (clientPersonalTrainerBooking == null)
+        {
+            Parent root = getRootByPath("../view/client/personaltrainer/bookings/personaltrainersbookings.fxml", loader);
+            ClientPersonalTrainerBookingController controller = loader.getController();
+            controller.init(viewModelFactory.getClientPersonalTrainerBookingViewModel(), this);
+            clientPersonalTrainerBooking = new Scene(root);
+        }
+
+        mainStage.setTitle("My personal trainer bookings");
+        mainStage.setScene(clientPersonalTrainerBooking);
     }
 }
 

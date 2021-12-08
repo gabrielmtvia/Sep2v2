@@ -3,6 +3,8 @@ package main.client.core;
 import main.client.view.client.activities.ActivitiesViewModel;
 import main.client.view.client.bmi.CalculateBmiViewModel;
 import main.client.view.client.login.ClientLoginViewModel;
+import main.client.view.client.personaltrainer.bookings.ClientPersonalTrainerBookingViewModel;
+import main.client.view.client.personaltrainer.list.ClientPersonalTrainerListViewModel;
 import main.client.view.main.MainViewModel;
 import main.client.view.owner.login.OwnerLoginViewModel;
 import main.client.view.owner.managestaff.AddStaffMemberViewModel;
@@ -28,6 +30,9 @@ public class ViewModelFactory {
     private AddPersonalTrainerViewModel addPersonalTrainerViewModel;
     private PersonalTrainersListViewModel personalTrainersListViewModel;
     private AddClientViewModel addClientViewModel;
+
+    private ClientPersonalTrainerListViewModel clientPersonalTrainerListViewModel;
+    private ClientPersonalTrainerBookingViewModel clientPersonalTrainerBookingViewModel;
 
     public ViewModelFactory(ModelFactory modelFactory){
         this.modelFactory = modelFactory;
@@ -105,5 +110,17 @@ public class ViewModelFactory {
         if (addClientViewModel == null)
             addClientViewModel = new AddClientViewModel(modelFactory.getClientManager());
         return addClientViewModel;
+    }
+
+    public ClientPersonalTrainerListViewModel getClientPersonalTrainerListViewModel() {
+        if(clientPersonalTrainerListViewModel == null)
+            clientPersonalTrainerListViewModel = new ClientPersonalTrainerListViewModel(modelFactory.getPersonalTrainerManager());
+        return clientPersonalTrainerListViewModel;
+    }
+
+    public ClientPersonalTrainerBookingViewModel getClientPersonalTrainerBookingViewModel() {
+        if(clientPersonalTrainerBookingViewModel == null)
+            clientPersonalTrainerBookingViewModel = new ClientPersonalTrainerBookingViewModel(modelFactory.getPersonalTrainerManager());
+        return clientPersonalTrainerBookingViewModel;
     }
 }
