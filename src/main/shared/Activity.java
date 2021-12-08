@@ -1,6 +1,7 @@
 package main.shared;
 
 import java.io.Serializable;
+import java.util.Objects;
 
 public class Activity implements Serializable {
     private String activityName;
@@ -50,4 +51,13 @@ public class Activity implements Serializable {
         this.startTime = startTime;
         this.endTime = endTime;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Activity activity = (Activity) o;
+        return Objects.equals(activityName, activity.activityName) && Objects.equals(price, activity.price) && Objects.equals(date, activity.date) && Objects.equals(startTime, activity.startTime) && Objects.equals(endTime, activity.endTime);
+    }
+
 }

@@ -1,6 +1,7 @@
 package main.shared;
 
 import java.io.Serializable;
+import java.util.Objects;
 
 public class StaffMember implements Serializable {
 
@@ -52,4 +53,13 @@ public class StaffMember implements Serializable {
     public String toString() {
         return  "SSN:     " + SSN + "   Full Name:   " + fullName + "   Username:   " + userName + "   Password:   " + password;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        StaffMember that = (StaffMember) o;
+        return Objects.equals(SSN, that.SSN) && Objects.equals(fullName, that.fullName) && Objects.equals(userName, that.userName) && Objects.equals(password, that.password);
+    }
+
 }

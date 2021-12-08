@@ -15,39 +15,32 @@ import java.util.ArrayList;
 public class PersonalTrainersListViewModel
 {
   private PersonalTrainerModel personalTrainerManager;
-  private String personalTrainer;
-  private SimpleListProperty personalTrainersList;
-  private ObservableList<String> list = FXCollections.observableArrayList();
+  private ObservableList<PersonalTrainer> list;
 
   public PersonalTrainersListViewModel(PersonalTrainerModel personalTrainerManager)
   {
     this.personalTrainerManager = personalTrainerManager;
-    personalTrainersList = new SimpleListProperty();
+    list  = FXCollections.observableArrayList();
+    populateList();
+
     personalTrainerManager.addListener("Personal Trainer Added", evt -> personalTrainerAdded(evt));
     personalTrainerManager.addListener("Personal Trainer Removed", evt -> personalTrainerRemoved(evt));
   }
 
   private void personalTrainerRemoved(PropertyChangeEvent evt) {
     PersonalTrainer personalTrainerRemoved = (PersonalTrainer) evt.getNewValue();
-    Platform.runLater(()->list.remove(personalTrainerRemoved.toString()));
-    personalTrainersList.setValue(list);
+    list.remove(personalTrainerRemoved);
   }
 
   private void personalTrainerAdded(PropertyChangeEvent evt) {
     PersonalTrainer personalTrainerAdded = (PersonalTrainer) evt.getNewValue();
-    list.add(personalTrainerAdded.toString());
-    personalTrainersList.setValue(list);
+    list.add(personalTrainerAdded);
 
   }
 
   public void populateList()
   {
-    ArrayList<PersonalTrainer> test = getPersonalTrainers();
-    for (PersonalTrainer personalTrainer : test)
-    {
-      list.add(personalTrainer.toString());
-    }
-    personalTrainersList.setValue(list);
+    list.addAll(getPersonalTrainers());
   }
 
   public ArrayList<PersonalTrainer> getPersonalTrainers()
@@ -57,7 +50,7 @@ public class PersonalTrainersListViewModel
       test = new ArrayList<>();
       Alert alert = new Alert(Alert.AlertType.ERROR);
       alert.setTitle("ERROR");
-      alert.setContentText("Connection Error");
+      alert.setContentText("Connection Error. Please restart the program");
       alert.showAndWait();
       return test;
     }else{
@@ -75,9 +68,8 @@ public class PersonalTrainersListViewModel
     alert.showAndWait();
   }
 
-  public SimpleListProperty getPersonalTrainersList()
-  {
-    return personalTrainersList;
-  }
+  public ObservableList<PersonalTrainer> getList(){
+    return list;
+}
 
 }

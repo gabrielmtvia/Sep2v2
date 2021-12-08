@@ -1,6 +1,7 @@
 package main.shared;
 
 import java.io.Serializable;
+import java.util.Objects;
 
 public class PersonalTrainer implements Serializable
 {
@@ -50,4 +51,13 @@ public class PersonalTrainer implements Serializable
   {
     return "Name: " + this.name + ", Phone Number: " + this.phoneNumber + ", SSN: " + this.ssn;
   }
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) return true;
+    if (o == null || getClass() != o.getClass()) return false;
+    PersonalTrainer that = (PersonalTrainer) o;
+    return Objects.equals(name, that.name) && Objects.equals(phoneNumber, that.phoneNumber) && Objects.equals(ssn, that.ssn);
+  }
+
 }
