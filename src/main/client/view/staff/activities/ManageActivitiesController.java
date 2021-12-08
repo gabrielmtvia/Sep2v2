@@ -46,7 +46,7 @@ public class ManageActivitiesController {
 
 
 
-        selectTypeBox.setItems( FXCollections.observableArrayList("run","jump","lift", "ds"));
+        selectTypeBox.setItems( FXCollections.observableArrayList("Squat","Stretching","Balance exercises", "Yoga", "Running", "Jumping"));
 
 
 
@@ -54,7 +54,7 @@ public class ManageActivitiesController {
         this.viewHandler = viewHandler;
 
         manageActivitiesViewModel.typeFieldProperty().bindBidirectional(selectTypeBox.valueProperty());
-      manageActivitiesViewModel.priceFieldProperty().bindBidirectional(priceField.textProperty());
+        manageActivitiesViewModel.priceFieldProperty().bindBidirectional(priceField.textProperty());
 
         manageActivitiesViewModel.startTimeFieldProperty().bindBidirectional(startTimeField.textProperty());
         manageActivitiesViewModel.endTimeFieldProperty().bindBidirectional(endTimeField.textProperty());
