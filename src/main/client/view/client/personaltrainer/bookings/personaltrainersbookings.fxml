@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.client.view.client.personaltrainer.bookings.ClientPersonalTrainerBookingController">
+   <children>
+      <Label layoutX="136.0" layoutY="34.0" text="My Personal Trainer Bookings">
+         <font>
+            <Font size="25.0" />
+         </font>
+      </Label>
+      <TableView fx:id="tableView" layoutX="36.0" layoutY="88.0" prefHeight="243.0" prefWidth="530.0">
+        <columns>
+          <TableColumn fx:id="fullName" prefWidth="164.00006866455078" text="Name" />
+          <TableColumn fx:id="phoneNumber" prefWidth="185.14280700683594" text="Phone Number" />
+            <TableColumn fx:id="startTime" prefWidth="86.85723876953125" text="Start time" />
+            <TableColumn fx:id="endTime" prefWidth="94.28564453125" text="End time" />
+        </columns>
+      </TableView>
+      <Button layoutX="525.0" layoutY="344.0" mnemonicParsing="false" onAction="#onButtonBack" text="Back" />
+   </children>
+</AnchorPane>

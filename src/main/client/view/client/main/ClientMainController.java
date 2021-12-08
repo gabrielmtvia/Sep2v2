@@ -21,6 +21,7 @@ public class ClientMainController {
     }
 
     public void onPersonalTraining(ActionEvent actionEvent) {
+        viewHandler.openClientPersonalTrainer();
     }
 
     public void onButtonBack(ActionEvent actionEvent) {
