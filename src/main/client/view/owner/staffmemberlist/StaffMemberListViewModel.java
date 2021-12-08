@@ -13,32 +13,33 @@ import java.util.ArrayList;
 
 public class StaffMemberListViewModel {
     private ManageStaffModel manageStaffManager;
-    private String staffMember;
-    private SimpleListProperty staffMembersList;
-    private ObservableList<String> list = FXCollections.observableArrayList();
+    private ObservableList<StaffMember> list;
 
     public StaffMemberListViewModel(ManageStaffModel manageStaffManager) {
         this.manageStaffManager = manageStaffManager;
+
+        list = FXCollections.observableArrayList();
+
         manageStaffManager.addListener("Staff Member Added", evt -> staffMemberAdded(evt));
         manageStaffManager.addListener("Staff Member Deleted", evt -> staffMemberDeleted(evt));
-        staffMembersList = new SimpleListProperty();
+
+        populateList();
     }
 
     private void staffMemberAdded(PropertyChangeEvent evt) {
         StaffMember staffMemberAdded = (StaffMember) evt.getNewValue();
-        list.add(staffMemberAdded.toString());
-        staffMembersList.setValue(list);
+        list.add(staffMemberAdded);
     }
 
     private void staffMemberDeleted(PropertyChangeEvent evt) {
         StaffMember staffMemberDeleted = (StaffMember) evt.getNewValue();
-        Platform.runLater(()->list.remove(staffMemberDeleted.toString()));
-        staffMembersList.setValue(list);
+        list.remove(staffMemberDeleted);
     }
 
 
     public void populateList(){
         ArrayList<StaffMember> test = getStaffMembers();
+        System.out.println(test.toString());
 
         if(test==null){
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -47,22 +48,15 @@ public class StaffMemberListViewModel {
             alert.showAndWait();
         }
         else{
-            for (StaffMember staffMember:
-                    test) {
-                list.add(staffMember.toString());
-            }
-            staffMembersList.setValue(list);
+            list.addAll(test);
         }
 
     }
 
-    public ArrayList<StaffMember> getStaffMembers(){
-        return manageStaffManager.getStaffMembers();
+    public ObservableList<StaffMember> getList(){
+        return list;
     }
 
-    public SimpleListProperty getStaffMembersList(){
-        return staffMembersList;
-    }
 
     public void deleteStaffMember(StaffMember staffMember){
         String response = manageStaffManager.deleteStaffMember(staffMember);
@@ -71,5 +65,9 @@ public class StaffMemberListViewModel {
         alert.setTitle("Deleting a Staff Member");
         alert.setContentText(response);
         alert.showAndWait();
+    }
+
+    public ArrayList<StaffMember> getStaffMembers() {
+        return manageStaffManager.getStaffMembers();
     }
 }

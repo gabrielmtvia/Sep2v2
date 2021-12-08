@@ -2,6 +2,8 @@ package main.client.core;
 
 import main.client.model.activities.ActivitiesManager;
 import main.client.model.activities.ActivitiesModel;
+import main.client.model.clients.ClientManager;
+import main.client.model.clients.ClientModel;
 import main.client.model.login.LoginManager;
 import main.client.model.login.LoginModel;
 import main.client.model.bmi.BmiManager;
@@ -19,6 +21,7 @@ public class ModelFactory {
     private BmiModel bmiManager;
     private ManageStaffModel manageStaffManager;
     private PersonalTrainerModel personalTrainerManager;
+    private ClientModel clientManager;
 
     public ModelFactory(ClientFactory clientFactory){
         this.clientFactory = clientFactory;
@@ -52,5 +55,12 @@ public class ModelFactory {
         if(personalTrainerManager==null)
             personalTrainerManager = new PersonalTrainerManager(clientFactory.getPersonalTrainerClient());
         return personalTrainerManager;
+    }
+
+    public ClientModel getClientManager()
+    {
+        if (clientManager==null)
+            clientManager = new ClientManager(clientFactory.getClientsClient());
+        return clientManager;
     }
 }

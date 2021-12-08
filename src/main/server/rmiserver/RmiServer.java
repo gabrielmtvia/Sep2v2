@@ -132,4 +132,26 @@ public class RmiServer implements RemoteServer{
         }
         return modelFactory.getPersonalTrainerManager().removePersonalTrainer(personalTrainer);
     }
+
+    @Override public String saveClient(TheClient theClient) throws RemoteException
+    {
+        for (RemoteClient client : clients)
+        {
+            client.clientAdded(theClient);
+        }
+        return modelFactory.getClientManager().saveClient(theClient);
+    }
+
+    @Override public ArrayList<TheClient> getClients() throws RemoteException
+    {
+        return modelFactory.getClientManager().getClients();
+    }
+
+    @Override public String removeClient(TheClient theClient) throws RemoteException
+    {
+        for (RemoteClient client: clients) {
+            client.clientRemoved(theClient);
+        }
+        return modelFactory.getClientManager().removeClient(theClient);
+    }
 }

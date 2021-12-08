@@ -19,6 +19,8 @@ public class ActivitiesViewModel {
         items = FXCollections.observableArrayList();
         activitiesManager.addListener("Activity Deleted", evt -> activityDeleted(evt));
         activitiesManager.addListener("Activity Added", evt -> activityAdded(evt));
+
+        loadActivities();
     }
 
     private void activityAdded(PropertyChangeEvent evt) {

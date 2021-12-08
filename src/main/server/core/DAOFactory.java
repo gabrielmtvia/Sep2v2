@@ -4,6 +4,8 @@ import main.server.databaseaccess.activities.ActivitiesDAO;
 import main.server.databaseaccess.activities.ActivitiesDAOModel;
 import main.server.databaseaccess.bmi.BmiDAO;
 import main.server.databaseaccess.bmi.BmiDAOModel;
+import main.server.databaseaccess.clients.ClientDAO;
+import main.server.databaseaccess.clients.ClientDAOModel;
 import main.server.databaseaccess.database.DBConnectionModel;
 import main.server.databaseaccess.login.LoginDAO;
 import main.server.databaseaccess.login.LoginDAOModel;
@@ -19,6 +21,7 @@ public class DAOFactory {
     private BmiDAOModel bmiDAO;
     private ManageStaffDAOModel manageStaffDAO;
     private PersonalTrainerDAOModel personalTrainerDAO;
+    private ClientDAOModel clientDAO;
 
     public DAOFactory(DBConnectionModel dbConnection){
         this.dbConnection = dbConnection;
@@ -52,5 +55,12 @@ public class DAOFactory {
         if(personalTrainerDAO==null)
             personalTrainerDAO = new PersonalTrainerDAO(dbConnection);
         return personalTrainerDAO;
+    }
+
+    public ClientDAOModel getClientDAO()
+    {
+        if (clientDAO==null)
+            clientDAO = new ClientDAO(dbConnection);
+        return clientDAO;
     }
 }

@@ -4,6 +4,8 @@ import main.client.networking.login.LoginClientModel;
 import main.shared.Password;
 import main.shared.UserName;
 
+import java.sql.Date;
+
 public class LoginManager implements LoginModel{
 
     LoginClientModel loginClient;
