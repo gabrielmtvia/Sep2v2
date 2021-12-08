@@ -25,7 +25,6 @@ public class ActivitiesDAO implements ActivitiesDAOModel{
             resultSet = statement.executeQuery();
 
             while (resultSet.next()) {
-                //Activity activity = new Activity(resultSet.getString("type"),resultSet.getString("price"),resultSet.getString("date"),resultSet.getString("startTime"),resultSet.getString("endTime"));
                 Activity activity = new Activity(resultSet.getString("type"),resultSet.getString("price"),resultSet.getString("date"),resultSet.getString("startTime"),resultSet.getString("endTime"));
                 list.add(activity);
             }
@@ -53,6 +52,7 @@ public class ActivitiesDAO implements ActivitiesDAOModel{
             throwables.printStackTrace();
         } catch (Exception e) {
             e.printStackTrace();
+            return e.getMessage();
         }
         return "Activity deleted successfully";
     }
