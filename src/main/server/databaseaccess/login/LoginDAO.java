@@ -21,7 +21,7 @@ public class LoginDAO implements LoginDAOModel{
         ResultSet resultSet;
         String result = "Failed connection to the database";
         try {
-            String query ="SELECT * FROM customer WHERE username = ?";
+            String query ="SELECT * FROM clients WHERE username = ?";
             statement = dbConnection.createPreparedStatement(query);
             statement.setString(1, userName.getUserName());
             resultSet = statement.executeQuery();
@@ -38,6 +38,7 @@ public class LoginDAO implements LoginDAOModel{
 
         } catch (Exception e) {
             e.printStackTrace();
+            return e.getMessage();
         } finally {
             dbConnection.closeConnection();
         }
@@ -68,6 +69,7 @@ public class LoginDAO implements LoginDAOModel{
 
         } catch (Exception e) {
             e.printStackTrace();
+            return e.getMessage();
         } finally {
             dbConnection.closeConnection();
         }
@@ -98,6 +100,7 @@ public class LoginDAO implements LoginDAOModel{
 
         } catch (Exception e) {
             e.printStackTrace();
+            return e.getMessage();
         } finally {
             dbConnection.closeConnection();
         }

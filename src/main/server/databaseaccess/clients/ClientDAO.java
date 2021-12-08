@@ -17,7 +17,7 @@ public class ClientDAO implements ClientDAOModel
 
   @Override public String saveClient(TheClient theClient)
   {
-    return "Client has been saved successfully";
+    return "Dummy Database Client has been saved successfully";
   }
 
   @Override public ArrayList<TheClient> getClients()

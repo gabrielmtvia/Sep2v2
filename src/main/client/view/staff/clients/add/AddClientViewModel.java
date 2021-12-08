@@ -60,7 +60,7 @@ public class AddClientViewModel
 
   public void alert(String response)
   {
-    Alert alert = new Alert(Alert.AlertType.ERROR);
+    Alert alert = new Alert(Alert.AlertType.INFORMATION);
     alert.setTitle("Information");
     alert.setContentText(response);
     alert.showAndWait();

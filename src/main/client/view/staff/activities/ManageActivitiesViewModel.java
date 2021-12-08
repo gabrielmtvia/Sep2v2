@@ -86,6 +86,7 @@ public class ManageActivitiesViewModel {
 
         }
 
+        System.out.println("the time is " + " "+ Integer.parseInt(timeSplit[0])+ " hours and " + Integer.parseInt(timeSplit[1]) + " minutes");
 
 
 
