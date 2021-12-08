@@ -22,8 +22,8 @@ public class ViewModelFactory {
     private ClientLoginViewModel clientLoginViewModel;
     private OwnerLoginViewModel ownerLoginViewModel;
     private StaffLoginViewModel staffLoginViewModel;
-    private ActivitiesViewModel activitiesViewModel;
     private ManageActivitiesViewModel manageActivitiesViewModel;
+    private ActivitiesViewModel activitiesViewModel;
     private CalculateBmiViewModel calculateBmiViewModel;
     private AddStaffMemberViewModel addStaffMemberViewModel;
     private StaffMemberListViewModel staffMemberListViewModel;
