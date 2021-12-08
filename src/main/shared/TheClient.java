@@ -2,14 +2,14 @@ package main.shared;
 
 import java.io.Serializable;
 
-public class Client implements Serializable
+public class TheClient implements Serializable
 {
   private String fullName;
   private String ssn;
   private String username;
   private String password;
 
-  public Client(String fullName, String ssn, String username, String password)
+  public TheClient(String fullName, String ssn, String username, String password)
   {
     this.fullName = fullName;
     this.ssn = ssn;

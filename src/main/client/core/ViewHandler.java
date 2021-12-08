@@ -1,5 +1,6 @@
 package main.client.core;
 
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -14,6 +15,8 @@ import main.client.view.owner.main.OwnerMainController;
 import main.client.view.owner.managestaff.AddStaffMemberController;
 import main.client.view.owner.staffmemberlist.StaffMemberListController;
 import main.client.view.staff.activities.ManageActivitiesController;
+import main.client.view.staff.clients.add.AddClientController;
+import main.client.view.staff.clients.main.ClientsMainController;
 import main.client.view.staff.login.StaffLoginController;
 import main.client.view.staff.main.StaffMainController;
 import main.client.view.staff.personaltrainers.add.AddPersonalTrainerController;
@@ -41,6 +44,8 @@ public class ViewHandler {
     private Scene personalTrainersMain;
     private Scene addPersonalTrainer;
     private Scene personalTrainersList;
+    private Scene addClient;
+    private Scene clientMain;
 
     public ViewHandler(Stage stage, ViewModelFactory vmf)
     {
@@ -293,6 +298,38 @@ public class ViewHandler {
 
         mainStage.setTitle("Personal trainers list");
         mainStage.setScene(personalTrainersList);
+    }
+
+    public void openAddClient()
+    {
+        FXMLLoader loader = new FXMLLoader();
+
+        if (addClient == null)
+        {
+            Parent root = getRootByPath("../view/staff/clients/add/addClient.fxml", loader);
+            AddClientController controller = loader.getController();
+            controller.init(viewModelFactory.getAddClientViewModel(), this);
+            addClient = new Scene(root);
+        }
+
+        mainStage.setTitle("Add a client");
+        mainStage.setScene(addClient);
+    }
+
+    public void openClientsMain()
+    {
+        FXMLLoader loader = new FXMLLoader();
+
+        if (clientMain == null)
+        {
+            Parent root = getRootByPath("../view/staff/clients/main/clientsMain.fxml", loader);
+            ClientsMainController controller = loader.getController();
+            controller.init(this);
+            clientMain = new Scene(root);
+        }
+
+        mainStage.setTitle("Client Main");
+        mainStage.setScene(clientMain);
     }
 }
 

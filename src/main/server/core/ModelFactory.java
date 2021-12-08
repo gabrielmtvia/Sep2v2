@@ -3,6 +3,8 @@ import main.server.model.activities.ActivitiesManager;
 import main.server.model.activities.ActivitiesModel;
 import main.server.model.bmi.BmiManager;
 import main.server.model.bmi.BmiModel;
+import main.server.model.clients.ClientManager;
+import main.server.model.clients.ClientModel;
 import main.server.model.login.LoginManager;
 import main.server.model.login.LoginModel;
 import main.server.model.managestaff.ManageStaffManager;
@@ -18,6 +20,7 @@ public class ModelFactory {
     private BmiModel bmiManager;
     private ManageStaffModel manageStaffManager;
     private PersonalTrainerModel personalTrainerManager;
+    private ClientModel clientManager;
 
     public ModelFactory(DAOFactory daoFactory){
         this.daoFactory = daoFactory;
@@ -51,5 +54,12 @@ public class ModelFactory {
         if(personalTrainerManager==null)
             personalTrainerManager = new PersonalTrainerManager(daoFactory.getPersonalTrainerDAO());
         return personalTrainerManager;
+    }
+
+    public ClientModel getClientManager()
+    {
+        if (clientManager==null)
+            clientManager = new ClientManager(daoFactory.getClientDAO());
+        return clientManager;
     }
 }

@@ -3,7 +3,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.*?>
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.client.view.client.bmi.CalculateBmiController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.client.view.theClient.bmi.CalculateBmiController">
    <children>
       <TextField fx:id="inputHeight" layoutX="327.0" layoutY="221.0" prefHeight="40.0" prefWidth="150.0" />
       <TextField fx:id="inputWeight" layoutX="327.0" layoutY="105.0" prefHeight="40.0" prefWidth="150.0" />

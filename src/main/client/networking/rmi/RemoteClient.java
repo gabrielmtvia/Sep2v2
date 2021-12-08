@@ -29,4 +29,9 @@ public interface RemoteClient extends Remote {
     void personalTrainerRemoved(PersonalTrainer personalTrainer) throws RemoteException;
     void staffMemberAdded(StaffMember staffMember) throws RemoteException;
     void staffMemberDeleted(StaffMember staffMember) throws RemoteException;
+    String saveClient(TheClient theClient) throws RemoteException;
+    void clientAdded(TheClient theClient) throws RemoteException;
+    void clientRemoved(TheClient theClient) throws RemoteException;
+    ArrayList<TheClient> getClients() throws RemoteException;
+    String removeClient(TheClient theClient) throws RemoteException;
 }

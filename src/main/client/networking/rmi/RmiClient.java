@@ -176,4 +176,44 @@ public class RmiClient implements RemoteClient {
     public void staffMemberDeleted(StaffMember staffMember) throws RemoteException {
         support.firePropertyChange("Staff Member Deleted", null, staffMember);
     }
+
+    @Override public String saveClient(TheClient theClient) throws RemoteException
+    {
+        try {
+            return serverStub.saveClient(theClient);
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
+        return "Connection error";
+    }
+
+    @Override public void clientAdded(TheClient theClient) throws RemoteException
+    {
+        support.firePropertyChange("Client Added", null, theClient);
+    }
+
+    @Override public void clientRemoved(TheClient theClient) throws RemoteException
+    {
+        support.firePropertyChange("Client Removed", null, theClient);
+    }
+
+    @Override public ArrayList<TheClient> getClients() throws RemoteException
+    {
+        try {
+            return serverStub.getClients();
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    @Override public String removeClient(TheClient theClient) throws RemoteException
+    {
+        try {
+            return serverStub.removeClient(theClient);
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
+        return "Connection error";
+    }
 }

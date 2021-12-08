@@ -26,7 +26,7 @@ public class StaffMainController
 
   public void onClientsButtonClick(ActionEvent actionEvent)
   {
-
+    viewHandler.openClientsMain();
   }
 
   public void onPersonalTrainersButtonClick(ActionEvent actionEvent)

@@ -21,4 +21,7 @@ public interface RemoteServer extends Remote {
     String savePersonalTrainer(PersonalTrainer personalTrainer) throws RemoteException;
     ArrayList<PersonalTrainer> getPersonalTrainers() throws RemoteException;
     String removePersonalTrainer(PersonalTrainer personalTrainer) throws RemoteException;
+    String saveClient(TheClient theClient) throws RemoteException;
+    ArrayList<TheClient> getClients() throws RemoteException;
+    String removeClient(TheClient theClient) throws RemoteException;
 }
