@@ -71,31 +71,36 @@ public class ManageActivitiesViewModel {
         String month = dateSplit[1];
         String year = dateSplit[2];
         String dbFormat = year+"-"+month+"-"+day;
+
         String[] timeSplit = null;
 
 
         try{
             timeSplit = startTimeField.getValue().split(":");
+            Integer.parseInt(timeSplit[0]);
+            Integer.parseInt(timeSplit[1]);
+
         }catch (PatternSyntaxException e){
             alert(e.getMessage());
+          //  alert("incorrect time format");
+
         }
 
 
 
 
-        Integer.parseInt(timeSplit[0]);
-        Integer.parseInt(timeSplit[1]);
+
+
+
 
 
         //String response = "Please fill the date in HH:MM format";
         //alert(response);
-          //  int priceint = (int) price.getValue();
-            /*
-        if (price.getValue() != null){
 
-            if (price.get().length() > 0 && price.get().length() < 5){
+        if (timeSplit.length != 0 || timeSplit.length != 1){
+            if (price.get().length() > 0 && price.get().length() < 4 ){
 
-                if (startTimeField.getValue()!= null && endTimeFieldProperty() != null && startTimeField.get().length() > 0 && startTimeField.get().length() < 2 && endTimeField.get().length() > 0 && endTimeField.get().length() < 2){
+                if (startTimeField.getValue()!= null && endTimeFieldProperty() != null){
                     Activity activity = new Activity(type.getValue(),price.getValue(),dbFormat,startTimeField.getValue(),endTimeField.getValue());
                     String result = activitiesManager.saveActivity(activity);
                     type.setValue("");
@@ -110,19 +115,41 @@ public class ManageActivitiesViewModel {
                     System.out.println(dbFormat);
 
                 }else {
-                    response.setValue("add correct Time");
+                    alert("add correct Time");
+                    // response.setValue("add correct Time");
                 }
 
 
             }else {
-                response.setValue("value could not be negative ");
+                alert("The price could not be null or more than 4 integer");
+                alert("Please add a price no more than 500 ");
+                //response.setValue("value could not be negative ");
             }
 
-        }else {
-            response.setValue("value could not be null");
+        }
+        else {
+
         }
 
-             */
+
+
+}
+
+
+
+
+
+
+
+
+           /* int price = 0;
+            price = Integer.parseInt(String.valueOf(price));
+
+            */
+        //price.get().length() > 0 && price.get().length() < 4
+
+
+
 
 /*
         Activity activity = new Activity(type.getValue(), price.getValue(),dbFormat,startTimeField.getValue(),endTimeField.getValue());
@@ -138,24 +165,13 @@ public class ManageActivitiesViewModel {
         System.out.println(date.getValue());
         System.out.println(dbFormat);
 
+
  */
-        Activity activity = new Activity(type.getValue(),price.getValue(),dbFormat,startTimeField.getValue(),endTimeField.getValue());
-        String result = activitiesManager.saveActivity(activity);
-        type.setValue("");
-        price.setValue(null);
-        startTimeField.setValue(null);
-        endTimeField.setValue(null);
-
-        alert(result);
-
-        System.out.println(result);
-        System.out.println(date.getValue());
-        System.out.println(dbFormat);
 
 
 
 
-    }
+
 
     public void alert(String response){
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
