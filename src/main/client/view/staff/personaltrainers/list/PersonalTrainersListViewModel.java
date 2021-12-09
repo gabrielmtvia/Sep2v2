@@ -35,7 +35,6 @@ public class PersonalTrainersListViewModel
   private void personalTrainerAdded(PropertyChangeEvent evt) {
     PersonalTrainer personalTrainerAdded = (PersonalTrainer) evt.getNewValue();
     list.add(personalTrainerAdded);
-
   }
 
   public void populateList()

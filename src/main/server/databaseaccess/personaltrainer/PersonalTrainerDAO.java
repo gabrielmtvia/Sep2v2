@@ -21,11 +21,11 @@ public class PersonalTrainerDAO implements PersonalTrainerDAOModel {
     @Override
     public ArrayList<PersonalTrainer> getPersonalTrainers() {
         ArrayList<PersonalTrainer> test = new ArrayList<>();
-        test.add(new PersonalTrainer("Dummy test", "Dummy number", "Dummy ssn"));
-        test.add(new PersonalTrainer("Dummy", "Dummy number", "Dummy ssn"));
-        test.add(new PersonalTrainer("Dummy test", "Dummy", "Dummy ssn"));
-        test.add(new PersonalTrainer("Dummy test", "Dummy number", "ssn"));
-        test.add(new PersonalTrainer("Dummy ", "number", "Dummy ssn"));
+        test.add(new PersonalTrainer("Dummy test", "Dummy number", "Dummy ssn", "9:00", "2021-12-15"));
+        test.add(new PersonalTrainer("Dummy", "Dummy number", "Dummy ssn","9:00", "2021-12-15"));
+        test.add(new PersonalTrainer("Dummy test", "Dummy", "Dummy ssn","9:00", "2021-12-15"));
+        test.add(new PersonalTrainer("Dummy test", "Dummy number", "ssn","9:00", "2021-12-15"));
+        test.add(new PersonalTrainer("Dummy ", "number", "Dummy ssn","9:00", "2021-12-15"));
         return test;
     }
 

@@ -8,6 +8,8 @@ public class PersonalTrainer implements Serializable
   private String name;
   private String phoneNumber;
   private String ssn;
+  private String startTime;
+  private String date;
 
   public PersonalTrainer(String name, String phoneNumber, String ssn)
   {
@@ -15,6 +17,31 @@ public class PersonalTrainer implements Serializable
     this.phoneNumber = phoneNumber;
     this.ssn = ssn;
 
+  }
+
+  public PersonalTrainer(String name, String phoneNumber, String ssn, String startTime, String date)
+  {
+    this.name = name;
+    this.phoneNumber = phoneNumber;
+    this.ssn = ssn;
+    this.startTime = startTime;
+    this.date = date;
+  }
+
+  public String getStartTime() {
+    return startTime;
+  }
+
+  public void setStartTime(String startTime) {
+    this.startTime = startTime;
+  }
+
+  public String getDate() {
+    return date;
+  }
+
+  public void setDate(String date) {
+    this.date = date;
   }
 
   public void setName(String name)
