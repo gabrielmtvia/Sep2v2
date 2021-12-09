@@ -19,7 +19,7 @@ public interface RemoteServer extends Remote {
     ArrayList<StaffMember> getStaffMembers() throws RemoteException;
     String deleteStaffMember(StaffMember staffMember) throws RemoteException;
     String savePersonalTrainer(PersonalTrainer personalTrainer) throws RemoteException;
-    ArrayList<PersonalTrainer> getPersonalTrainers() throws RemoteException;
+    ArrayList<PersonalTrainer> getPersonalTrainers(boolean staff) throws RemoteException;
     String removePersonalTrainer(PersonalTrainer personalTrainer) throws RemoteException;
     String saveClient(TheClient theClient) throws RemoteException;
     ArrayList<TheClient> getClients() throws RemoteException;
@@ -28,6 +28,9 @@ public interface RemoteServer extends Remote {
     BMIData loadBmiData(UserName userName) throws  RemoteException;
     String deleteBmiData(UserName userName) throws RemoteException;
 
-    String bookPersonalTrainer(PersonalTrainer personalTrainer, UserName userName) throws RemoteException;
-    String registeredActivity(Activity activity, UserName userName) throws RemoteException;;
+    String bookPersonalTrainer(PersonalTrainer personalTrainer, UserName userName, RemoteClient remoteClient) throws RemoteException;
+
+    ArrayList<PersonalTrainer> viewMyBookings(UserName userName) throws RemoteException;
+
+    String cancelBooking(PersonalTrainer personalTrainer, RemoteClient remoteClient) throws RemoteException;
 }

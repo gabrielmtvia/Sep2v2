@@ -18,7 +18,25 @@ public class PersonalTrainerManager implements PersonalTrainerModel{
         this.personalTrainerClient = personalTrainerClient;
 
         personalTrainerClient.addListener("Personal Trainer Added", evt -> personalTrainerAdded(evt));
-        personalTrainerClient.addListener("Personal Trainer Removed", evt -> personalTrainerRemoved(evt));    
+        personalTrainerClient.addListener("Personal Trainer Removed", evt -> personalTrainerRemoved(evt));
+        personalTrainerClient.addListener("Personal Trainer Booked", evt -> personalTrainerBooked(evt));
+        personalTrainerClient.addListener("Personal Trainer Cancelled", evt -> personalTrainerCancelled(evt));
+        personalTrainerClient.addListener("Personal Trainer Already Booked", evt -> personalTrainerAlreadyBooked(evt));
+    }
+
+    private void personalTrainerAlreadyBooked(PropertyChangeEvent evt) {
+        PersonalTrainer personalTrainer = (PersonalTrainer) evt.getNewValue();
+        support.firePropertyChange("Personal Trainer Booked", null, personalTrainer);
+    }
+
+    private void personalTrainerBooked(PropertyChangeEvent evt) {
+        PersonalTrainer personalTrainer = (PersonalTrainer) evt.getNewValue();
+        support.firePropertyChange("Personal Trainer Booked", null, personalTrainer);
+    }
+
+    private void personalTrainerCancelled(PropertyChangeEvent evt) {
+        PersonalTrainer personalTrainer = (PersonalTrainer) evt.getNewValue();
+        support.firePropertyChange("Personal Trainer Cancelled", null, personalTrainer);
     }
 
     private void personalTrainerRemoved(PropertyChangeEvent evt) {
@@ -37,8 +55,8 @@ public class PersonalTrainerManager implements PersonalTrainerModel{
     }
 
     @Override
-    public ArrayList<PersonalTrainer> getPersonalTrainers() {
-        return personalTrainerClient.getPersonalTrainers();
+    public ArrayList<PersonalTrainer> getPersonalTrainers(boolean staff) {
+        return personalTrainerClient.getPersonalTrainers(staff);
     }
 
     @Override
@@ -58,5 +76,15 @@ public class PersonalTrainerManager implements PersonalTrainerModel{
     @Override
     public String bookPersonalTrainer(PersonalTrainer personalTrainer, UserName userName) {
         return personalTrainerClient.bookPersonalTrainer(personalTrainer, userName);
+    }
+
+    @Override
+    public ArrayList<PersonalTrainer> viewMyBookings(UserName userName) {
+        return personalTrainerClient.viewMyBookings(userName);
+    }
+
+    @Override
+    public String cancelBooking(PersonalTrainer personalTrainer) {
+        return personalTrainerClient.cancelBooking(personalTrainer);
     }
 }
