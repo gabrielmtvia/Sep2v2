@@ -195,4 +195,9 @@ public class RmiServer implements RemoteServer{
         remoteClient.personalTrainerAdded(personalTrainer);
         return modelFactory.getPersonalTrainerManager().cancelBooking(personalTrainer);
     }
+
+    @Override
+    public String registeredActivity(Activity activity, UserName userName)throws RemoteException {
+        return modelFactory.getActivitiesManager().registeredActivity(activity, userName);
+    }
 }
