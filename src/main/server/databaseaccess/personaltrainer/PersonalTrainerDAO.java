@@ -2,6 +2,7 @@ package main.server.databaseaccess.personaltrainer;
 
 import main.server.databaseaccess.database.DBConnectionModel;
 import main.shared.PersonalTrainer;
+import main.shared.UserName;
 
 import java.util.ArrayList;
 
@@ -32,5 +33,10 @@ public class PersonalTrainerDAO implements PersonalTrainerDAOModel {
     @Override
     public String removePersonalTrainer(PersonalTrainer personalTrainer) {
         return "Personal trainer has been deleted successfully";
+    }
+
+    @Override
+    public String bookPersonalTrainer(PersonalTrainer personalTrainer, UserName userName) {
+        return null;
     }
 }

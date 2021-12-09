@@ -114,7 +114,7 @@ public class ViewModelFactory {
 
     public ClientPersonalTrainerListViewModel getClientPersonalTrainerListViewModel() {
         if(clientPersonalTrainerListViewModel == null)
-            clientPersonalTrainerListViewModel = new ClientPersonalTrainerListViewModel(modelFactory.getPersonalTrainerManager());
+            clientPersonalTrainerListViewModel = new ClientPersonalTrainerListViewModel(modelFactory.getPersonalTrainerManager(), modelFactory.getLoginManager());
         return clientPersonalTrainerListViewModel;
     }
 
