@@ -29,4 +29,5 @@ public interface RemoteServer extends Remote {
     String deleteBmiData(UserName userName) throws RemoteException;
 
     String bookPersonalTrainer(PersonalTrainer personalTrainer, UserName userName) throws RemoteException;
+    String registeredActivity(Activity activity, UserName userName) throws RemoteException;;
 }

@@ -241,4 +241,11 @@ public class RmiClient implements RemoteClient {
     public String bookPersonalTrainer(PersonalTrainer personalTrainer, UserName userName) throws RemoteException {
         return serverStub.bookPersonalTrainer(personalTrainer, userName);
     }
+
+    @Override
+    public String registeredActivity(Activity activity, UserName userName) throws RemoteException {
+        return serverStub.registeredActivity(activity, userName);
+
+
+    }
 }
