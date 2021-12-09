@@ -4,7 +4,6 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import main.client.model.login.LoginModel;
 import main.client.model.personaltrainer.PersonalTrainerModel;
-import main.shared.Activity;
 import main.shared.PersonalTrainer;
 
 import java.beans.PropertyChangeEvent;
@@ -27,6 +26,7 @@ public class ClientPersonalTrainerListViewModel {
 
         personalTrainerManager.addListener("Personal Trainer Added", evt -> personalTrainerAdded(evt));
         personalTrainerManager.addListener("Personal Trainer Removed", evt -> personalTrainerRemoved(evt));
+        personalTrainerManager.addListener("Personal Trainer Already Booked", evt -> personalTrainerRemoved(evt));
     }
 
     private void personalTrainerRemoved(PropertyChangeEvent evt) {
@@ -50,7 +50,7 @@ public class ClientPersonalTrainerListViewModel {
     }
 
     public ArrayList<PersonalTrainer> getPersonalTrainers(){
-        return personalTrainerManager.getPersonalTrainers();
+        return personalTrainerManager.getPersonalTrainers(false);
     }
 
     public ObservableList<PersonalTrainer> getItemsList() {
@@ -58,7 +58,9 @@ public class ClientPersonalTrainerListViewModel {
     }
 
     public void bookPersonalTrainer(PersonalTrainer personalTrainer) {
-        String response = personalTrainerManager.bookPersonalTrainer(personalTrainer, loginManager.getUserName());
+        PersonalTrainer personalTrainerWithUsername= personalTrainer;
+        personalTrainerWithUsername.setUsername(loginManager.getUserName().getUserName());
+        String response = personalTrainerManager.bookPersonalTrainer(personalTrainerWithUsername, loginManager.getUserName());
         System.out.println(response);
     }
 }

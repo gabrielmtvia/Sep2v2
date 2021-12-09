@@ -1,11 +1,15 @@
 package main.client.view.client.personaltrainer.bookings;
 
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import main.client.core.ViewHandler;
+import main.shared.PersonalTrainer;
+
+import java.util.ArrayList;
 
 public class ClientPersonalTrainerBookingController {
 
@@ -35,6 +39,13 @@ public class ClientPersonalTrainerBookingController {
     }
 
     public void onCancelBooking(ActionEvent actionEvent) {
-        viewModel.cancelBooking();
+        ObservableList<Integer> observableList = tableView.getSelectionModel().getSelectedIndices();
+        Object[] array = observableList.toArray();
+        int position = (int) array[0];
+
+        ArrayList<PersonalTrainer> personalTrainers = viewModel.getMyBookings();
+        PersonalTrainer personalTrainer = personalTrainers.get(position);
+
+        viewModel.cancelBooking(personalTrainer);
     }
 }

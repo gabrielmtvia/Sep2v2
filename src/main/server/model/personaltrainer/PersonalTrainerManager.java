@@ -20,8 +20,8 @@ public class PersonalTrainerManager implements PersonalTrainerModel{
     }
 
     @Override
-    public ArrayList<PersonalTrainer> getPersonalTrainers() {
-        return personalTrainerDAO.getPersonalTrainers();
+    public ArrayList<PersonalTrainer> getPersonalTrainers(boolean staff) {
+        return personalTrainerDAO.getPersonalTrainers(staff);
     }
 
     @Override
@@ -37,5 +37,10 @@ public class PersonalTrainerManager implements PersonalTrainerModel{
     @Override
     public ArrayList<PersonalTrainer> viewMyBookings(UserName userName) {
         return personalTrainerDAO.viewMyBookings(userName);
+    }
+
+    @Override
+    public String cancelBooking(PersonalTrainer personalTrainer) {
+        return personalTrainerDAO.cancelBooking(personalTrainer);
     }
 }

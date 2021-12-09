@@ -99,62 +99,39 @@ public class RmiClient implements RemoteClient {
 
     @Override
     public String addStaffMember(StaffMember staffMember) throws RemoteException {
-        try {
-            return serverStub.addStaffMember(staffMember);
-        } catch (RemoteException e) {
-            e.printStackTrace();
-        }
-        return "Connection error";
+
+        return serverStub.addStaffMember(staffMember);
     }
 
     @Override
     public ArrayList<StaffMember> getStaffMembers() throws RemoteException {
-        try {
-            return serverStub.getStaffMembers();
-        } catch (RemoteException e) {
-            e.printStackTrace();
-        }
-        return null;
+
+        return serverStub.getStaffMembers();
+
     }
 
     @Override
     public String deleteStaffMember(StaffMember staffMember) throws RemoteException {
-        try {
-            return serverStub.deleteStaffMember(staffMember);
-        } catch (RemoteException e) {
-            e.printStackTrace();
-        }
-        return "Connection error";
+
+        return serverStub.deleteStaffMember(staffMember);
+
     }
 
     @Override
-    public String savePersonalTrainer(PersonalTrainer personalTrainer) {
-        try {
-            return serverStub.savePersonalTrainer(personalTrainer);
-        } catch (RemoteException e) {
-            e.printStackTrace();
-        }
-        return "Connection error";
+    public String savePersonalTrainer(PersonalTrainer personalTrainer)  throws RemoteException{
+
+        return serverStub.savePersonalTrainer(personalTrainer);
+
     }
 
     @Override
-    public ArrayList<PersonalTrainer> getPersonalTrainers() throws RemoteException {
-        try {
-            return serverStub.getPersonalTrainers();
-        } catch (RemoteException e) {
-            e.printStackTrace();
-        }
-        return null;
+    public ArrayList<PersonalTrainer> getPersonalTrainers(boolean staff) throws RemoteException {
+        return serverStub.getPersonalTrainers(staff);
     }
 
     @Override
     public String removePersonalTrainer(PersonalTrainer personalTrainer) throws RemoteException {
-        try {
-            return serverStub.removePersonalTrainer(personalTrainer);
-        } catch (RemoteException e) {
-            e.printStackTrace();
-        }
-        return "Connection error";
+        return serverStub.removePersonalTrainer(personalTrainer);
     }
 
     @Override
@@ -179,12 +156,7 @@ public class RmiClient implements RemoteClient {
 
     @Override public String saveClient(TheClient theClient) throws RemoteException
     {
-        try {
-            return serverStub.saveClient(theClient);
-        } catch (RemoteException e) {
-            e.printStackTrace();
-        }
-        return "Connection error";
+        return serverStub.saveClient(theClient);
     }
 
     @Override public void clientAdded(TheClient theClient) throws RemoteException
@@ -199,47 +171,27 @@ public class RmiClient implements RemoteClient {
 
     @Override public ArrayList<TheClient> getClients() throws RemoteException
     {
-        try {
-            return serverStub.getClients();
-        } catch (RemoteException e) {
-            e.printStackTrace();
-        }
-        return null;
+        return serverStub.getClients();
     }
 
     @Override public String removeClient(TheClient theClient) throws RemoteException
     {
-        try {
-            return serverStub.removeClient(theClient);
-        } catch (RemoteException e) {
-            e.printStackTrace();
-        }
-        return "Connection error";
+        return serverStub.removeClient(theClient);
     }
 
     @Override
     public BMIData loadBmiData(UserName userName) throws RemoteException {
-        try {
-            return serverStub.loadBmiData(userName);
-        } catch (RemoteException e) {
-            e.printStackTrace();
-        }
-        return null;
+        return serverStub.loadBmiData(userName);
     }
 
     @Override
     public String deleteBmiData(UserName userName) throws RemoteException {
-        try {
-            return serverStub.deleteBmiData(userName);
-        } catch (RemoteException e) {
-            e.printStackTrace();
-        }
-        return "Connection error";
+        return serverStub.deleteBmiData(userName);
     }
 
     @Override
     public String bookPersonalTrainer(PersonalTrainer personalTrainer, UserName userName) throws RemoteException {
-        return serverStub.bookPersonalTrainer(personalTrainer, userName);
+        return serverStub.bookPersonalTrainer(personalTrainer, userName, this);
     }
 
     @Override
@@ -255,5 +207,15 @@ public class RmiClient implements RemoteClient {
     @Override
     public void personalTrainerCancelled(PersonalTrainer personalTrainer) {
         support.firePropertyChange("Personal Trainer Cancelled", null, personalTrainer);
+    }
+
+    @Override
+    public void personalTrainerAlreadyBooked(PersonalTrainer personalTrainer) {
+        support.firePropertyChange("Personal Trainer Already Booked", null, personalTrainer);
+    }
+
+    @Override
+    public String cancelBooking(PersonalTrainer personalTrainer) throws RemoteException {
+        return serverStub.cancelBooking(personalTrainer, this);
     }
 }

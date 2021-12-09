@@ -10,6 +10,7 @@ public class PersonalTrainer implements Serializable
   private String ssn;
   private String startTime;
   private String date;
+  private String username;
 
   public PersonalTrainer(String name, String phoneNumber, String ssn)
   {
@@ -28,7 +29,17 @@ public class PersonalTrainer implements Serializable
     this.date = date;
   }
 
-  public String getStartTime() {
+  public void setUsername(String username)
+  {
+    this.username = username;
+  }
+
+  public String getUsername(){
+    return username;
+  }
+
+  public String getStartTime()
+  {
     return startTime;
   }
 

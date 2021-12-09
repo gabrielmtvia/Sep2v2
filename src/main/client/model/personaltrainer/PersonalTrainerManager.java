@@ -21,6 +21,12 @@ public class PersonalTrainerManager implements PersonalTrainerModel{
         personalTrainerClient.addListener("Personal Trainer Removed", evt -> personalTrainerRemoved(evt));
         personalTrainerClient.addListener("Personal Trainer Booked", evt -> personalTrainerBooked(evt));
         personalTrainerClient.addListener("Personal Trainer Cancelled", evt -> personalTrainerCancelled(evt));
+        personalTrainerClient.addListener("Personal Trainer Already Booked", evt -> personalTrainerAlreadyBooked(evt));
+    }
+
+    private void personalTrainerAlreadyBooked(PropertyChangeEvent evt) {
+        PersonalTrainer personalTrainer = (PersonalTrainer) evt.getNewValue();
+        support.firePropertyChange("Personal Trainer Booked", null, personalTrainer);
     }
 
     private void personalTrainerBooked(PropertyChangeEvent evt) {
@@ -49,8 +55,8 @@ public class PersonalTrainerManager implements PersonalTrainerModel{
     }
 
     @Override
-    public ArrayList<PersonalTrainer> getPersonalTrainers() {
-        return personalTrainerClient.getPersonalTrainers();
+    public ArrayList<PersonalTrainer> getPersonalTrainers(boolean staff) {
+        return personalTrainerClient.getPersonalTrainers(staff);
     }
 
     @Override
@@ -75,5 +81,10 @@ public class PersonalTrainerManager implements PersonalTrainerModel{
     @Override
     public ArrayList<PersonalTrainer> viewMyBookings(UserName userName) {
         return personalTrainerClient.viewMyBookings(userName);
+    }
+
+    @Override
+    public String cancelBooking(PersonalTrainer personalTrainer) {
+        return personalTrainerClient.cancelBooking(personalTrainer);
     }
 }

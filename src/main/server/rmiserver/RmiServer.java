@@ -121,8 +121,8 @@ public class RmiServer implements RemoteServer{
     }
 
     @Override
-    public ArrayList<PersonalTrainer> getPersonalTrainers() throws RemoteException {
-        return modelFactory.getPersonalTrainerManager().getPersonalTrainers();
+    public ArrayList<PersonalTrainer> getPersonalTrainers(boolean staff) throws RemoteException {
+        return modelFactory.getPersonalTrainerManager().getPersonalTrainers(staff);
     }
 
     @Override
@@ -166,16 +166,33 @@ public class RmiServer implements RemoteServer{
     }
 
     @Override
-    public String bookPersonalTrainer(PersonalTrainer personalTrainer, UserName userName) throws RemoteException {
-        for (RemoteClient client: clients) {
-            client.personalTrainerBooked(personalTrainer);
-            //client.personalTrainerCancelled(personalTrainer);
+    public String bookPersonalTrainer(PersonalTrainer personalTrainer, UserName userName, RemoteClient remoteClient) throws RemoteException {
+
+        remoteClient.personalTrainerBooked(personalTrainer);
+
+        clients.remove(remoteClient);
+
+        for (RemoteClient client : clients) {
+                client.personalTrainerAlreadyBooked(personalTrainer);
         }
+
+        clients.add(remoteClient);
         return modelFactory.getPersonalTrainerManager().bookPersonalTrainer(personalTrainer, userName);
     }
 
     @Override
     public ArrayList<PersonalTrainer> viewMyBookings(UserName userName) throws RemoteException {
         return modelFactory.getPersonalTrainerManager().viewMyBookings(userName);
+    }
+
+    @Override
+    public String cancelBooking(PersonalTrainer personalTrainer, RemoteClient remoteClient)  throws RemoteException{
+        clients.remove(remoteClient);
+        for (RemoteClient client : clients) {
+           client.cancelBooking(personalTrainer);
+        }
+        clients.add(remoteClient);
+        remoteClient.personalTrainerAdded(personalTrainer);
+        return modelFactory.getPersonalTrainerManager().cancelBooking(personalTrainer);
     }
 }

@@ -31,7 +31,6 @@ public class AddPersonalTrainerViewModel
   }
 
 
-
   public void savePersonalTrainer()
   {
     String response = "Connection Error";

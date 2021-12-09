@@ -44,28 +44,55 @@ public class PersonalTrainerDAO implements PersonalTrainerDAOModel {
     }
 
     @Override
-    public ArrayList<PersonalTrainer> getPersonalTrainers() {
+    public ArrayList<PersonalTrainer> getPersonalTrainers(boolean staff) {
 
         PreparedStatement statement;
         ResultSet resultSet;
         ArrayList<PersonalTrainer> list = new ArrayList<>();
-        try {
-            String query = "select * from personaltrainers except select fullname, p.phonenumber, p.ssn, p.date, p.time from booking inner join personaltrainers p on booking.ssn = p.ssn and booking.date = p.date and booking.time = p.time";
-            statement = dbConnection.createPreparedStatement(query);
-            resultSet = statement.executeQuery();
 
-            while (resultSet.next()) {
-                PersonalTrainer personalTrainer = new PersonalTrainer(resultSet.getString("fullname"),resultSet.getString("phonenumber"),resultSet.getString("ssn"),resultSet.getString("time"),resultSet.getString("date"));
-                list.add(personalTrainer);
+        if(!staff){
+            try {
+                String query = "select * from personaltrainers except select fullname, p.phonenumber, p.ssn, p.date, p.time from booking inner join personaltrainers p on booking.ssn = p.ssn and booking.date = p.date and booking.time = p.time";
+                statement = dbConnection.createPreparedStatement(query);
+                resultSet = statement.executeQuery();
+
+                while (resultSet.next()) {
+                    PersonalTrainer personalTrainer = new PersonalTrainer(resultSet.getString("fullname"),resultSet.getString("phonenumber"),resultSet.getString("ssn"),resultSet.getString("time"),resultSet.getString("date"));
+                    list.add(personalTrainer);
+                }
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            } finally {
+                dbConnection.closeConnection();
             }
 
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            dbConnection.closeConnection();
+            return list;
+        }
+        else {
+            try {
+                String query = "select  username, fullname, phonenumber, personaltrainers.ssn, personaltrainers.date, " +
+                        "personaltrainers.time  from personaltrainers full outer join booking b on personaltrainers.ssn =" +
+                        "b.ssn and personaltrainers.date = b.date and personaltrainers.time = b.time";
+
+                statement = dbConnection.createPreparedStatement(query);
+                resultSet = statement.executeQuery();
+
+                while (resultSet.next()) {
+                    PersonalTrainer personalTrainer = new PersonalTrainer(resultSet.getString("fullname"),resultSet.getString("phonenumber"),resultSet.getString("ssn"),resultSet.getString("time"),resultSet.getString("date"));
+                    personalTrainer.setUsername(resultSet.getString("username"));
+                    list.add(personalTrainer);
+                }
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            } finally {
+                dbConnection.closeConnection();
+            }
+
+            return list;
         }
 
-        return list;
     }
 
     @Override
@@ -80,8 +107,6 @@ public class PersonalTrainerDAO implements PersonalTrainerDAOModel {
             statement.setString(3, personalTrainer.getStartTime());
             statement.executeQuery();
 
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
         } catch (Exception e) {
             e.printStackTrace();
             return e.getMessage();
@@ -120,7 +145,7 @@ public class PersonalTrainerDAO implements PersonalTrainerDAOModel {
         ResultSet resultSet;
         ArrayList<PersonalTrainer> list = new ArrayList<>();
         try {
-            String query = "select p.date, p.time, p.fullname, p.phonenumber from booking inner join" +
+            String query = "select p.date, p.time, p.fullname, p.phonenumber, p.ssn from booking inner join" +
                     " personaltrainers p on booking.ssn = p.ssn and booking.date = p.date" +
                     " and booking.time = p.time where username like ?";
             statement = dbConnection.createPreparedStatement(query);
@@ -128,7 +153,7 @@ public class PersonalTrainerDAO implements PersonalTrainerDAOModel {
             resultSet = statement.executeQuery();
 
             while (resultSet.next()) {
-                PersonalTrainer personalTrainer = new PersonalTrainer(resultSet.getString("fullname"),resultSet.getString("phonenumber"), "Private Information",resultSet.getString("time"),resultSet.getString("date"));
+                PersonalTrainer personalTrainer = new PersonalTrainer(resultSet.getString("fullname"),resultSet.getString("phonenumber"), resultSet.getString("ssn"),resultSet.getString("time"),resultSet.getString("date"));
                 list.add(personalTrainer);
             }
 
@@ -141,6 +166,27 @@ public class PersonalTrainerDAO implements PersonalTrainerDAOModel {
         return list;
     }
 
+    @Override
+    public String cancelBooking(PersonalTrainer personalTrainer) {
+        System.out.println(personalTrainer + "in the server" + personalTrainer.getUsername());
+        PreparedStatement statement;
+        try
+        {
+            String query = "DELETE FROM booking WHERE username LIKE ? and ssn LIKE ? AND date = ? AND time LIKE ?";
+            statement =dbConnection.createPreparedStatement(query);
+            statement.setString(1, personalTrainer.getUsername());
+            statement.setString(2, personalTrainer.getSsn());
+            statement.setDate(3, Date.valueOf(personalTrainer.getDate()));
+            statement.setString(4, personalTrainer.getStartTime());
+            statement.executeQuery();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            return e.getMessage();
+        }
+
+        return "You have successfully cancelled the booking";
+    }
 
 
 }
