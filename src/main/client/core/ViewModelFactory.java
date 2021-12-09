@@ -5,6 +5,7 @@ import main.client.view.client.bmi.CalculateBmiViewModel;
 import main.client.view.client.login.ClientLoginViewModel;
 import main.client.view.client.personaltrainer.bookings.ClientPersonalTrainerBookingViewModel;
 import main.client.view.client.personaltrainer.list.ClientPersonalTrainerListViewModel;
+import main.client.view.client.viewregisteredlist.RegisteredListViewModel;
 import main.client.view.main.MainViewModel;
 import main.client.view.owner.login.OwnerLoginViewModel;
 import main.client.view.owner.managestaff.AddStaffMemberViewModel;
@@ -33,6 +34,8 @@ public class ViewModelFactory {
 
     private ClientPersonalTrainerListViewModel clientPersonalTrainerListViewModel;
     private ClientPersonalTrainerBookingViewModel clientPersonalTrainerBookingViewModel;
+
+    private RegisteredListViewModel registeredListViewModel;
 
     public ViewModelFactory(ModelFactory modelFactory){
         this.modelFactory = modelFactory;
@@ -122,5 +125,11 @@ public class ViewModelFactory {
         if(clientPersonalTrainerBookingViewModel == null)
             clientPersonalTrainerBookingViewModel = new ClientPersonalTrainerBookingViewModel(modelFactory.getPersonalTrainerManager());
         return clientPersonalTrainerBookingViewModel;
+    }
+
+    public RegisteredListViewModel getRegisteredListViewModel(){
+        if (registeredListViewModel == null)
+            registeredListViewModel = new RegisteredListViewModel(modelFactory.getActivitiesManager());
+        return registeredListViewModel;
     }
 }

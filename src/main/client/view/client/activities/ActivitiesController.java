@@ -31,7 +31,7 @@ public class ActivitiesController {
         this.viewHandler = viewHandler;
         this.activitiesViewModel = activitiesViewModel;
 
-        date.setCellValueFactory(new PropertyValueFactory<>("activityName"));
+        date.setCellValueFactory(new PropertyValueFactory<>("date"));
         startTime.setCellValueFactory(new PropertyValueFactory<>("startTime"));
         endTime.setCellValueFactory(new PropertyValueFactory<>("endTime"));
         activityName.setCellValueFactory(new PropertyValueFactory<>("activityName"));
@@ -67,5 +67,9 @@ public class ActivitiesController {
         Activity registerActivity = activities.get(position);
         activitiesViewModel.registerActivity(registerActivity);
 
+    }
+
+    public void registeredList(ActionEvent actionEvent) {
+        viewHandler.openRegisteredList();
     }
 }
