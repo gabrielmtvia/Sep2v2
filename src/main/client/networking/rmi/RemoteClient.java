@@ -37,4 +37,6 @@ public interface RemoteClient extends Remote {
 
     BMIData loadBmiData(UserName userName) throws RemoteException;
     String deleteBmiData(UserName userName) throws RemoteException;
+
+    String bookPersonalTrainer(PersonalTrainer personalTrainer, UserName userName) throws RemoteException;
 }

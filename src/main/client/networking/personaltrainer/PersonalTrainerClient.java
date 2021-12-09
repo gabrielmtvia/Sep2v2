@@ -2,6 +2,7 @@ package main.client.networking.personaltrainer;
 
 import main.client.networking.rmi.RemoteClient;
 import main.shared.PersonalTrainer;
+import main.shared.UserName;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
@@ -74,6 +75,16 @@ public class PersonalTrainerClient implements PersonalTrainerClientModel{
             support.addPropertyChangeListener(listener);
         } else {
             support.addPropertyChangeListener(eventName, listener);
+        }
+    }
+
+    @Override
+    public String bookPersonalTrainer(PersonalTrainer personalTrainer, UserName userName) {
+        try {
+            return rmiClient.bookPersonalTrainer(personalTrainer, userName);
+        } catch (RemoteException e) {
+            e.printStackTrace();
+            return "connection error";
         }
     }
 }

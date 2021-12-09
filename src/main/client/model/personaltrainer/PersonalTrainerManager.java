@@ -2,6 +2,7 @@ package main.client.model.personaltrainer;
 
 import main.client.networking.personaltrainer.PersonalTrainerClientModel;
 import main.shared.PersonalTrainer;
+import main.shared.UserName;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
@@ -52,5 +53,10 @@ public class PersonalTrainerManager implements PersonalTrainerModel{
         } else {
             support.addPropertyChangeListener(eventName, listener);
         }
+    }
+
+    @Override
+    public String bookPersonalTrainer(PersonalTrainer personalTrainer, UserName userName) {
+        return personalTrainerClient.bookPersonalTrainer(personalTrainer, userName);
     }
 }

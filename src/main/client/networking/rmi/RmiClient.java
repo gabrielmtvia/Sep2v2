@@ -236,4 +236,9 @@ public class RmiClient implements RemoteClient {
         }
         return "Connection error";
     }
+
+    @Override
+    public String bookPersonalTrainer(PersonalTrainer personalTrainer, UserName userName) throws RemoteException {
+        return serverStub.bookPersonalTrainer(personalTrainer, userName);
+    }
 }

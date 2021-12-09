@@ -164,4 +164,9 @@ public class RmiServer implements RemoteServer{
     public String deleteBmiData(UserName userName) throws RemoteException {
         return modelFactory.getBmiManager().deleteBmiData(userName);
     }
+
+    @Override
+    public String bookPersonalTrainer(PersonalTrainer personalTrainer, UserName userName) throws RemoteException {
+        return modelFactory.getPersonalTrainerManager().bookPersonalTrainer(personalTrainer, userName);
+    }
 }
