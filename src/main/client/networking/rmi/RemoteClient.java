@@ -39,4 +39,10 @@ public interface RemoteClient extends Remote {
     String deleteBmiData(UserName userName) throws RemoteException;
 
     String bookPersonalTrainer(PersonalTrainer personalTrainer, UserName userName) throws RemoteException;
+
+    ArrayList<PersonalTrainer> viewMyBookings(UserName userName) throws RemoteException;
+
+    void personalTrainerBooked(PersonalTrainer personalTrainer) throws RemoteException;
+
+    void personalTrainerCancelled(PersonalTrainer personalTrainer) throws RemoteException;
 }

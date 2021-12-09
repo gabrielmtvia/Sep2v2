@@ -13,4 +13,6 @@ public interface PersonalTrainerClientModel {
     void addListener(String eventName, PropertyChangeListener listener);
 
     String bookPersonalTrainer(PersonalTrainer personalTrainer, UserName userName);
+
+    ArrayList<PersonalTrainer> viewMyBookings(UserName userName);
 }

@@ -120,7 +120,7 @@ public class ViewModelFactory {
 
     public ClientPersonalTrainerBookingViewModel getClientPersonalTrainerBookingViewModel() {
         if(clientPersonalTrainerBookingViewModel == null)
-            clientPersonalTrainerBookingViewModel = new ClientPersonalTrainerBookingViewModel(modelFactory.getPersonalTrainerManager());
+            clientPersonalTrainerBookingViewModel = new ClientPersonalTrainerBookingViewModel(modelFactory.getPersonalTrainerManager(), modelFactory.getLoginManager());
         return clientPersonalTrainerBookingViewModel;
     }
 }

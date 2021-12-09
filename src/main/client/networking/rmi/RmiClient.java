@@ -241,4 +241,19 @@ public class RmiClient implements RemoteClient {
     public String bookPersonalTrainer(PersonalTrainer personalTrainer, UserName userName) throws RemoteException {
         return serverStub.bookPersonalTrainer(personalTrainer, userName);
     }
+
+    @Override
+    public ArrayList<PersonalTrainer> viewMyBookings(UserName userName) throws RemoteException {
+        return serverStub.viewMyBookings(userName);
+    }
+
+    @Override
+    public void personalTrainerBooked(PersonalTrainer personalTrainer) {
+        support.firePropertyChange("Personal Trainer Booked", null, personalTrainer);
+    }
+
+    @Override
+    public void personalTrainerCancelled(PersonalTrainer personalTrainer) {
+        support.firePropertyChange("Personal Trainer Cancelled", null, personalTrainer);
+    }
 }

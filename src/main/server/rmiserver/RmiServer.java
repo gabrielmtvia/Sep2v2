@@ -167,6 +167,15 @@ public class RmiServer implements RemoteServer{
 
     @Override
     public String bookPersonalTrainer(PersonalTrainer personalTrainer, UserName userName) throws RemoteException {
+        for (RemoteClient client: clients) {
+            client.personalTrainerBooked(personalTrainer);
+            //client.personalTrainerCancelled(personalTrainer);
+        }
         return modelFactory.getPersonalTrainerManager().bookPersonalTrainer(personalTrainer, userName);
+    }
+
+    @Override
+    public ArrayList<PersonalTrainer> viewMyBookings(UserName userName) throws RemoteException {
+        return modelFactory.getPersonalTrainerManager().viewMyBookings(userName);
     }
 }

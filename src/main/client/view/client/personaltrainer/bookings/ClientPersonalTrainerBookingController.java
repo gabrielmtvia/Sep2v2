@@ -9,11 +9,11 @@ import main.client.core.ViewHandler;
 
 public class ClientPersonalTrainerBookingController {
 
+    @FXML private TableColumn date;
     @FXML private TableView tableView;
     @FXML private TableColumn fullName;
     @FXML private TableColumn phoneNumber;
     @FXML private TableColumn startTime;
-    @FXML private TableColumn endTime;
 
     private ClientPersonalTrainerBookingViewModel viewModel;
     private ViewHandler viewHandler;
@@ -22,10 +22,10 @@ public class ClientPersonalTrainerBookingController {
         this.viewModel = viewModel;
         this.viewHandler = viewHandler;
 
-        fullName.setCellValueFactory(new PropertyValueFactory<>("fullName"));
+        fullName.setCellValueFactory(new PropertyValueFactory<>("name"));
         phoneNumber.setCellValueFactory(new PropertyValueFactory<>("phoneNumber"));
         startTime.setCellValueFactory(new PropertyValueFactory<>("startTime"));
-        endTime.setCellValueFactory(new PropertyValueFactory<>("endTime"));
+        date.setCellValueFactory(new PropertyValueFactory<>("date"));
 
         tableView.setItems(viewModel.getItemsList());
     }

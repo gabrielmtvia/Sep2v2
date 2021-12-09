@@ -11,4 +11,6 @@ public interface PersonalTrainerModel {
     String removePersonalTrainer(PersonalTrainer personalTrainer);
 
     String bookPersonalTrainer(PersonalTrainer personalTrainer, UserName userName);
+
+    ArrayList<PersonalTrainer> viewMyBookings(UserName userName);
 }

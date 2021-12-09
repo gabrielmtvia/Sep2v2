@@ -33,4 +33,9 @@ public class PersonalTrainerManager implements PersonalTrainerModel{
     public String bookPersonalTrainer(PersonalTrainer personalTrainer, UserName userName) {
         return personalTrainerDAO.bookPersonalTrainer(personalTrainer, userName);
     }
+
+    @Override
+    public ArrayList<PersonalTrainer> viewMyBookings(UserName userName) {
+        return personalTrainerDAO.viewMyBookings(userName);
+    }
 }
