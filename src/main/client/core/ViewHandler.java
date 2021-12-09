@@ -1,6 +1,5 @@
 package main.client.core;
 
-import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -24,7 +23,6 @@ import main.client.view.staff.main.StaffMainController;
 import main.client.view.staff.personaltrainers.add.AddPersonalTrainerController;
 import main.client.view.staff.personaltrainers.list.PersonalTrainersListController;
 import main.client.view.staff.personaltrainers.main.PersonalTrainersMainController;
-
 
 import java.io.IOException;
 
@@ -55,6 +53,9 @@ public class ViewHandler {
     public ViewHandler(Stage stage, ViewModelFactory vmf)
     {
         mainStage = stage;
+
+        mainStage.setResizable(false);
+
         viewModelFactory = vmf;
     }
 

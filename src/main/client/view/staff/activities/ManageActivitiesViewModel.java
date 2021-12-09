@@ -20,7 +20,7 @@ public class ManageActivitiesViewModel {
     private StringProperty startTimeField;
     private StringProperty endTimeField;
 
-    private StringProperty response;
+
 
 
     private ActivitiesModel activitiesManager;
@@ -34,8 +34,6 @@ public class ManageActivitiesViewModel {
 
         startTimeField = new SimpleStringProperty();
         endTimeField = new SimpleStringProperty();
-
-        response = new SimpleStringProperty();
 
         date = new SimpleStringProperty();
         type = new SimpleStringProperty();
@@ -60,9 +58,7 @@ public class ManageActivitiesViewModel {
 
 
 
-    public StringProperty responseProperty() {
-        return response;
-    }
+
 
     public void saveActivity() {
 
@@ -72,13 +68,16 @@ public class ManageActivitiesViewModel {
         String year = dateSplit[2];
         String dbFormat = year+"-"+month+"-"+day;
 
-        String[] timeSplit = null;
-
+        String[] timeSplitForStartTime = null;
+        String[] timeSplitForEndTime = null;
 
         try{
-            timeSplit = startTimeField.getValue().split(":");
-            Integer.parseInt(timeSplit[0]);
-            Integer.parseInt(timeSplit[1]);
+            timeSplitForStartTime = startTimeField.getValue().split(":");
+            Integer.parseInt(timeSplitForStartTime[0]);
+            Integer.parseInt(timeSplitForStartTime[1]);
+
+            timeSplitForEndTime = endTimeField.getValue().split(":");
+
 
         }catch (PatternSyntaxException e){
             alert(e.getMessage());
@@ -86,7 +85,7 @@ public class ManageActivitiesViewModel {
 
         }
 
-        System.out.println("the time is " + " "+ Integer.parseInt(timeSplit[0])+ " hours and " + Integer.parseInt(timeSplit[1]) + " minutes");
+        System.out.println("the time is " + " "+ Integer.parseInt(timeSplitForStartTime[0])+ " hours and " + Integer.parseInt(timeSplitForStartTime[1]) + " minutes");
 
 
 
@@ -108,13 +107,16 @@ public class ManageActivitiesViewModel {
 
         try{
             priceField = Integer.parseInt(price.getValue());
-/*
-            Integer startTimeHours = 0;
-            Integer startTimeMinutes = 0;
-            Integer endTimeHours = 0;
-            Integer endTimeMinutes = 0;
 
- */
+            startTimeHours = Integer.parseInt(timeSplitForStartTime[0]);
+            startTimeMinutes =  Integer.parseInt(timeSplitForStartTime[1]);
+
+            endTimeHours = Integer.parseInt(timeSplitForEndTime[0]);
+            endTimeMinutes = Integer.parseInt(timeSplitForEndTime[1]);
+
+
+
+
 
         }catch (Exception e){
             infoMessage.append(e.getMessage());
@@ -122,11 +124,10 @@ public class ManageActivitiesViewModel {
         }
 
 
-        if(isValid)
-        {
-                if (priceField<=500 && priceField>=50)
-                {
-                    Activity activity = new Activity(type.getValue(),price.getValue(),dbFormat,startTimeField.getValue(),endTimeField.getValue());
+        if(isValid) {
+            if ( type.getValue() != null && type.getValue() != "") {
+                if (priceField <= 500 && priceField >= 50 && startTimeHours >= 0 && startTimeHours < 24 && startTimeMinutes >= 0 && startTimeMinutes < 60 && endTimeHours >= 0 && endTimeHours <= 24 && endTimeMinutes >= 0 && endTimeMinutes <= 60) {
+                    Activity activity = new Activity(type.getValue(), price.getValue(), dbFormat, startTimeField.getValue(), endTimeField.getValue());
                     String result = activitiesManager.saveActivity(activity);
                     type.setValue("");
                     price.setValue("");
@@ -139,13 +140,18 @@ public class ManageActivitiesViewModel {
                     System.out.println(date.getValue());
                     System.out.println(dbFormat);
 
-                }else {
-                    alert("put the correct value");
+                } else {
+                    System.out.println(startTimeHours + ":" + startTimeMinutes + "and end time " + endTimeHours + ":" + endTimeMinutes);
+                    alert("Make sure you add the type put the correct price and time");
                 }
 
+            } else {
+                alert("Please add the type");
+            }
         }
         else
         {
+
             alert(infoMessage.toString());
         }
 

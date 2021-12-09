@@ -7,6 +7,7 @@ import javafx.scene.control.Button;
 import main.client.core.ViewHandler;
 
 public class MainController {
+
     @FXML
     private Button client;
     @FXML
@@ -21,6 +22,7 @@ public class MainController {
         this.mainViewModel = mainViewModel;
         this.viewHandler = viewHandler;
         mainViewModel.authenticate();
+
     }
 
 
