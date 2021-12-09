@@ -15,6 +15,8 @@ import java.util.ArrayList;
 
 public class PersonalTrainersListController
 {
+  @FXML private TableColumn date;
+  @FXML private TableColumn startTime;
   @FXML private TableColumn name;
   @FXML private TableColumn phoneNumber;
   @FXML private TableColumn ssn;
@@ -34,6 +36,8 @@ public class PersonalTrainersListController
     name.setCellValueFactory(new PropertyValueFactory<>("name"));
     phoneNumber.setCellValueFactory(new PropertyValueFactory<>("phoneNumber"));
     ssn.setCellValueFactory(new PropertyValueFactory<>("ssn"));
+    date.setCellValueFactory(new PropertyValueFactory<>("date"));
+    startTime.setCellValueFactory(new PropertyValueFactory<>("startTime"));
 
     personalTrainersTableView.setItems(personalTrainersListViewModel.getList());
   }

@@ -3,11 +3,14 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import main.client.core.ViewHandler;
 
 public class AddPersonalTrainerController
 {
+  @FXML private DatePicker datePicker;
+  @FXML private TextField time;
   @FXML private TextField nameField;
   @FXML private TextField phoneNumberField;
   @FXML private TextField ssnField;
@@ -25,6 +28,9 @@ public class AddPersonalTrainerController
     nameField.textProperty().bindBidirectional(addPersonalTrainerViewModel.nameFieldProperty());
     phoneNumberField.textProperty().bindBidirectional(addPersonalTrainerViewModel.phoneNumberFieldProperty());
     ssnField.textProperty().bindBidirectional(addPersonalTrainerViewModel.ssnFieldProperty());
+    time.textProperty().bindBidirectional(addPersonalTrainerViewModel.timeProperty());
+    //datePicker.getEditor().textProperty().bind(addPersonalTrainerViewModel.dateProperty());
+    addPersonalTrainerViewModel.dateProperty().bind(datePicker.getEditor().textProperty());
   }
 
 
