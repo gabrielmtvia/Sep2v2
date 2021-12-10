@@ -17,16 +17,12 @@ public class ClientsListViewModel
   // todo fix this constructor problem
   public ClientsListViewModel(ClientModel clientManager)
   {
-    System.out.println("Constructor isnt working");
-
     this.clientManager = clientManager;
     list = FXCollections.observableArrayList();
     populateList();
 
     clientManager.addListener("Client Added", evt -> clientAdded(evt));
     clientManager.addListener("Client Removed", evt -> clientRemoved(evt));
-
-    System.out.println("Constructor is working");
   }
 
   private void clientAdded(PropertyChangeEvent evt)
@@ -34,7 +30,6 @@ public class ClientsListViewModel
     TheClient clientAdded = (TheClient) evt.getNewValue();
     list.add(clientAdded);
     System.out.println(clientAdded);
-    System.out.println("Client added view model");
   }
 
   private void clientRemoved(PropertyChangeEvent evt)
