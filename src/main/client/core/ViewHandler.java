@@ -1,6 +1,5 @@
 package main.client.core;
 
-import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -11,6 +10,7 @@ import main.client.view.client.login.ClientLoginController;
 import main.client.view.client.main.ClientMainController;
 import main.client.view.client.personaltrainer.bookings.ClientPersonalTrainerBookingController;
 import main.client.view.client.personaltrainer.list.ClientPersonalTrainerListController;
+import main.client.view.client.viewregisteredlist.RegisteredListController;
 import main.client.view.main.MainController;
 import main.client.view.owner.login.OwnerLoginController;
 import main.client.view.owner.main.OwnerMainController;
@@ -24,7 +24,6 @@ import main.client.view.staff.main.StaffMainController;
 import main.client.view.staff.personaltrainers.add.AddPersonalTrainerController;
 import main.client.view.staff.personaltrainers.list.PersonalTrainersListController;
 import main.client.view.staff.personaltrainers.main.PersonalTrainersMainController;
-
 
 import java.io.IOException;
 
@@ -48,6 +47,7 @@ public class ViewHandler {
     private Scene personalTrainersList;
     private Scene addClient;
     private Scene clientMain;
+    private Scene registeredList;
 
     private Scene clientPersonalTrainer;
     private Scene clientPersonalTrainerBooking;
@@ -55,6 +55,9 @@ public class ViewHandler {
     public ViewHandler(Stage stage, ViewModelFactory vmf)
     {
         mainStage = stage;
+
+        mainStage.setResizable(false);
+
         viewModelFactory = vmf;
     }
 
@@ -365,6 +368,20 @@ public class ViewHandler {
 
         mainStage.setTitle("My personal trainer bookings");
         mainStage.setScene(clientPersonalTrainerBooking);
+    }
+
+
+    public void openRegisteredList(){
+        FXMLLoader loader = new FXMLLoader();
+
+        if (registeredList == null){
+            Parent root = getRootByPath("../view/client/viewregisteredlist/registeredlist.fxml", loader);
+            RegisteredListController controller = loader.getController();
+            controller.init(viewModelFactory.getRegisteredListViewModel(), this);
+            registeredList = new Scene(root);
+        }
+        mainStage.setTitle("Registered List");
+        mainStage.setScene(registeredList);
     }
 }
 

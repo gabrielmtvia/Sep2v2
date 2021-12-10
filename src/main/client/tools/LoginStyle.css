@@ -1,0 +1,4 @@
+.root{
+    -fx-background-image: url('../tools/gymImage.jpg');
+    -fx-background-size: cover;
+}

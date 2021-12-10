@@ -69,8 +69,14 @@ public class ActivitiesClient implements ActivitiesClientModel {
     }
 
     @Override
-    public String registerActivities(Activity activity, UserName userName) {
-        return null; //todo
+    public String registerActivities(Activity activity, UserName userName)  {
+        try {
+            return rmiClient.registeredActivity(activity, userName);
+        } catch (RemoteException e) {
+            e.printStackTrace();
+            return "Connection Lost";
+        }
+
     }
 
 

@@ -121,8 +121,8 @@ public class RmiServer implements RemoteServer{
     }
 
     @Override
-    public ArrayList<PersonalTrainer> getPersonalTrainers() throws RemoteException {
-        return modelFactory.getPersonalTrainerManager().getPersonalTrainers();
+    public ArrayList<PersonalTrainer> getPersonalTrainers(boolean staff) throws RemoteException {
+        return modelFactory.getPersonalTrainerManager().getPersonalTrainers(staff);
     }
 
     @Override
@@ -163,5 +163,45 @@ public class RmiServer implements RemoteServer{
     @Override
     public String deleteBmiData(UserName userName) throws RemoteException {
         return modelFactory.getBmiManager().deleteBmiData(userName);
+    }
+
+    @Override
+    public String bookPersonalTrainer(PersonalTrainer personalTrainer, UserName userName, RemoteClient remoteClient) throws RemoteException {
+
+        remoteClient.personalTrainerBooked(personalTrainer);
+
+        clients.remove(remoteClient);
+
+        for (RemoteClient client : clients) {
+                client.personalTrainerAlreadyBooked(personalTrainer);
+            System.out.println("executed already booked for secondary client");
+        }
+
+        clients.add(remoteClient);
+        return modelFactory.getPersonalTrainerManager().bookPersonalTrainer(personalTrainer, userName);
+    }
+
+    @Override
+    public ArrayList<PersonalTrainer> viewMyBookings(UserName userName) throws RemoteException {
+        return modelFactory.getPersonalTrainerManager().viewMyBookings(userName);
+    }
+
+    @Override
+    public String cancelBooking(PersonalTrainer personalTrainer, UserName userName, RemoteClient remoteClient)  throws RemoteException{
+        clients.remove(remoteClient);
+        for (RemoteClient client : clients) {
+           client.cancelBooking(personalTrainer, userName);
+        }
+        clients.add(remoteClient);
+        remoteClient.personalTrainerRemoved(personalTrainer);
+        PersonalTrainer pt = personalTrainer;
+        pt.setUsername("");
+        remoteClient.personalTrainerAdded(pt);
+        return modelFactory.getPersonalTrainerManager().cancelBooking(personalTrainer, userName);
+    }
+
+    @Override
+    public String registeredActivity(Activity activity, UserName userName)throws RemoteException {
+        return modelFactory.getActivitiesManager().registeredActivity(activity, userName);
     }
 }

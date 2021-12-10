@@ -1,7 +1,6 @@
 package main.client.view.owner.managestaff;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.scene.control.Alert;
-import javafx.scene.control.TextField;
 import main.client.model.managestaff.ManageStaffModel;
 import main.shared.StaffMember;
 
@@ -26,7 +25,7 @@ public class AddStaffMemberViewModel {
     {
         String response = "Please fill all the fields";
 
-        if(getSsn()!=""&&getSsn()!=null&&getFullname()!=""&&getFullname()!=null&&getUsername()!=""&&getUsername()!=null&&getPassword()!=""&&getPassword()!=null){
+        if(getSsn()!=""&&getSsn()!=null&&getFullname()!=""&&getFullname()!=null&&getUsername()!=""&&getUsername()!=null&&getPassword()!=""&& getPassword()!=null){
             response = manageStaffManager.addStaffMember(new StaffMember(getSsn(),getFullname(),getUsername(),getPassword()));
             alert(response);
         } else {

@@ -8,28 +8,31 @@
 <?import javafx.scene.text.Font?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.client.view.staff.personaltrainers.list.PersonalTrainersListController">
-   <children>
-      <Label layoutX="156.0" layoutY="24.0" text="Personal Trainers List">
-         <font>
-            <Font size="34.0" />
-         </font>
-      </Label>
-      <Button fx:id="backButton" layoutX="11.0" layoutY="360.0" mnemonicParsing="false" onAction="#onBackButtonClick" text="Back">
-         <font>
-            <Font size="15.0" />
-         </font>
-      </Button>
-      <Button fx:id="removeButton" layoutX="512.0" layoutY="360.0" mnemonicParsing="false" onAction="#onRemoveButtonClick" text="Remove">
-         <font>
-            <Font size="15.0" />
-         </font>
-      </Button>
-      <TableView fx:id="personalTrainersTableView" layoutX="37.0" layoutY="80.0" prefHeight="263.0" prefWidth="531.0">
-        <columns>
-          <TableColumn fx:id="name" prefWidth="172.0" text="Name" />
-          <TableColumn fx:id="phoneNumber" prefWidth="194.0" text="Phone Number" />
-            <TableColumn fx:id="ssn" prefWidth="163.0" text="SSN" />
-        </columns>
-      </TableView>
-   </children>
+    <children>
+        <Label layoutX="156.0" layoutY="24.0" text="Personal Trainers List">
+            <font>
+                <Font size="34.0" />
+            </font>
+        </Label>
+        <Button fx:id="backButton" layoutX="11.0" layoutY="360.0" mnemonicParsing="false" onAction="#onBackButtonClick" text="Back">
+            <font>
+                <Font size="15.0" />
+            </font>
+        </Button>
+        <Button fx:id="removeButton" layoutX="512.0" layoutY="360.0" mnemonicParsing="false" onAction="#onRemoveButtonClick" text="Remove">
+            <font>
+                <Font size="15.0" />
+            </font>
+        </Button>
+        <TableView fx:id="personalTrainersTableView" layoutX="37.0" layoutY="80.0" prefHeight="263.0" prefWidth="531.0">
+            <columns>
+                <TableColumn fx:id="username" prefWidth="80.57140731811523" text="Reserved by" />
+                <TableColumn fx:id="name" prefWidth="106.85718536376953" text="Name" />
+                <TableColumn fx:id="phoneNumber" prefWidth="114.85711669921875" text="Phone Number" />
+                <TableColumn fx:id="ssn" prefWidth="84.57147216796875" text="SSN" />
+                <TableColumn fx:id="date" prefWidth="75.42852783203125" text="Date" />
+                <TableColumn fx:id="startTime" prefWidth="73.14279174804688" text="Start Time" />
+            </columns>
+        </TableView>
+    </children>
 </AnchorPane>

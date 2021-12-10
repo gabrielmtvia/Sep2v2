@@ -30,7 +30,7 @@ public class ManageActivitiesController {
     @FXML private TextField startTimeField;
     @FXML private TextField endTimeField;
     @FXML private TextField priceField;
-    @FXML private Label response;
+
 
     @FXML private DatePicker datePicker;
 
@@ -63,7 +63,7 @@ public class ManageActivitiesController {
 
 
 
-        manageActivitiesViewModel.responseProperty().bind(response.textProperty());
+
 
         manageActivitiesViewModel.dateProperty().bind(datePicker.getEditor().textProperty());
 

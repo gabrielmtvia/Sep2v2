@@ -50,9 +50,11 @@ public class ActivitiesViewModel {
         return items;
     }
 
+
     public void registerActivity(Activity activity){
 
         activitiesManager.registerActivities(activity,userName);
+        System.out.println(userName.getUserName() + activity.getActivityName());
     }
     public void loadActivities() {
         items.addAll(activitiesManager.requestActivities());

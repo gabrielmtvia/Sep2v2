@@ -9,6 +9,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import main.client.core.ViewHandler;
 import main.shared.Activity;
+import main.shared.UserName;
 
 import java.util.ArrayList;
 
@@ -20,6 +21,7 @@ public class ActivitiesController {
     @FXML private  TableColumn activityName;
     @FXML private  TableColumn price;
     @FXML private TableView<Activity> tableView;
+    private UserName userName;
 
 
     private ViewHandler viewHandler;
@@ -31,7 +33,7 @@ public class ActivitiesController {
         this.viewHandler = viewHandler;
         this.activitiesViewModel = activitiesViewModel;
 
-        date.setCellValueFactory(new PropertyValueFactory<>("activityName"));
+        date.setCellValueFactory(new PropertyValueFactory<>("date"));
         startTime.setCellValueFactory(new PropertyValueFactory<>("startTime"));
         endTime.setCellValueFactory(new PropertyValueFactory<>("endTime"));
         activityName.setCellValueFactory(new PropertyValueFactory<>("activityName"));
@@ -50,6 +52,7 @@ public class ActivitiesController {
         alert.setContentText("Need to implement this feature");
         alert.showAndWait();
     }
+
     public void saveButton() {
 
         //converting the selected row to int (index)
@@ -65,7 +68,14 @@ public class ActivitiesController {
 
         //get the activity by position
         Activity registerActivity = activities.get(position);
+
+        System.out.println(registerActivity.getActivityName());
+
         activitiesViewModel.registerActivity(registerActivity);
 
+    }
+
+    public void registeredList(ActionEvent actionEvent) {
+        viewHandler.openRegisteredList();
     }
 }

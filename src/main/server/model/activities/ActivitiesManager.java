@@ -1,6 +1,8 @@
 package main.server.model.activities;
 import main.server.databaseaccess.activities.ActivitiesDAOModel;
 import main.shared.Activity;
+import main.shared.UserName;
+
 import java.util.ArrayList;
 
 public class ActivitiesManager implements ActivitiesModel {
@@ -24,6 +26,11 @@ public class ActivitiesManager implements ActivitiesModel {
     @Override
     public String saveActivity(Activity activity) {
         return activitiesDAO.saveActivity(activity);
+    }
+
+    @Override
+    public String registeredActivity(Activity activity, UserName userName) {
+        return activitiesDAO.registerActivities(activity, userName);
     }
 
 }

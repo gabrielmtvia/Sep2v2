@@ -1,19 +1,23 @@
 package main.client.view.client.personaltrainer.bookings;
 
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import main.client.core.ViewHandler;
+import main.shared.PersonalTrainer;
+
+import java.util.ArrayList;
 
 public class ClientPersonalTrainerBookingController {
 
+    @FXML private TableColumn date;
     @FXML private TableView tableView;
     @FXML private TableColumn fullName;
     @FXML private TableColumn phoneNumber;
     @FXML private TableColumn startTime;
-    @FXML private TableColumn endTime;
 
     private ClientPersonalTrainerBookingViewModel viewModel;
     private ViewHandler viewHandler;
@@ -22,10 +26,10 @@ public class ClientPersonalTrainerBookingController {
         this.viewModel = viewModel;
         this.viewHandler = viewHandler;
 
-        fullName.setCellValueFactory(new PropertyValueFactory<>("fullName"));
+        fullName.setCellValueFactory(new PropertyValueFactory<>("name"));
         phoneNumber.setCellValueFactory(new PropertyValueFactory<>("phoneNumber"));
         startTime.setCellValueFactory(new PropertyValueFactory<>("startTime"));
-        endTime.setCellValueFactory(new PropertyValueFactory<>("endTime"));
+        date.setCellValueFactory(new PropertyValueFactory<>("date"));
 
         tableView.setItems(viewModel.getItemsList());
     }
@@ -35,6 +39,13 @@ public class ClientPersonalTrainerBookingController {
     }
 
     public void onCancelBooking(ActionEvent actionEvent) {
-        viewModel.cancelBooking();
+        ObservableList<Integer> observableList = tableView.getSelectionModel().getSelectedIndices();
+        Object[] array = observableList.toArray();
+        int position = (int) array[0];
+
+        ObservableList<PersonalTrainer> personalTrainers = viewModel.getItemsList();
+        PersonalTrainer personalTrainer = personalTrainers.get(position);
+
+        viewModel.cancelBooking(personalTrainer);
     }
 }
