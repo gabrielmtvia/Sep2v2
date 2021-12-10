@@ -50,4 +50,5 @@ public interface RemoteClient extends Remote {
 
     String registeredActivity(Activity activity, UserName userName) throws RemoteException;
     String cancelBooking(PersonalTrainer personalTrainer, UserName userName) throws RemoteException;
+    ArrayList<Activity> requestRegisteredActivities() throws RemoteException;
 }

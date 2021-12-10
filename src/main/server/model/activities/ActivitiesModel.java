@@ -9,4 +9,5 @@ public interface ActivitiesModel {
     String deleteActivity(Activity activity);
     String saveActivity(Activity activity);
     String registeredActivity(Activity activity, UserName userName);
+    ArrayList<Activity> requestRegisteredActivities();
 }
