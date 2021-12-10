@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="404.0" prefWidth="733.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.client.view.client.activities.ActivitiesController">
+   <children>
+      <TableView fx:id="tableView" layoutX="6.0" layoutY="8.0" prefHeight="317.0" prefWidth="717.0">
+        <columns>
+          <TableColumn fx:id="date" prefWidth="207.3333740234375" text="Date" />
+          <TableColumn fx:id="startTime" prefWidth="73.3333740234375" text="Start Time" />
+            <TableColumn fx:id="endTime" prefWidth="66.33331298828125" text="End Time" />
+            <TableColumn fx:id="activityName" prefWidth="167.666748046875" text="Type" />
+            <TableColumn fx:id="price" prefWidth="209.0" text="Price" />
+        </columns>
+      </TableView>
+      <Button layoutX="495.0" layoutY="335.0" mnemonicParsing="false" onAction="#saveButton" prefHeight="37.0" prefWidth="75.0" text="Register" />
+      <Button layoutX="388.0" layoutY="335.0" mnemonicParsing="false" onAction="#backButton" prefHeight="37.0" prefWidth="75.0" text="Back" />
+      <Button layoutX="584.0" layoutY="335.0" mnemonicParsing="false" onAction="#registeredList" prefHeight="37.0" prefWidth="140.0" text="View Registered List" />
+   </children>
+</AnchorPane>
