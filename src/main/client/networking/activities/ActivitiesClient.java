@@ -88,4 +88,19 @@ public class ActivitiesClient implements ActivitiesClientModel {
             support.addPropertyChangeListener(eventName, listener);
         }
     }
+
+    @Override
+    public ArrayList<Activity> requestRegisteredActivities() {
+
+        try {
+            return rmiClient.requestRegisteredActivities();
+        } catch (RemoteException e) {
+            e.printStackTrace();
+
+        }
+        return null;
+    }
+
+
+
 }

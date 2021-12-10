@@ -134,9 +134,30 @@ public class ActivitiesDAO implements ActivitiesDAOModel{
 
     }
 
+    @Override
+    public ArrayList<Activity> requestRegisteredActivities() {
+        PreparedStatement statement;
+        ResultSet resultSet;
 
+        ArrayList<Activity> list = new ArrayList<>();
+        try {
+            String query ="SELECT activities.type, price, date, starttime, endtime from activities join registrations on activities.activityno = registrations.activityno";
+            statement = dbConnection.createPreparedStatement(query);
+            resultSet = statement.executeQuery();
 
+            while (resultSet.next()) {
+                Activity activity = new Activity(resultSet.getString("type"),resultSet.getString("price"),resultSet.getString("date"),resultSet.getString("startTime"),resultSet.getString("endTime"));
+                list.add(activity);
+            }
 
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            dbConnection.closeConnection();
+        }
+
+        return list;
+    }
 
 
 }

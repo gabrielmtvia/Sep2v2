@@ -10,4 +10,5 @@ public interface ActivitiesDAOModel {
     String deleteActivity(Activity activity);
     String saveActivity(Activity activity);
     String registerActivities(Activity activity, UserName userName);
+    ArrayList<Activity> requestRegisteredActivities();
 }

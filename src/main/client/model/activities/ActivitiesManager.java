@@ -64,4 +64,9 @@ public class ActivitiesManager implements ActivitiesModel{
             support.addPropertyChangeListener(eventName, listener);
         }
     }
+
+    @Override
+    public ArrayList<Activity> requestRegisteredActivities() {
+        return activitiesClient.requestRegisteredActivities();
+    }
 }
