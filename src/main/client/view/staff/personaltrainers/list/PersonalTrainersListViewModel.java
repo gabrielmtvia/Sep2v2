@@ -27,7 +27,14 @@ public class PersonalTrainersListViewModel
     personalTrainerManager.addListener("Personal Trainer Removed", evt -> personalTrainerRemoved(evt));
     personalTrainerManager.addListener("Personal Trainer Booked", evt -> personalTrainerBooked(evt));
     personalTrainerManager.addListener("Personal Trainer Cancelled", evt -> personalTrainerCancelled(evt));
-    personalTrainerManager.addListener("Personal Trainer Already Booked", evt -> personalTrainerAlreadyBooked(evt));;
+    personalTrainerManager.addListener("Personal Trainer Already Booked", evt -> personalTrainerAlreadyBooked(evt));
+    personalTrainerManager.addListener("Personal Trainer Already Cancelled", evt -> personalTrainerAlreadyCancelled(evt));
+  }
+
+  private void personalTrainerAlreadyCancelled(PropertyChangeEvent evt) {
+    PersonalTrainer personalTrainerAlreadyCancelled = (PersonalTrainer) evt.getNewValue();
+    list.remove(personalTrainerAlreadyCancelled);
+    list.add(personalTrainerAlreadyCancelled);
   }
 
   private void personalTrainerAlreadyBooked(PropertyChangeEvent evt) {
