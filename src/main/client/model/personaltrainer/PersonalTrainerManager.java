@@ -26,7 +26,7 @@ public class PersonalTrainerManager implements PersonalTrainerModel{
 
     private void personalTrainerAlreadyBooked(PropertyChangeEvent evt) {
         PersonalTrainer personalTrainer = (PersonalTrainer) evt.getNewValue();
-        support.firePropertyChange("Personal Trainer Booked", null, personalTrainer);
+        support.firePropertyChange("Personal Trainer Already Booked", null, personalTrainer);
     }
 
     private void personalTrainerBooked(PropertyChangeEvent evt) {
@@ -84,7 +84,7 @@ public class PersonalTrainerManager implements PersonalTrainerModel{
     }
 
     @Override
-    public String cancelBooking(PersonalTrainer personalTrainer) {
-        return personalTrainerClient.cancelBooking(personalTrainer);
+    public String cancelBooking(PersonalTrainer personalTrainer, UserName userName) {
+        return personalTrainerClient.cancelBooking(personalTrainer, userName);
     }
 }

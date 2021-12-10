@@ -32,5 +32,5 @@ public interface RemoteServer extends Remote {
 
     ArrayList<PersonalTrainer> viewMyBookings(UserName userName) throws RemoteException;
 
-    String cancelBooking(PersonalTrainer personalTrainer, RemoteClient remoteClient) throws RemoteException;
+    String cancelBooking(PersonalTrainer personalTrainer, UserName userName, RemoteClient remoteClient) throws RemoteException;
 }

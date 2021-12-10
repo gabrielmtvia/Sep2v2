@@ -36,7 +36,10 @@ public class ClientPersonalTrainerBookingViewModel {
 
     private void personalTrainerBooked(PropertyChangeEvent evt) {
         PersonalTrainer personalTrainerBooked = (PersonalTrainer) evt.getNewValue();
-        items.add(personalTrainerBooked);
+        if(personalTrainerBooked.getUsername().equals(loginManager.getUserName().getUserName()))
+        {
+            items.add(personalTrainerBooked);
+        }
     }
 
     public void populateList(){
@@ -54,7 +57,9 @@ public class ClientPersonalTrainerBookingViewModel {
     public void cancelBooking(PersonalTrainer personalTrainer) {
         PersonalTrainer personalTrainerCancelled = personalTrainer;
         personalTrainerCancelled.setUsername(loginManager.getUserName().getUserName());
-        String result = personalTrainerManager.cancelBooking(personalTrainerCancelled);
+        String result = personalTrainerManager.cancelBooking(personalTrainerCancelled, loginManager.getUserName());
+        System.out.println("From the viewmodel");
+        System.out.println(personalTrainerCancelled + " "+personalTrainerCancelled.getUsername());
 
         if(result.contains("resultado")){
             items.remove(personalTrainer);

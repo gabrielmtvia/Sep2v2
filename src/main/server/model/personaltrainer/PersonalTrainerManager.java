@@ -40,7 +40,7 @@ public class PersonalTrainerManager implements PersonalTrainerModel{
     }
 
     @Override
-    public String cancelBooking(PersonalTrainer personalTrainer) {
-        return personalTrainerDAO.cancelBooking(personalTrainer);
+    public String cancelBooking(PersonalTrainer personalTrainer, UserName userName) {
+        return personalTrainerDAO.cancelBooking(personalTrainer, userName);
     }
 }

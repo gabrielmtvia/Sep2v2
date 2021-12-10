@@ -14,5 +14,5 @@ public interface PersonalTrainerModel {
 
     ArrayList<PersonalTrainer> viewMyBookings(UserName userName);
 
-    String cancelBooking(PersonalTrainer personalTrainer);
+    String cancelBooking(PersonalTrainer personalTrainer, UserName userName);
 }

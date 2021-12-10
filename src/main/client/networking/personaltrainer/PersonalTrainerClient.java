@@ -117,9 +117,9 @@ public class PersonalTrainerClient implements PersonalTrainerClientModel{
     }
 
     @Override
-    public String cancelBooking(PersonalTrainer personalTrainer) {
+    public String cancelBooking(PersonalTrainer personalTrainer, UserName userName) {
         try {
-            return rmiClient.cancelBooking(personalTrainer);
+            return rmiClient.cancelBooking(personalTrainer, userName);
         } catch (RemoteException e) {
             e.printStackTrace();
             return null;

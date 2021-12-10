@@ -2,6 +2,7 @@ package main.client.view.client.personaltrainer.list;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.control.Alert;
 import main.client.model.login.LoginModel;
 import main.client.model.personaltrainer.PersonalTrainerModel;
 import main.shared.PersonalTrainer;
@@ -61,6 +62,10 @@ public class ClientPersonalTrainerListViewModel {
         PersonalTrainer personalTrainerWithUsername= personalTrainer;
         personalTrainerWithUsername.setUsername(loginManager.getUserName().getUserName());
         String response = personalTrainerManager.bookPersonalTrainer(personalTrainerWithUsername, loginManager.getUserName());
-        System.out.println(response);
+
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Information");
+        alert.setContentText(response);
+        alert.showAndWait();
     }
 }

@@ -38,7 +38,7 @@ public class ClientPersonalTrainerListController {
         Object[] array = observableList.toArray();
         int position = (int) array[0];
 
-        ArrayList<PersonalTrainer> personalTrainers = clientPersonalTrainerListViewModel.getPersonalTrainers();
+        ObservableList<PersonalTrainer> personalTrainers = clientPersonalTrainerListViewModel.getItemsList();
         PersonalTrainer personalTrainer = personalTrainers.get(position);
 
         clientPersonalTrainerListViewModel.bookPersonalTrainer(personalTrainer);

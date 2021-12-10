@@ -13,5 +13,5 @@ public interface PersonalTrainerDAOModel {
     String bookPersonalTrainer(PersonalTrainer personalTrainer, UserName userName);
     ArrayList<PersonalTrainer> viewMyBookings(UserName userName);
 
-    String cancelBooking(PersonalTrainer personalTrainer);
+    String cancelBooking(PersonalTrainer personalTrainer, UserName userName);
 }

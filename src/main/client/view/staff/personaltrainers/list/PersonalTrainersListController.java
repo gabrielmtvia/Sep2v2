@@ -50,7 +50,7 @@ public class PersonalTrainersListController
     Object[] array = observableList.toArray();
     int position = (int) array[0];
 
-    ArrayList<PersonalTrainer> personalTrainers = personalTrainersListViewModel.getPersonalTrainers();
+    ObservableList<PersonalTrainer> personalTrainers = personalTrainersListViewModel.getList();
     PersonalTrainer personalTrainer = personalTrainers.get(position);
 
     personalTrainersListViewModel.removePersonalTrainer(personalTrainer);

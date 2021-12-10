@@ -26,7 +26,25 @@ public class PersonalTrainersListViewModel
     personalTrainerManager.addListener("Personal Trainer Added", evt -> personalTrainerAdded(evt));
     personalTrainerManager.addListener("Personal Trainer Removed", evt -> personalTrainerRemoved(evt));
     personalTrainerManager.addListener("Personal Trainer Booked", evt -> personalTrainerBooked(evt));
+    personalTrainerManager.addListener("Personal Trainer Cancelled", evt -> personalTrainerCancelled(evt));
+    personalTrainerManager.addListener("Personal Trainer Already Booked", evt -> personalTrainerAlreadyBooked(evt));;
   }
+
+  private void personalTrainerAlreadyBooked(PropertyChangeEvent evt) {
+    PersonalTrainer personalTrainerAlreadyBooked = (PersonalTrainer) evt.getNewValue();
+    System.out.println(personalTrainerAlreadyBooked);
+    System.out.println(list.contains(personalTrainerAlreadyBooked));
+    list.remove(personalTrainerAlreadyBooked);
+    list.add(personalTrainerAlreadyBooked);
+  }
+
+  private void personalTrainerCancelled(PropertyChangeEvent evt) {
+    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+    alert.setTitle("listener working");
+    alert.setContentText("listener working");
+    alert.showAndWait();
+  }
+
 
   private void personalTrainerBooked(PropertyChangeEvent evt) {
     PersonalTrainer personalTrainerBooked = (PersonalTrainer) evt.getNewValue();
@@ -44,8 +62,6 @@ public class PersonalTrainersListViewModel
   private void personalTrainerAdded(PropertyChangeEvent evt) {
     PersonalTrainer personalTrainerAdded = (PersonalTrainer) evt.getNewValue();
     list.add(personalTrainerAdded);
-    System.out.println("personalTrainerAdded " + personalTrainerAdded);
-    System.out.println("Personal trainer added" + personalTrainerAdded);
   }
 
   public void populateList()
@@ -79,7 +95,12 @@ public class PersonalTrainersListViewModel
       alert.setContentText("Cannot remove this time because it is already \nbooked. Please contact the client\n to inform about the cancellation");
       alert.showAndWait();
     }
-    else {
+    else if(response.contains("resultado")){
+      Alert alert = new Alert(Alert.AlertType.INFORMATION);
+      alert.setTitle("Remove operation");
+      alert.setContentText("Personal trainer removed successfully");
+      alert.showAndWait();
+    }else{
       Alert alert = new Alert(Alert.AlertType.INFORMATION);
       alert.setTitle("Remove operation");
       alert.setContentText(response);

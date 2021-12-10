@@ -174,6 +174,7 @@ public class RmiServer implements RemoteServer{
 
         for (RemoteClient client : clients) {
                 client.personalTrainerAlreadyBooked(personalTrainer);
+            System.out.println("executed already booked for secondary client");
         }
 
         clients.add(remoteClient);
@@ -186,13 +187,16 @@ public class RmiServer implements RemoteServer{
     }
 
     @Override
-    public String cancelBooking(PersonalTrainer personalTrainer, RemoteClient remoteClient)  throws RemoteException{
+    public String cancelBooking(PersonalTrainer personalTrainer, UserName userName, RemoteClient remoteClient)  throws RemoteException{
         clients.remove(remoteClient);
         for (RemoteClient client : clients) {
-           client.cancelBooking(personalTrainer);
+           client.cancelBooking(personalTrainer, userName);
         }
         clients.add(remoteClient);
-        remoteClient.personalTrainerAdded(personalTrainer);
-        return modelFactory.getPersonalTrainerManager().cancelBooking(personalTrainer);
+        remoteClient.personalTrainerRemoved(personalTrainer);
+        PersonalTrainer pt = personalTrainer;
+        pt.setUsername("");
+        remoteClient.personalTrainerAdded(pt);
+        return modelFactory.getPersonalTrainerManager().cancelBooking(personalTrainer, userName);
     }
 }

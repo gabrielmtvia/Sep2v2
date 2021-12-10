@@ -95,7 +95,7 @@ public class PersonalTrainer implements Serializable
     if (this == o) return true;
     if (o == null || getClass() != o.getClass()) return false;
     PersonalTrainer that = (PersonalTrainer) o;
-    return Objects.equals(name, that.name) && Objects.equals(phoneNumber, that.phoneNumber) && Objects.equals(ssn, that.ssn);
+    return Objects.equals(name, that.name) && Objects.equals(phoneNumber, that.phoneNumber) && Objects.equals(ssn, that.ssn) && Objects.equals(startTime, that.startTime) && Objects.equals(date, that.date);
   }
 
 }

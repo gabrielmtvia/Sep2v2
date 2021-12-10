@@ -7,7 +7,6 @@ import main.shared.UserName;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class PersonalTrainerDAO implements PersonalTrainerDAOModel {
@@ -167,14 +166,14 @@ public class PersonalTrainerDAO implements PersonalTrainerDAOModel {
     }
 
     @Override
-    public String cancelBooking(PersonalTrainer personalTrainer) {
-        System.out.println(personalTrainer + "in the server" + personalTrainer.getUsername());
+    public String cancelBooking(PersonalTrainer personalTrainer, UserName userName) {
+        System.out.println(personalTrainer + " in the server " + userName.getUserName());
         PreparedStatement statement;
         try
         {
             String query = "DELETE FROM booking WHERE username LIKE ? and ssn LIKE ? AND date = ? AND time LIKE ?";
             statement =dbConnection.createPreparedStatement(query);
-            statement.setString(1, personalTrainer.getUsername());
+            statement.setString(1, userName.getUserName());
             statement.setString(2, personalTrainer.getSsn());
             statement.setDate(3, Date.valueOf(personalTrainer.getDate()));
             statement.setString(4, personalTrainer.getStartTime());
