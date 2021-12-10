@@ -16,17 +16,17 @@ public class ClientManager implements ClientModel
   public ClientManager(ClientsClientModel clientsClient)
   {
     this.clientsClient = clientsClient;
-    clientsClient.addListener("Client Added", evt -> clientsClientAdded(evt));
-    clientsClient.addListener("Client Removed", evt -> clientsClientRemoved(evt));
+    clientsClient.addListener("Client Added", evt -> clientAdded(evt));
+    clientsClient.addListener("Client Removed", evt -> clientRemoved(evt));
   }
 
-  private void clientsClientRemoved(PropertyChangeEvent evt)
+  private void clientRemoved(PropertyChangeEvent evt)
   {
     TheClient theClient = (TheClient) evt.getNewValue();
     support.firePropertyChange("Client Removed", null, theClient);
   }
 
-  private void clientsClientAdded(PropertyChangeEvent evt)
+  private void clientAdded(PropertyChangeEvent evt)
   {
     TheClient theClient = (TheClient) evt.getNewValue();
     support.firePropertyChange("Client Added", null, theClient);
