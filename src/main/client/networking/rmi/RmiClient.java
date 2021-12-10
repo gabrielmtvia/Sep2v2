@@ -218,4 +218,11 @@ public class RmiClient implements RemoteClient {
     public String cancelBooking(PersonalTrainer personalTrainer, UserName userName) throws RemoteException {
         return serverStub.cancelBooking(personalTrainer, userName, this);
     }
+
+    @Override
+    public String registeredActivity(Activity activity, UserName userName) throws RemoteException {
+        return serverStub.registeredActivity(activity, userName);
+
+
+    }
 }

@@ -87,13 +87,32 @@ public class ActivitiesDAO implements ActivitiesDAOModel{
     @Override
     public String registerActivities(Activity activity, UserName userName) {
         PreparedStatement statement;
+        ResultSet resultSet;
+
+
         try {
-            String query = "INSERT INTO activities (type, price, date, starttime, endtime) VALUES (?,?,?,?,?)";
+            String query = "select * from activities where type like ? and price like ? and date = ?   ";
             statement = dbConnection.createPreparedStatement(query);
-            statement.setString(1, String.valueOf(userName));
 
-            statement.executeQuery();
+            statement.setString(1, activity.getActivityName() );
+            statement.setString(2, activity.getPrice());
+            statement.setDate(3, Date.valueOf(activity.getDate()));
 
+
+            resultSet = statement.executeQuery();
+            int activityNumber = 0;
+            while (resultSet.next()){
+                 activityNumber = resultSet.getInt("activityno");
+
+            }
+
+            String query2 = "insert into registrations values (?,?) ;";
+            statement = dbConnection.createPreparedStatement(query2);
+            statement.setString(1, userName.getUserName());
+
+            statement.setInt(2, activityNumber );
+
+            statement.execute();
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -106,10 +125,16 @@ public class ActivitiesDAO implements ActivitiesDAOModel{
 
 
 
+
+
         return "Activity has been registered successfully";
-          //todo
+
+
+
 
     }
+
+
 
 
 

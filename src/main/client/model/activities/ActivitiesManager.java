@@ -52,7 +52,7 @@ public class ActivitiesManager implements ActivitiesModel{
 
     @Override
     public String registerActivities(Activity activity, UserName userName) {
-        return null; //todo
+        return activitiesClient.registerActivities(activity, userName);
     }
 
 
