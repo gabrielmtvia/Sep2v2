@@ -18,6 +18,7 @@ import main.client.view.owner.managestaff.AddStaffMemberController;
 import main.client.view.owner.staffmemberlist.StaffMemberListController;
 import main.client.view.staff.activities.ManageActivitiesController;
 import main.client.view.staff.clients.add.AddClientController;
+import main.client.view.staff.clients.list.ClientsListController;
 import main.client.view.staff.clients.main.ClientsMainController;
 import main.client.view.staff.login.StaffLoginController;
 import main.client.view.staff.main.StaffMainController;
@@ -47,6 +48,7 @@ public class ViewHandler {
     private Scene personalTrainersList;
     private Scene addClient;
     private Scene clientMain;
+    private Scene clientsList;
     private Scene registeredList;
 
     private Scene clientPersonalTrainer;
@@ -322,6 +324,22 @@ public class ViewHandler {
 
         mainStage.setTitle("Add a client");
         mainStage.setScene(addClient);
+    }
+
+    public void openClientsList()
+    {
+        FXMLLoader loader = new FXMLLoader();
+
+        if (clientsList == null)
+        {
+            Parent root = getRootByPath("../view/staff/clients/list/clientsList.fxml", loader);
+            ClientsListController controller = loader.getController();
+            controller.init(viewModelFactory.getClientsListViewModel(), this);
+            clientsList = new Scene(root);
+        }
+
+        mainStage.setTitle("Clients List");
+        mainStage.setScene(clientsList);
     }
 
     public void openClientsMain()

@@ -12,6 +12,7 @@ import main.client.view.owner.managestaff.AddStaffMemberViewModel;
 import main.client.view.owner.staffmemberlist.StaffMemberListViewModel;
 import main.client.view.staff.activities.ManageActivitiesViewModel;
 import main.client.view.staff.clients.add.AddClientViewModel;
+import main.client.view.staff.clients.list.ClientsListViewModel;
 import main.client.view.staff.login.StaffLoginViewModel;
 import main.client.view.staff.personaltrainers.add.AddPersonalTrainerViewModel;
 import main.client.view.staff.personaltrainers.list.PersonalTrainersListViewModel;
@@ -31,6 +32,7 @@ public class ViewModelFactory {
     private AddPersonalTrainerViewModel addPersonalTrainerViewModel;
     private PersonalTrainersListViewModel personalTrainersListViewModel;
     private AddClientViewModel addClientViewModel;
+    private ClientsListViewModel clientsListViewModel;
 
     private ClientPersonalTrainerListViewModel clientPersonalTrainerListViewModel;
     private ClientPersonalTrainerBookingViewModel clientPersonalTrainerBookingViewModel;
@@ -113,6 +115,13 @@ public class ViewModelFactory {
         if (addClientViewModel == null)
             addClientViewModel = new AddClientViewModel(modelFactory.getClientManager());
         return addClientViewModel;
+    }
+
+    public ClientsListViewModel getClientsListViewModel()
+    {
+        if (clientsListViewModel == null)
+            clientsListViewModel = new ClientsListViewModel(modelFactory.getClientManager());
+        return clientsListViewModel;
     }
 
     public ClientPersonalTrainerListViewModel getClientPersonalTrainerListViewModel() {

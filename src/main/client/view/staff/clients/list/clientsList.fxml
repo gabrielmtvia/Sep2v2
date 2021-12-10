@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.client.view.staff.clients.list.ClientsListController">
+   <children>
+      <TableView fx:id="tableView" layoutX="41.0" layoutY="58.0" prefHeight="253.0" prefWidth="519.0">
+        <columns>
+          <TableColumn fx:id="ssn" prefWidth="75.0" text="SSN" />
+          <TableColumn fx:id="name" prefWidth="184.0" text="Name" />
+            <TableColumn fx:id="username" prefWidth="121.0" text="Username" />
+            <TableColumn fx:id="password" prefWidth="138.0" text="Password" />
+        </columns>
+      </TableView>
+      <Label layoutX="248.0" layoutY="14.0" text="Clients List">
+         <font>
+            <Font size="22.0" />
+         </font>
+      </Label>
+      <Button fx:id="back" layoutX="63.0" layoutY="341.0" mnemonicParsing="false" onAction="#onBackButton" prefHeight="31.0" prefWidth="63.0" text="Back">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Button>
+      <Button fx:id="delete" layoutX="483.0" layoutY="341.0" mnemonicParsing="false" onAction="#onDeleteButton" text="Delete">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>
