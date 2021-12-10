@@ -28,6 +28,12 @@ public class ClientPersonalTrainerListViewModel {
         personalTrainerManager.addListener("Personal Trainer Added", evt -> personalTrainerAdded(evt));
         personalTrainerManager.addListener("Personal Trainer Removed", evt -> personalTrainerRemoved(evt));
         personalTrainerManager.addListener("Personal Trainer Already Booked", evt -> personalTrainerRemoved(evt));
+        personalTrainerManager.addListener("Personal Trainer Already Cancelled", evt -> personalTrainerAlreadyCancelled(evt));
+    }
+
+    private void personalTrainerAlreadyCancelled(PropertyChangeEvent evt) {
+        PersonalTrainer personalTrainerAlreadyCancelled = (PersonalTrainer) evt.getNewValue();
+        items.add(personalTrainerAlreadyCancelled);
     }
 
     private void personalTrainerRemoved(PropertyChangeEvent evt) {
