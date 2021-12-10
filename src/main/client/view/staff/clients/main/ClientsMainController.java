@@ -25,7 +25,7 @@ public class ClientsMainController
 
   public void onClientsListButton(ActionEvent actionEvent)
   {
-
+    viewHandler.openClientsList();
   }
 
   public void onBackButton(ActionEvent actionEvent)

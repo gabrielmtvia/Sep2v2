@@ -12,4 +12,5 @@ public interface ActivitiesClientModel {
     String saveActivity(Activity activity);
     String registerActivities(Activity activity, UserName userName);
     void addListener(String eventName, PropertyChangeListener listener);
+    ArrayList<Activity> requestRegisteredActivities();
 }
