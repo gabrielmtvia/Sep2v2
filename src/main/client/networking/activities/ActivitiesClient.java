@@ -101,6 +101,15 @@ public class ActivitiesClient implements ActivitiesClientModel {
         return null;
     }
 
+    @Override
+    public String cancelRegistration(Activity activity, UserName userName) {
+        try {
+            return rmiClient.cancelRegistration(activity, userName);
+        } catch (RemoteException e) {
+            e.printStackTrace();
+            return "Connection Lost";
+        }
+    }
 
 
 }

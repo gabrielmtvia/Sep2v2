@@ -34,5 +34,7 @@ public interface RemoteServer extends Remote {
 
     String registeredActivity(Activity activity, UserName userName) throws RemoteException;
     String cancelBooking(PersonalTrainer personalTrainer, UserName userName, RemoteClient remoteClient) throws RemoteException;
-    ArrayList<Activity> requestRegisteredActivities()throws RemoteException;
+    ArrayList<Activity> requestRegisteredActivities() throws RemoteException;
+
+    String cancelRegistration(Activity activity, UserName userName) throws RemoteException;
 }

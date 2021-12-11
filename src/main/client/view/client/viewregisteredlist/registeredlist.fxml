@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="404.0" prefWidth="733.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.client.view.client.viewregisteredlist.RegisteredListController">
+<AnchorPane prefHeight="404.0" prefWidth="733.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.client.view.client.viewregisteredlist.RegisteredListController">
     <children>
         <TableView fx:id="tableView" layoutX="6.0" layoutY="8.0" prefHeight="317.0" prefWidth="717.0">
             <columns>
@@ -18,6 +18,11 @@
             </columns>
         </TableView>
       <Button layoutX="630.0" layoutY="347.0" mnemonicParsing="false" onAction="#backButton" prefHeight="43.0" prefWidth="93.0" text="Back">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Button>
+      <Button layoutX="448.0" layoutY="347.0" mnemonicParsing="false" onAction="#cancelButton" prefHeight="43.0" prefWidth="160.0" text="Cancel registration">
          <font>
             <Font size="16.0" />
          </font>

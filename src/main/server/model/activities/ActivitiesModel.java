@@ -10,4 +10,6 @@ public interface ActivitiesModel {
     String saveActivity(Activity activity);
     String registeredActivity(Activity activity, UserName userName);
     ArrayList<Activity> requestRegisteredActivities();
+
+    String cancelRegistration(Activity activity, UserName userName);
 }

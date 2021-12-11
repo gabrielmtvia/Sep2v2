@@ -69,4 +69,10 @@ public class ActivitiesManager implements ActivitiesModel{
     public ArrayList<Activity> requestRegisteredActivities() {
         return activitiesClient.requestRegisteredActivities();
     }
+
+    @Override
+    public String cancelRegistration(Activity activity, UserName userName) {
+
+        return activitiesClient.cancelRegistration(activity,userName);
+    }
 }

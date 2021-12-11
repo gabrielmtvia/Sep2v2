@@ -220,6 +220,11 @@ public class RmiServer implements RemoteServer{
     }
 
     @Override
+    public String cancelRegistration(Activity activity, UserName userName) throws RemoteException {
+        return modelFactory.getActivitiesManager().cancelRegistration(activity,userName);
+    }
+
+    @Override
     public String registeredActivity(Activity activity, UserName userName)throws RemoteException {
         return modelFactory.getActivitiesManager().registeredActivity(activity, userName);
     }

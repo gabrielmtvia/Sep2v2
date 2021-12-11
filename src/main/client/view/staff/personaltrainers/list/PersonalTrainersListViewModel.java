@@ -46,10 +46,9 @@ public class PersonalTrainersListViewModel
   }
 
   private void personalTrainerCancelled(PropertyChangeEvent evt) {
-    Alert alert = new Alert(Alert.AlertType.INFORMATION);
-    alert.setTitle("listener working");
-    alert.setContentText("listener working");
-    alert.showAndWait();
+    PersonalTrainer personalTrainerCancelled = (PersonalTrainer) evt.getNewValue();
+    list.remove(personalTrainerCancelled);
+    list.add(personalTrainerCancelled);
   }
 
 

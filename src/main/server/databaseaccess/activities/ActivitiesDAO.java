@@ -111,18 +111,6 @@ public class ActivitiesDAO implements ActivitiesDAOModel{
             return e.getMessage();
         }
         return "Activity deleted successfully";
-
-
-
-
-
-
-
-
-
-
-
-
     }
 
     @Override
@@ -188,16 +176,7 @@ public class ActivitiesDAO implements ActivitiesDAOModel{
             dbConnection.closeConnection();
         }
 
-
-
-
-
-
-
         return "Activity has been registered successfully";
-
-
-
 
     }
 
@@ -226,5 +205,41 @@ public class ActivitiesDAO implements ActivitiesDAOModel{
         return list;
     }
 
+    @Override
+    public String cancelRegistration(Activity activity, UserName userName) {
 
+        PreparedStatement statement;
+        ResultSet resultSet;
+        try
+        {
+            String query = "select * from activities where type like ? and price like ? and date = ? and starttime = ? and endtime = ?  ";
+            statement = dbConnection.createPreparedStatement(query);
+
+            statement.setString(1, activity.getActivityName() );
+            statement.setString(2, activity.getPrice());
+            statement.setDate(3, Date.valueOf(activity.getDate()));
+            statement.setString(4,activity.getStartTime());
+            statement.setString(5,activity.getEndTime());
+
+
+            resultSet = statement.executeQuery();
+            int activityNumber = 0;
+            while (resultSet.next()){
+                activityNumber = resultSet.getInt("activityno");
+
+            }
+
+            query = "DELETE from registrations where username = ? and activityno = ?";
+            statement =dbConnection.createPreparedStatement(query);
+            statement.setString(1, userName.getUserName());
+            statement.setInt(2, activityNumber);
+            statement.executeQuery();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            return e.getMessage();
+        }
+        return "Registration Cancelled Successfully";
+
+    }
 }

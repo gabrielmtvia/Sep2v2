@@ -13,5 +13,5 @@ public interface ActivitiesModel {
     String registerActivities(Activity activity, UserName userName);
     void addListener(String eventName, PropertyChangeListener listener);
     ArrayList<Activity> requestRegisteredActivities();
-
+    String cancelRegistration(Activity activity, UserName userName);
 }
