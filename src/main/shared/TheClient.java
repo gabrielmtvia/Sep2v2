@@ -1,6 +1,7 @@
 package main.shared;
 
 import java.io.Serializable;
+import java.util.Objects;
 
 public class TheClient implements Serializable
 {
@@ -61,4 +62,13 @@ public class TheClient implements Serializable
   {
     return "SSN: " + this.ssn + ", Name: " + this.fullName + ", Username: " + this.username + ", Password: " + this.password;
   }
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) return true;
+    if (o == null || getClass() != o.getClass()) return false;
+    TheClient theClient = (TheClient) o;
+    return Objects.equals(fullName, theClient.fullName) && Objects.equals(ssn, theClient.ssn) && Objects.equals(username, theClient.username) && Objects.equals(password, theClient.password);
+  }
+
 }

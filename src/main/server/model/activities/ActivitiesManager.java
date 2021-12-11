@@ -38,4 +38,9 @@ public class ActivitiesManager implements ActivitiesModel {
         return activitiesDAO.requestRegisteredActivities();
     }
 
+    @Override
+    public String cancelRegistration(Activity activity, UserName userName) {
+        return activitiesDAO.cancelRegistration(activity,userName);
+    }
+
 }

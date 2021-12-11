@@ -34,6 +34,7 @@ public class ClientsListViewModel
   private void clientRemoved(PropertyChangeEvent evt)
   {
     TheClient clientRemoved = (TheClient) evt.getNewValue();
+    System.out.println("list contains client? - " + list.contains(clientRemoved));
     list.remove(clientRemoved);
   }
 

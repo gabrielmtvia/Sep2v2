@@ -138,7 +138,7 @@ public class ViewModelFactory {
 
     public RegisteredListViewModel getRegisteredListViewModel(){
         if (registeredListViewModel == null)
-            registeredListViewModel = new RegisteredListViewModel(modelFactory.getActivitiesManager());
+            registeredListViewModel = new RegisteredListViewModel(modelFactory.getActivitiesManager(), modelFactory.getLoginManager());
         return registeredListViewModel;
     }
 }

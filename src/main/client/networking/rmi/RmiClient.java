@@ -230,6 +230,12 @@ public class RmiClient implements RemoteClient {
     }
 
     @Override
+    public String cancelRegistration(Activity activity, UserName userName) throws RemoteException {
+        return serverStub.cancelRegistration(activity,userName);
+    }
+
+
+    @Override
     public String registeredActivity(Activity activity, UserName userName) throws RemoteException {
         return serverStub.registeredActivity(activity, userName);
     }
