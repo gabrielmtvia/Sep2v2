@@ -4,6 +4,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import main.client.model.activities.ActivitiesModel;
 import main.client.model.login.LoginModel;
+import main.client.view.client.viewregisteredlist.RegisteredListViewModel;
 import main.shared.Activity;
 import main.shared.UserName;
 
@@ -18,6 +19,7 @@ public class ActivitiesViewModel {
     private LoginModel loginManager;
     private UserName userName;
     private ObservableList<Activity> items;
+    private RegisteredListViewModel registeredListViewModel;
 
     public ActivitiesViewModel(ActivitiesModel activitiesManager, LoginModel loginManager){
         this.activitiesManager = activitiesManager;
@@ -59,6 +61,9 @@ public class ActivitiesViewModel {
     public void loadActivities() {
         items.addAll(activitiesManager.requestActivities());
     }
+
+
+
 }
 
 

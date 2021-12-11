@@ -41,13 +41,68 @@ public class ActivitiesDAO implements ActivitiesDAOModel{
 
     @Override
     public String deleteActivity(Activity activity) {
+        /*
         PreparedStatement statement;
         try
         {
+           // String query0 = "DELETE from registrations where registrations.activityno = activities.activityno";
             String query = " DELETE FROM activities WHERE type = ?";
             statement =dbConnection.createPreparedStatement(query);
             statement.setString(1, activity.getActivityName());
             statement.executeQuery();
+
+            
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return e.getMessage();
+        }
+        return "Activity deleted successfully";
+
+         */
+
+
+        PreparedStatement statement;
+        PreparedStatement statement1;
+        ResultSet resultSet;
+
+        try
+        {
+            // String query0 = "DELETE from registrations where registrations.activityno = activities.activityno";
+            String query = "select activityno from activities where type like ? ";
+            statement =dbConnection.createPreparedStatement(query);
+            statement.setString(1, activity.getActivityName());
+
+            resultSet = statement.executeQuery();
+
+            int activityNumber = 0;
+
+            while (resultSet.next()){
+                activityNumber = resultSet.getInt("activityno");
+
+            }
+
+            String query1 = "DELETE FROM registrations WHERE activityno = ?";
+            statement = dbConnection.createPreparedStatement(query1);
+
+            statement.setInt(1,activityNumber);
+            statement.executeQuery();
+
+
+
+
+            int activityNumber2 = 0;
+            while (resultSet.next()){
+                activityNumber2 = resultSet.getInt("activityno");
+
+            }
+            String query2 = "DELETE from activities where activityno = ? ";
+            statement1 = dbConnection.createPreparedStatement(query2);
+            statement1.setInt(1,activityNumber2);
+            statement1.executeQuery();
+
+
 
         } catch (SQLException throwables) {
             throwables.printStackTrace();
@@ -56,6 +111,18 @@ public class ActivitiesDAO implements ActivitiesDAOModel{
             return e.getMessage();
         }
         return "Activity deleted successfully";
+
+
+
+
+
+
+
+
+
+
+
+
     }
 
     @Override

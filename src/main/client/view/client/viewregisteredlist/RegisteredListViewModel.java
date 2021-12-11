@@ -13,11 +13,22 @@ public class RegisteredListViewModel {
     private ObservableList<Activity> items;
 
 
+
+
     public RegisteredListViewModel(ActivitiesModel activitiesManager){
         this.activitiesManager = activitiesManager;
 
         items = FXCollections.observableArrayList();
 
 
+        items.addAll( activitiesManager.requestRegisteredActivities());
+
+
     }
+
+    public ObservableList<Activity> getItems() {
+        return items;
+    }
+
+
 }

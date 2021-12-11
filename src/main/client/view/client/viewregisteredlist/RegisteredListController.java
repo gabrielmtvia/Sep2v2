@@ -23,17 +23,22 @@ public class RegisteredListController {
         this.registeredListViewModel = registeredListViewModel;
         this.viewHandler = viewHandler;
 
-
+        activityName.setCellValueFactory(new PropertyValueFactory<>("activityName"));
+        price.setCellValueFactory(new PropertyValueFactory<>("price") );
         date.setCellValueFactory(new PropertyValueFactory<>("date"));
         startTime.setCellValueFactory(new PropertyValueFactory<>("startTime"));
         endTime.setCellValueFactory(new PropertyValueFactory<>("endTime"));
-        activityName.setCellValueFactory(new PropertyValueFactory<>("activityName"));
-        price.setCellValueFactory(new PropertyValueFactory<>("price") );
 
-       // tableView.setItems(activitiesViewModel.getItemsList());
+
+
+       tableView.setItems(registeredListViewModel.getItems());
+
+
     }
 
     public void backButton() {
         viewHandler.openClientActivities();
     }
+
+
 }

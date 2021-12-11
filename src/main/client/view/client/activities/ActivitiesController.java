@@ -24,8 +24,10 @@ public class ActivitiesController {
     private UserName userName;
 
 
+
     private ViewHandler viewHandler;
     private ActivitiesViewModel activitiesViewModel;
+
 
 
     public void init(ActivitiesViewModel activitiesViewModel, ViewHandler viewHandler)
@@ -77,5 +79,6 @@ public class ActivitiesController {
 
     public void registeredList(ActionEvent actionEvent) {
         viewHandler.openRegisteredList();
+
     }
 }
