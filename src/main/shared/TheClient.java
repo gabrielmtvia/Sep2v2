@@ -59,6 +59,6 @@ public class TheClient implements Serializable
 
   public String toString()
   {
-    return "Full Name: " + this.fullName + ", SSN: " + this.ssn + ", Username: " + this.username + ", Password: " + this.password;
+    return "SSN: " + this.ssn + ", Name: " + this.fullName + ", Username: " + this.username + ", Password: " + this.password;
   }
 }

@@ -22,6 +22,12 @@ public class PersonalTrainerManager implements PersonalTrainerModel{
         personalTrainerClient.addListener("Personal Trainer Booked", evt -> personalTrainerBooked(evt));
         personalTrainerClient.addListener("Personal Trainer Cancelled", evt -> personalTrainerCancelled(evt));
         personalTrainerClient.addListener("Personal Trainer Already Booked", evt -> personalTrainerAlreadyBooked(evt));
+        personalTrainerClient.addListener("Personal Trainer Already Cancelled", evt -> personalTrainerAlreadyCancelled(evt));
+    }
+
+    private void personalTrainerAlreadyCancelled(PropertyChangeEvent evt) {
+        PersonalTrainer personalTrainer = (PersonalTrainer) evt.getNewValue();
+        support.firePropertyChange("Personal Trainer Already Cancelled", null, personalTrainer);
     }
 
     private void personalTrainerAlreadyBooked(PropertyChangeEvent evt) {

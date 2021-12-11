@@ -326,6 +326,22 @@ public class ViewHandler {
         mainStage.setScene(addClient);
     }
 
+    public void openClientsList()
+    {
+        FXMLLoader loader = new FXMLLoader();
+
+        if (clientsList == null)
+        {
+            Parent root = getRootByPath("../view/staff/clients/list/clientsList.fxml", loader);
+            ClientsListController controller = loader.getController();
+            controller.init(viewModelFactory.getClientsListViewModel(), this);
+            clientsList = new Scene(root);
+        }
+
+        mainStage.setTitle("Clients List");
+        mainStage.setScene(clientsList);
+    }
+
     public void openClientsMain()
     {
         FXMLLoader loader = new FXMLLoader();
@@ -340,23 +356,6 @@ public class ViewHandler {
 
         mainStage.setTitle("Client Main");
         mainStage.setScene(clientMain);
-    }
-
-    public void openClientsList()
-    {
-        FXMLLoader loader = new FXMLLoader();
-
-        if (clientsList == null)
-        {
-            Parent root = getRootByPath("../view/staff/clients/list/clientsList.fxml", loader);
-            ClientsListController controller = loader.getController();
-            controller.init(viewModelFactory.getClientsListViewModel(), this);
-            clientsList = new Scene(root);
-        }
-
-        mainStage.setTitle("Clients List");
-        mainStage.setScene((clientsList));
-
     }
 
     public void openClientPersonalTrainer() {

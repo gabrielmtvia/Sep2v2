@@ -120,7 +120,7 @@ public class ViewModelFactory {
     public ClientsListViewModel getClientsListViewModel()
     {
         if (clientsListViewModel == null)
-            clientsListViewModel = new ClientsListViewModel((modelFactory.getClientManager()));
+            clientsListViewModel = new ClientsListViewModel(modelFactory.getClientManager());
         return clientsListViewModel;
     }
 

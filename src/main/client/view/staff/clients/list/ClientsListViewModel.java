@@ -29,14 +29,12 @@ public class ClientsListViewModel
   {
     TheClient clientAdded = (TheClient) evt.getNewValue();
     list.add(clientAdded);
-    System.out.println(clientAdded);
   }
 
   private void clientRemoved(PropertyChangeEvent evt)
   {
     TheClient clientRemoved = (TheClient) evt.getNewValue();
-    list.add(clientRemoved);
-    System.out.println(clientRemoved);
+    list.remove(clientRemoved);
   }
 
   public void populateList()
@@ -55,8 +53,9 @@ public class ClientsListViewModel
       alert.setContentText("Connection Error. Please restart the program");
       alert.showAndWait();
       return test;
+    } else {
+      return test;
     }
-    return test;
   }
 
   public void removeClient(TheClient theClient)

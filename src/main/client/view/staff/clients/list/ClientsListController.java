@@ -10,16 +10,14 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import main.client.core.ViewHandler;
 import main.shared.TheClient;
 
-import java.util.ArrayList;
-
 public class ClientsListController
 {
-  @FXML private TableView<TheClient> tableView;
+  @FXML private TableView<TheClient> clientsTableView;
 
-  @FXML private TableColumn<TheClient, String> ssn;
-  @FXML private TableColumn<TheClient, String> name;
-  @FXML private TableColumn<TheClient, String> username;
-  @FXML private TableColumn<TheClient, String> password;
+  @FXML private TableColumn ssn;
+  @FXML private TableColumn fullName;
+  @FXML private TableColumn username;
+  @FXML private TableColumn password;
 
   @FXML Button back;
   @FXML Button save;
@@ -33,20 +31,20 @@ public class ClientsListController
     this.viewHandler = viewHandler;
 
     ssn.setCellValueFactory(new PropertyValueFactory<>("ssn"));
-    name.setCellValueFactory(new PropertyValueFactory<>("fullName"));
+    fullName.setCellValueFactory(new PropertyValueFactory<>("fullName"));
     username.setCellValueFactory(new PropertyValueFactory<>("username"));
     password.setCellValueFactory(new PropertyValueFactory<>("password"));
 
-    tableView.setItems(clientsListViewModel.getList());
+    clientsTableView.setItems(clientsListViewModel.getList());
   }
 
   public void onDeleteButton(ActionEvent actionEvent)
   {
-    ObservableList<Integer> observableList = tableView.getSelectionModel().getSelectedIndices();
+    ObservableList<Integer> observableList = clientsTableView.getSelectionModel().getSelectedIndices();
     Object[] array = observableList.toArray();
     int position = (int) array[0];
 
-    ArrayList<TheClient> clients = clientsListViewModel.getClients();
+    ObservableList<TheClient> clients = clientsListViewModel.getList();
     TheClient theClient = clients.get(position);
 
     clientsListViewModel.removeClient(theClient);
