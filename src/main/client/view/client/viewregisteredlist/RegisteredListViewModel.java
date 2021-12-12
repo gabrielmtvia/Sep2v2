@@ -40,6 +40,9 @@ public class RegisteredListViewModel {
         if(response.contains("resultado")){
             response = "Registration cancelled successfully";
         }
+        else {
+
+        }
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Cancel operation");
         alert.setContentText(response);

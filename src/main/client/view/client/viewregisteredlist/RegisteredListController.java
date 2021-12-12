@@ -1,14 +1,13 @@
 package main.client.view.client.viewregisteredlist;
 
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import main.client.core.ViewHandler;
 import main.shared.Activity;
-import main.shared.PersonalTrainer;
 
 public class RegisteredListController {
 
@@ -44,15 +43,28 @@ public class RegisteredListController {
     }
 
 
-    public void cancelButton(ActionEvent actionEvent) {
+    public void cancelButton() {
 
-        ObservableList<Integer> observableList = tableView.getSelectionModel().getSelectedIndices();
-        Object[] array = observableList.toArray();
-        int position = (int) array[0];
 
-        ObservableList<Activity> activities = registeredListViewModel.getItems();
-        Activity activity = activities.get(position);
 
-        registeredListViewModel.cancelRegistration(activity);
+        try {
+            ObservableList<Integer> observableList = tableView.getSelectionModel().getSelectedIndices();
+            Object[] array = observableList.toArray();
+
+            int position = (int) array[0];
+
+            ObservableList<Activity> activities = registeredListViewModel.getItems();
+            Activity activity = activities.get(position);
+
+
+            registeredListViewModel.cancelRegistration(activity);
+        }catch (Exception e){
+
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Error");
+            alert.setContentText("please select an activity to cancel");
+            alert.showAndWait();
+
+        }
     }
 }
