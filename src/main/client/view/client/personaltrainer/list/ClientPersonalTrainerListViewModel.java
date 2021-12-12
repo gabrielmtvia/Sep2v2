@@ -10,13 +10,14 @@ import main.shared.PersonalTrainer;
 import java.beans.PropertyChangeEvent;
 import java.util.ArrayList;
 
-public class ClientPersonalTrainerListViewModel {
-
+public class ClientPersonalTrainerListViewModel
+{
     private ObservableList<PersonalTrainer> items;
     private PersonalTrainerModel personalTrainerManager;
     private LoginModel loginManager;
 
-    public ClientPersonalTrainerListViewModel(PersonalTrainerModel personalTrainerManager, LoginModel loginManager){
+    public ClientPersonalTrainerListViewModel(PersonalTrainerModel personalTrainerManager, LoginModel loginManager)
+    {
         this.loginManager = loginManager;
         items = FXCollections.observableArrayList();
         this.personalTrainerManager = personalTrainerManager;
@@ -32,7 +33,8 @@ public class ClientPersonalTrainerListViewModel {
         loginManager.addListener("New Client", evt -> updateTable(evt));
     }
 
-    private void updateTable(PropertyChangeEvent evt) {
+    private void updateTable(PropertyChangeEvent evt)
+    {
         new Thread(() -> {
             try {
                 Thread.sleep(3500);
@@ -44,16 +46,18 @@ public class ClientPersonalTrainerListViewModel {
         }).start();
     }
 
-
-    public ArrayList<PersonalTrainer> getPersonalTrainers(){
+    public ArrayList<PersonalTrainer> getPersonalTrainers()
+    {
         return personalTrainerManager.getPersonalTrainers(false);
     }
 
-    public ObservableList<PersonalTrainer> getItemsList() {
+    public ObservableList<PersonalTrainer> getItemsList()
+    {
         return items;
     }
 
-    public void bookPersonalTrainer(PersonalTrainer personalTrainer) {
+    public void bookPersonalTrainer(PersonalTrainer personalTrainer)
+    {
         PersonalTrainer personalTrainerWithUsername= personalTrainer;
         personalTrainerWithUsername.setUsername(loginManager.getUserName().getUserName());
         String response = personalTrainerManager.bookPersonalTrainer(personalTrainerWithUsername, loginManager.getUserName());

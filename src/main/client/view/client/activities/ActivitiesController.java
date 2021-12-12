@@ -1,7 +1,6 @@
 package main.client.view.client.activities;
 
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TableColumn;
@@ -9,26 +8,19 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import main.client.core.ViewHandler;
 import main.shared.Activity;
-import main.shared.UserName;
-
 import java.util.ArrayList;
 
-
-public class ActivitiesController {
+public class ActivitiesController
+{
     @FXML private  TableColumn date;
     @FXML private  TableColumn startTime;
     @FXML private  TableColumn endTime;
     @FXML private  TableColumn activityName;
     @FXML private  TableColumn price;
     @FXML private TableView<Activity> tableView;
-    private UserName userName;
-
-
 
     private ViewHandler viewHandler;
     private ActivitiesViewModel activitiesViewModel;
-
-
 
     public void init(ActivitiesViewModel activitiesViewModel, ViewHandler viewHandler)
     {
@@ -44,19 +36,21 @@ public class ActivitiesController {
         tableView.setItems(activitiesViewModel.getItemsList());
     }
 
-    public void backButton(ActionEvent actionEvent) {
+    public void backButton()
+    {
         viewHandler.openClientMain();
     }
 
-    public void alert(){
+    public void alert()
+    {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Information");
         alert.setContentText("Need to implement this feature");
         alert.showAndWait();
     }
 
-    public void saveButton() {
-
+    public void saveButton()
+    {
         //converting the selected row to int (index)
 
         ObservableList<Integer> items = tableView.getSelectionModel().getSelectedIndices();
@@ -74,11 +68,10 @@ public class ActivitiesController {
         System.out.println(registerActivity.getActivityName());
 
         activitiesViewModel.registerActivity(registerActivity);
-
     }
 
-    public void registeredList(ActionEvent actionEvent) {
+    public void registeredList()
+    {
         viewHandler.openRegisteredList();
-
     }
 }

@@ -1,7 +1,6 @@
 package main.client.view.staff.clients.list;
 
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
@@ -20,7 +19,6 @@ public class ClientsListController
   @FXML private TableColumn password;
 
   @FXML Button back;
-  @FXML Button save;
 
   private ClientsListViewModel clientsListViewModel;
   private ViewHandler viewHandler;
@@ -38,7 +36,7 @@ public class ClientsListController
     clientsTableView.setItems(clientsListViewModel.getList());
   }
 
-  public void onDeleteButton(ActionEvent actionEvent)
+  public void onDeleteButton()
   {
     ObservableList<Integer> observableList = clientsTableView.getSelectionModel().getSelectedIndices();
     Object[] array = observableList.toArray();
@@ -50,9 +48,8 @@ public class ClientsListController
     clientsListViewModel.removeClient(theClient);
   }
 
-  public void onBackButton(ActionEvent actionEvent)
+  public void onBackButton()
   {
     viewHandler.openClientsMain();
   }
-
 }

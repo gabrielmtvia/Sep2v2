@@ -1,19 +1,16 @@
 package main.client.view.owner.staffmemberlist;
+
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.ListView;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import main.client.core.ViewHandler;
 import main.shared.StaffMember;
-
 import java.util.ArrayList;
 
-
-public class StaffMemberListController {
-
+public class StaffMemberListController
+{
     @FXML private TableView tableView;
     @FXML private TableColumn SSN;
     @FXML private TableColumn fullName;
@@ -23,9 +20,8 @@ public class StaffMemberListController {
     private StaffMemberListViewModel staffMemberListViewModel;
     private ViewHandler viewHandler;
 
-
-
-    public void init(StaffMemberListViewModel staffMemberListViewModel, ViewHandler viewHandler){
+    public void init(StaffMemberListViewModel staffMemberListViewModel, ViewHandler viewHandler)
+    {
         this.staffMemberListViewModel = staffMemberListViewModel;
         this.viewHandler = viewHandler;
 
@@ -35,10 +31,10 @@ public class StaffMemberListController {
         password.setCellValueFactory(new PropertyValueFactory<>("password"));
 
         tableView.setItems(staffMemberListViewModel.getList());
-
     }
 
-    public void onDeleteButton(ActionEvent actionEvent) {
+    public void onDeleteButton()
+    {
         ObservableList selectedIndices = tableView.getSelectionModel().getSelectedIndices();
         Object[] array = selectedIndices.toArray();
         int position = (int) array[0];
@@ -47,10 +43,10 @@ public class StaffMemberListController {
         StaffMember staffMember = staffMemberArrayList.get(position);
 
         staffMemberListViewModel.deleteStaffMember(staffMember);
-
     }
 
-    public void onBackButton(ActionEvent actionEvent) {
+    public void onBackButton()
+    {
         viewHandler.openOwnerMain();
     }
 }

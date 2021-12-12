@@ -10,14 +10,14 @@ import main.shared.PersonalTrainer;
 import java.beans.PropertyChangeEvent;
 import java.util.ArrayList;
 
-
-public class ClientPersonalTrainerBookingViewModel {
-
+public class ClientPersonalTrainerBookingViewModel
+{
     private ObservableList<PersonalTrainer> items;
     private PersonalTrainerModel personalTrainerManager;
     private LoginModel loginManager;
 
-    public ClientPersonalTrainerBookingViewModel(PersonalTrainerModel personalTrainerManager, LoginModel loginManager){
+    public ClientPersonalTrainerBookingViewModel(PersonalTrainerModel personalTrainerManager, LoginModel loginManager)
+    {
         this.loginManager = loginManager;
         items = FXCollections.observableArrayList();
         this.personalTrainerManager = personalTrainerManager;
@@ -28,7 +28,8 @@ public class ClientPersonalTrainerBookingViewModel {
         loginManager.addListener("New Client", evt -> updateTable(evt));
     }
 
-    private void updateTable(PropertyChangeEvent evt) {
+    private void updateTable(PropertyChangeEvent evt)
+    {
         new Thread(() -> {
             try {
                 Thread.sleep(5000);
@@ -40,20 +41,23 @@ public class ClientPersonalTrainerBookingViewModel {
         }).start();
     }
 
-
-    public void populateList(){
+    public void populateList()
+    {
         items.addAll(getMyBookings());
     }
 
-    public ArrayList<PersonalTrainer> getMyBookings(){
+    public ArrayList<PersonalTrainer> getMyBookings()
+    {
         return personalTrainerManager.viewMyBookings(loginManager.getUserName());
     }
 
-    public ObservableList<PersonalTrainer> getItemsList() {
+    public ObservableList<PersonalTrainer> getItemsList()
+    {
         return items;
     }
 
-    public void cancelBooking(PersonalTrainer personalTrainer) {
+    public void cancelBooking(PersonalTrainer personalTrainer)
+    {
         PersonalTrainer personalTrainerCancelled = personalTrainer;
         personalTrainerCancelled.setUsername(loginManager.getUserName().getUserName());
         String result = personalTrainerManager.cancelBooking(personalTrainerCancelled, loginManager.getUserName());

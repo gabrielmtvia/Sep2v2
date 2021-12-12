@@ -10,12 +10,13 @@ import java.beans.PropertyChangeSupport;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
-public class PersonalTrainerClient implements PersonalTrainerClientModel{
-
+public class PersonalTrainerClient implements PersonalTrainerClientModel
+{
     private RemoteClient rmiClient;
     private PropertyChangeSupport support = new PropertyChangeSupport(this);
     
-    public PersonalTrainerClient(RemoteClient rmiClient){
+    public PersonalTrainerClient(RemoteClient rmiClient)
+    {
         this.rmiClient = rmiClient;
 
         try {
@@ -30,71 +31,78 @@ public class PersonalTrainerClient implements PersonalTrainerClientModel{
         }
     }
 
-    private void personalTrainerAlreadyCancelled(PropertyChangeEvent evt) {
+    private void personalTrainerAlreadyCancelled(PropertyChangeEvent evt)
+    {
         PersonalTrainer personalTrainer = (PersonalTrainer) evt.getNewValue();
         support.firePropertyChange("Personal Trainer Already Cancelled", null, personalTrainer);
     }
 
-    private void personalTrainerAlreadyBooked(PropertyChangeEvent evt) {
+    private void personalTrainerAlreadyBooked(PropertyChangeEvent evt)
+    {
         PersonalTrainer personalTrainer = (PersonalTrainer) evt.getNewValue();
         support.firePropertyChange("Personal Trainer Already Booked", null, personalTrainer);
     }
 
-    private void personalTrainerCancelled(PropertyChangeEvent evt) {
+    private void personalTrainerCancelled(PropertyChangeEvent evt)
+    {
         PersonalTrainer personalTrainer = (PersonalTrainer) evt.getNewValue();
         support.firePropertyChange("Personal Trainer Cancelled", null, personalTrainer);
     }
 
-    private void personalTrainerBooked(PropertyChangeEvent evt) {
+    private void personalTrainerBooked(PropertyChangeEvent evt)
+    {
         PersonalTrainer personalTrainer = (PersonalTrainer) evt.getNewValue();
         support.firePropertyChange("Personal Trainer Booked", null, personalTrainer);
     }
 
-    private void personalTrainerRemoved(PropertyChangeEvent evt) {
+    private void personalTrainerRemoved(PropertyChangeEvent evt)
+    {
         PersonalTrainer personalTrainer = (PersonalTrainer) evt.getNewValue();
         support.firePropertyChange("Personal Trainer Removed", null, personalTrainer);
     }
 
-    private void personalTrainerAdded(PropertyChangeEvent evt) {
+    private void personalTrainerAdded(PropertyChangeEvent evt)
+    {
         PersonalTrainer personalTrainer = (PersonalTrainer) evt.getNewValue();
         support.firePropertyChange("Personal Trainer Added", null, personalTrainer);
     }
 
     @Override
-    public String savePersonalTrainer(PersonalTrainer personalTrainer) {
+    public String savePersonalTrainer(PersonalTrainer personalTrainer)
+    {
         try {
             return rmiClient.savePersonalTrainer(personalTrainer);
         } catch (RemoteException e) {
             e.printStackTrace();
         }
-
         return "Connection error";
     }
 
     @Override
-    public ArrayList<PersonalTrainer> getPersonalTrainers(boolean staff) {
+    public ArrayList<PersonalTrainer> getPersonalTrainers(boolean staff)
+    {
         try {
             return rmiClient.getPersonalTrainers(staff);
         } catch (RemoteException e) {
             e.printStackTrace();
         }
-
         return null;
     }
 
     @Override
-    public String removePersonalTrainer(PersonalTrainer personalTrainer) {
+    public String removePersonalTrainer(PersonalTrainer personalTrainer)
+    {
         try {
             return rmiClient.removePersonalTrainer(personalTrainer);
         } catch (RemoteException e) {
             e.printStackTrace();
         }
-
         return "Connection error";
     }
 
     @Override
-    public void addListener(String eventName, PropertyChangeListener listener) {
+    public void addListener(String eventName, PropertyChangeListener listener)
+    {
         if(eventName == null || "".equals(eventName)) {
             support.addPropertyChangeListener(listener);
         } else {
@@ -103,7 +111,8 @@ public class PersonalTrainerClient implements PersonalTrainerClientModel{
     }
 
     @Override
-    public String bookPersonalTrainer(PersonalTrainer personalTrainer, UserName userName) {
+    public String bookPersonalTrainer(PersonalTrainer personalTrainer, UserName userName)
+    {
         try {
             return rmiClient.bookPersonalTrainer(personalTrainer, userName);
         } catch (RemoteException e) {
@@ -113,7 +122,8 @@ public class PersonalTrainerClient implements PersonalTrainerClientModel{
     }
 
     @Override
-    public ArrayList<PersonalTrainer> viewMyBookings(UserName userName) {
+    public ArrayList<PersonalTrainer> viewMyBookings(UserName userName)
+    {
         try {
             return rmiClient.viewMyBookings(userName);
         } catch (RemoteException e) {
@@ -123,7 +133,8 @@ public class PersonalTrainerClient implements PersonalTrainerClientModel{
     }
 
     @Override
-    public String cancelBooking(PersonalTrainer personalTrainer, UserName userName) {
+    public String cancelBooking(PersonalTrainer personalTrainer, UserName userName)
+    {
         try {
             return rmiClient.cancelBooking(personalTrainer, userName);
         } catch (RemoteException e) {

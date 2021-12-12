@@ -1,8 +1,6 @@
 package main.client.view.staff.personaltrainers.add;
-import javafx.event.ActionEvent;
+
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import main.client.core.ViewHandler;
@@ -14,9 +12,6 @@ public class AddPersonalTrainerController
   @FXML private TextField nameField;
   @FXML private TextField phoneNumberField;
   @FXML private TextField ssnField;
-
-  @FXML private Button save;
-  @FXML private Button back;
 
   private ViewHandler viewHandler;
   AddPersonalTrainerViewModel addPersonalTrainerViewModel;
@@ -33,16 +28,13 @@ public class AddPersonalTrainerController
     addPersonalTrainerViewModel.dateProperty().bind(datePicker.getEditor().textProperty());
   }
 
-
-  public void onSaveButtonClick(ActionEvent actionEvent)
+  public void onSaveButtonClick()
   {
-      addPersonalTrainerViewModel.savePersonalTrainer();
-
+    addPersonalTrainerViewModel.savePersonalTrainer();
   }
 
-  public void onBackButtonClick(ActionEvent actionEvent)
+  public void onBackButtonClick()
   {
     viewHandler.openPersonalTrainers();
   }
-
 }

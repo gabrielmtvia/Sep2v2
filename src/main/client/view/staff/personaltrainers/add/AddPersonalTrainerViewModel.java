@@ -1,11 +1,10 @@
 package main.client.view.staff.personaltrainers.add;
+
 import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
 import javafx.scene.control.Alert;
 import main.client.model.personaltrainer.PersonalTrainerModel;
 import main.shared.PersonalTrainer;
 
-import java.beans.PropertyChangeEvent;
 import java.util.regex.PatternSyntaxException;
 
 public class AddPersonalTrainerViewModel
@@ -27,9 +26,7 @@ public class AddPersonalTrainerViewModel
     ssnField = new SimpleStringProperty();
     date = new SimpleStringProperty();
     time = new SimpleStringProperty();
-
   }
-
 
   public void savePersonalTrainer()
   {
@@ -115,43 +112,53 @@ public class AddPersonalTrainerViewModel
     alert.showAndWait();
   }
 
-  public String getNameField() {
+  public String getNameField()
+  {
     return nameField.get();
   }
 
-  public SimpleStringProperty nameFieldProperty() {
+  public SimpleStringProperty nameFieldProperty()
+  {
     return nameField;
   }
 
-  public String getPhoneNumberField() {
+  public String getPhoneNumberField()
+  {
     return phoneNumberField.get();
   }
 
-  public SimpleStringProperty phoneNumberFieldProperty() {
+  public SimpleStringProperty phoneNumberFieldProperty()
+  {
     return phoneNumberField;
   }
 
-  public String getSsnField() {
+  public String getSsnField()
+  {
     return ssnField.get();
   }
 
-  public SimpleStringProperty ssnFieldProperty() {
+  public SimpleStringProperty ssnFieldProperty()
+  {
     return ssnField;
   }
 
-  public String getDate() {
+  public String getDate()
+  {
     return date.get();
   }
 
-  public SimpleStringProperty dateProperty() {
+  public SimpleStringProperty dateProperty()
+  {
     return date;
   }
 
-  public String getTime() {
+  public String getTime()
+  {
     return time.get();
   }
 
-  public SimpleStringProperty timeProperty() {
+  public SimpleStringProperty timeProperty()
+  {
     return time;
   }
 }

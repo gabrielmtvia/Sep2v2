@@ -7,9 +7,11 @@ import main.client.core.ModelFactory;
 import main.client.core.ViewHandler;
 import main.client.core.ViewModelFactory;
 
-public class App extends Application {
+public class App extends Application
+{
     @Override
-    public void start(Stage stage) throws Exception {
+    public void start(Stage stage) throws Exception
+    {
         ClientFactory clientFactory = new ClientFactory();
         ModelFactory mf = new ModelFactory(clientFactory);
         ViewModelFactory vmf = new ViewModelFactory(mf);

@@ -1,40 +1,31 @@
 package main.client.view.main;
 
-
-import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import main.client.core.ViewHandler;
 
-public class MainController {
-
-    @FXML
-    private Button client;
-    @FXML
-    private Button staff;
-    @FXML
-    private Button owner;
-
+public class MainController
+{
     private ViewHandler viewHandler;
     private MainViewModel mainViewModel;
 
-    public void init(MainViewModel mainViewModel, ViewHandler viewHandler){
+    public void init(MainViewModel mainViewModel, ViewHandler viewHandler)
+    {
         this.mainViewModel = mainViewModel;
         this.viewHandler = viewHandler;
         mainViewModel.authenticate();
-
     }
 
-
-    public void onClientButton(ActionEvent actionEvent) {
+    public void onClientButton()
+    {
         viewHandler.openClientLogin();
     }
 
-    public void onStaffButton(ActionEvent actionEvent) {
+    public void onStaffButton()
+    {
         viewHandler.openStaffLogin();
     }
 
-    public void onOwnerButton(ActionEvent actionEvent) {
+    public void onOwnerButton()
+    {
         viewHandler.openOwnerLogin();
     }
 }

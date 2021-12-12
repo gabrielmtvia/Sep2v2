@@ -1,18 +1,20 @@
 package main.client.view.owner.managestaff;
+
 import javafx.beans.property.SimpleStringProperty;
 import javafx.scene.control.Alert;
 import main.client.model.managestaff.ManageStaffModel;
 import main.shared.StaffMember;
 
-public class AddStaffMemberViewModel {
-
+public class AddStaffMemberViewModel
+{
     private ManageStaffModel manageStaffManager;
     private SimpleStringProperty ssn;
     private SimpleStringProperty fullname;
     private SimpleStringProperty username;
     private SimpleStringProperty password;
 
-    public AddStaffMemberViewModel(ManageStaffModel manageStaffManager) {
+    public AddStaffMemberViewModel(ManageStaffModel manageStaffManager)
+    {
         this.manageStaffManager = manageStaffManager;
 
         ssn = new SimpleStringProperty();
@@ -32,46 +34,54 @@ public class AddStaffMemberViewModel {
             alert(response);
             return false;
         }
-
         return true;
     }
 
-    public void alert(String response){
+    public void alert(String response)
+    {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Adding a Staff Member");
         alert.setContentText(response);
         alert.showAndWait();
     }
 
-    public String getSsn() {
+    public String getSsn()
+    {
         return ssn.get();
     }
 
-    public SimpleStringProperty ssnProperty() {
+    public SimpleStringProperty ssnProperty()
+    {
         return ssn;
     }
 
-    public String getFullname() {
+    public String getFullname()
+    {
         return fullname.get();
     }
 
-    public SimpleStringProperty fullnameProperty() {
+    public SimpleStringProperty fullnameProperty()
+    {
         return fullname;
     }
 
-    public String getUsername() {
+    public String getUsername()
+    {
         return username.get();
     }
 
-    public SimpleStringProperty usernameProperty() {
+    public SimpleStringProperty usernameProperty()
+    {
         return username;
     }
 
-    public String getPassword() {
+    public String getPassword()
+    {
         return password.get();
     }
 
-    public SimpleStringProperty passwordProperty() {
+    public SimpleStringProperty passwordProperty()
+    {
         return password;
     }
 }

@@ -3,7 +3,6 @@ package main.client.view.staff.clients.add;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.scene.control.Alert;
 import main.client.model.clients.ClientModel;
-import main.shared.PersonalTrainer;
 import main.shared.TheClient;
 
 public class AddClientViewModel

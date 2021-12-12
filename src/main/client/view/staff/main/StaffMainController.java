@@ -1,16 +1,9 @@
 package main.client.view.staff.main;
-import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
-import javafx.scene.control.Button;
+
 import main.client.core.ViewHandler;
 
 public class StaffMainController
 {
-  @FXML private Button activities;
-  @FXML private Button clients;
-  @FXML private Button personalTrainers;
-  @FXML private Button back;
-
   private ViewHandler viewHandler;
 
   public void init(ViewHandler viewHandler)
@@ -18,23 +11,22 @@ public class StaffMainController
     this.viewHandler = viewHandler;
   }
 
-
-  public void onActivitiesButtonClick(ActionEvent actionEvent)
+  public void onActivitiesButtonClick()
   {
      viewHandler.openManageActivities();
   }
 
-  public void onClientsButtonClick(ActionEvent actionEvent)
+  public void onClientsButtonClick()
   {
     viewHandler.openClientsMain();
   }
 
-  public void onPersonalTrainersButtonClick(ActionEvent actionEvent)
+  public void onPersonalTrainersButtonClick()
   {
     viewHandler.openPersonalTrainers();
   }
 
-  public void onBackButtonClick(ActionEvent actionEvent)
+  public void onBackButtonClick()
   {
     viewHandler.openStaffLogin();
   }

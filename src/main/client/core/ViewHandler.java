@@ -28,8 +28,8 @@ import main.client.view.staff.personaltrainers.main.PersonalTrainersMainControll
 
 import java.io.IOException;
 
-public class ViewHandler {
-
+public class ViewHandler
+{
     private ViewModelFactory viewModelFactory;
     private Stage mainStage;
     private Scene clientLoginScene;
@@ -80,7 +80,8 @@ public class ViewHandler {
     }
 
 
-    public void start(){
+    public void start()
+    {
         try {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(getClass().getResource("../view/main/main.fxml"));
@@ -129,8 +130,8 @@ public class ViewHandler {
         mainStage.setScene(ownerLoginScene);
     }
 
-
-    public void openStaffLogin() {
+    public void openStaffLogin()
+    {
         FXMLLoader loader = new FXMLLoader();
 
         if(staffLoginScene == null)
@@ -145,7 +146,8 @@ public class ViewHandler {
         mainStage.setScene(staffLoginScene);
     }
 
-    public void openClientMain() {
+    public void openClientMain()
+    {
         FXMLLoader loader = new FXMLLoader();
 
         if(clientMainScene == null)
@@ -160,7 +162,8 @@ public class ViewHandler {
         mainStage.setScene(clientMainScene);
     }
 
-    public void openOwnerMain() {
+    public void openOwnerMain()
+    {
         FXMLLoader loader = new FXMLLoader();
 
         if(ownerMainScene == null)
@@ -175,7 +178,8 @@ public class ViewHandler {
         mainStage.setScene(ownerMainScene);
     }
 
-    public void openStaffMain() {
+    public void openStaffMain()
+    {
         FXMLLoader loader = new FXMLLoader();
 
         if(staffMainScene == null)
@@ -190,7 +194,8 @@ public class ViewHandler {
         mainStage.setScene(staffMainScene);
     }
 
-    public void openClientActivities() {
+    public void openClientActivities()
+    {
         FXMLLoader loader = new FXMLLoader();
 
         if(clientActivities == null)
@@ -205,7 +210,8 @@ public class ViewHandler {
         mainStage.setScene(clientActivities);
     }
 
-    public void openManageActivities() {
+    public void openManageActivities()
+    {
         FXMLLoader loader = new FXMLLoader();
 
         if(manageActivities == null)
@@ -220,7 +226,8 @@ public class ViewHandler {
         mainStage.setScene(manageActivities);
     }
 
-    public void openCalculateBmi() {
+    public void openCalculateBmi()
+    {
         FXMLLoader loader = new FXMLLoader();
 
         if(calculateBmi == null)
@@ -235,7 +242,8 @@ public class ViewHandler {
         mainStage.setScene(calculateBmi);
     }
 
-    public void openOwnerAddAStaffMember() {
+    public void openOwnerAddAStaffMember()
+    {
         FXMLLoader loader = new FXMLLoader();
 
         if(addStaffMember == null)
@@ -250,7 +258,8 @@ public class ViewHandler {
         mainStage.setScene(addStaffMember);
     }
 
-    public void openOwnerStaffMembersList() {
+    public void openOwnerStaffMembersList()
+    {
         FXMLLoader loader = new FXMLLoader();
 
         if(ownerStaffMembersList == null)
@@ -265,7 +274,8 @@ public class ViewHandler {
         mainStage.setScene(ownerStaffMembersList);
     }
 
-    public void openPersonalTrainers() {
+    public void openPersonalTrainers()
+    {
         FXMLLoader loader = new FXMLLoader();
 
         if(personalTrainersMain == null)
@@ -280,7 +290,8 @@ public class ViewHandler {
         mainStage.setScene(personalTrainersMain);
     }
 
-    public void openAddPersonalTrainer() {
+    public void openAddPersonalTrainer()
+    {
         FXMLLoader loader = new FXMLLoader();
 
         if(addPersonalTrainer == null)
@@ -295,7 +306,8 @@ public class ViewHandler {
         mainStage.setScene(addPersonalTrainer);
     }
 
-    public void openPersonalTrainersList() {
+    public void openPersonalTrainersList()
+    {
         FXMLLoader loader = new FXMLLoader();
 
         if(personalTrainersList == null)
@@ -325,7 +337,6 @@ public class ViewHandler {
         mainStage.setTitle("Add a client");
         mainStage.setScene(addClient);
     }
-
 
     public void openClientsMain()
     {
@@ -357,10 +368,10 @@ public class ViewHandler {
 
         mainStage.setTitle("Clients List");
         mainStage.setScene((clientsList));
-
     }
 
-    public void openClientPersonalTrainer() {
+    public void openClientPersonalTrainer()
+    {
         FXMLLoader loader = new FXMLLoader();
 
         if (clientPersonalTrainer == null)
@@ -375,7 +386,8 @@ public class ViewHandler {
         mainStage.setScene(clientPersonalTrainer);
     }
 
-    public void openClientPersonalTrainerBooking() {
+    public void openClientPersonalTrainerBooking()
+    {
         FXMLLoader loader = new FXMLLoader();
 
         if (clientPersonalTrainerBooking == null)
@@ -390,8 +402,8 @@ public class ViewHandler {
         mainStage.setScene(clientPersonalTrainerBooking);
     }
 
-
-    public void openRegisteredList(){
+    public void openRegisteredList()
+    {
         FXMLLoader loader = new FXMLLoader();
 
         if (registeredList == null){

@@ -4,26 +4,30 @@ import main.client.networking.bmi.BmiClientModel;
 import main.shared.BMIData;
 import main.shared.UserName;
 
-public class BmiManager implements BmiModel {
+public class BmiManager implements BmiModel
+{
+    private BmiClientModel bmiClient;
 
-    BmiClientModel bmiClient;
-
-    public BmiManager(BmiClientModel bmiClient){
+    public BmiManager(BmiClientModel bmiClient)
+    {
         this.bmiClient = bmiClient;
     }
 
     @Override
-    public String saveBmiData(BMIData bmiData) {
+    public String saveBmiData(BMIData bmiData)
+    {
         return bmiClient.saveBmiData(bmiData);
     }
 
     @Override
-    public BMIData loadBmiData(UserName userName) {
+    public BMIData loadBmiData(UserName userName)
+    {
         return bmiClient.loadBmiData(userName);
     }
 
     @Override
-    public String deleteBmiData(UserName userName) {
+    public String deleteBmiData(UserName userName)
+    {
         return bmiClient.deleteBmiData(userName);
     }
 }

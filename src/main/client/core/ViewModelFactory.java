@@ -17,8 +17,8 @@ import main.client.view.staff.login.StaffLoginViewModel;
 import main.client.view.staff.personaltrainers.add.AddPersonalTrainerViewModel;
 import main.client.view.staff.personaltrainers.list.PersonalTrainersListViewModel;
 
-public class ViewModelFactory {
-
+public class ViewModelFactory
+{
     private ModelFactory modelFactory;
     private MainViewModel mainViewModel;
     private ClientLoginViewModel clientLoginViewModel;
@@ -39,72 +39,83 @@ public class ViewModelFactory {
 
     private RegisteredListViewModel registeredListViewModel;
 
-    public ViewModelFactory(ModelFactory modelFactory){
+    public ViewModelFactory(ModelFactory modelFactory)
+    {
         this.modelFactory = modelFactory;
     }
 
-    public MainViewModel getMainViewModel(){
+    public MainViewModel getMainViewModel()
+    {
         if(mainViewModel==null)
             mainViewModel = new MainViewModel(modelFactory.getLoginManager());
         return mainViewModel;
     }
 
-    public ClientLoginViewModel getClientLoginViewModel(){
+    public ClientLoginViewModel getClientLoginViewModel()
+    {
         if(clientLoginViewModel==null)
             clientLoginViewModel = new ClientLoginViewModel(modelFactory.getLoginManager());
         return clientLoginViewModel;
     }
 
-
-    public OwnerLoginViewModel getOwnerLoginViewModel() {
+    public OwnerLoginViewModel getOwnerLoginViewModel()
+    {
         if(ownerLoginViewModel==null)
             ownerLoginViewModel = new OwnerLoginViewModel(modelFactory.getLoginManager());
         return ownerLoginViewModel;
     }
 
-    public StaffLoginViewModel getStaffLoginViewModel() {
+    public StaffLoginViewModel getStaffLoginViewModel()
+    {
         if(staffLoginViewModel== null)
             staffLoginViewModel = new StaffLoginViewModel(modelFactory.getLoginManager());
         return staffLoginViewModel;
     }
 
-    public ActivitiesViewModel getActivitiesViewModel() {
+    public ActivitiesViewModel getActivitiesViewModel()
+    {
         if(activitiesViewModel==null)
             activitiesViewModel = new ActivitiesViewModel(modelFactory.getActivitiesManager(), modelFactory.getLoginManager());
         return activitiesViewModel;
     }
 
-    public ManageActivitiesViewModel getManageActivitiesViewModel() {
+    public ManageActivitiesViewModel getManageActivitiesViewModel()
+    {
         if(manageActivitiesViewModel==null)
             manageActivitiesViewModel = new ManageActivitiesViewModel(modelFactory.getActivitiesManager());
         return manageActivitiesViewModel;
     }
 
-    public CalculateBmiViewModel getCalculateBmiViewModel(){
+    public CalculateBmiViewModel getCalculateBmiViewModel()
+    {
         if(calculateBmiViewModel==null)
             calculateBmiViewModel = new CalculateBmiViewModel(modelFactory.getBmiManager(), modelFactory.getLoginManager());
         return calculateBmiViewModel;
     }
 
-    public AddStaffMemberViewModel getAddStaffMemberViewModel() {
+    public AddStaffMemberViewModel getAddStaffMemberViewModel()
+    {
         if(addStaffMemberViewModel==null)
             addStaffMemberViewModel = new AddStaffMemberViewModel(modelFactory.getManageStaffManager());
         return addStaffMemberViewModel;
     }
 
-    public StaffMemberListViewModel getStaffMembersListViewModel() {
+    public StaffMemberListViewModel getStaffMembersListViewModel()
+    {
         if(staffMemberListViewModel==null)
             staffMemberListViewModel = new StaffMemberListViewModel(modelFactory.getManageStaffManager()) ;
         return staffMemberListViewModel;
     }
 
-    public AddPersonalTrainerViewModel getAddPersonalTrainerViewModel() {
+    public AddPersonalTrainerViewModel getAddPersonalTrainerViewModel()
+    {
         if(addPersonalTrainerViewModel==null)
             addPersonalTrainerViewModel = new AddPersonalTrainerViewModel(modelFactory.getPersonalTrainerManager());
         return addPersonalTrainerViewModel;
     }
 
-    public PersonalTrainersListViewModel getPersonalTrainersListViewModel() {
+    public PersonalTrainersListViewModel getPersonalTrainersListViewModel()
+    {
         if(personalTrainersListViewModel==null)
             personalTrainersListViewModel = new PersonalTrainersListViewModel(modelFactory.getPersonalTrainerManager());
         return personalTrainersListViewModel;
@@ -124,19 +135,22 @@ public class ViewModelFactory {
         return clientsListViewModel;
     }
 
-    public ClientPersonalTrainerListViewModel getClientPersonalTrainerListViewModel() {
+    public ClientPersonalTrainerListViewModel getClientPersonalTrainerListViewModel()
+    {
         if(clientPersonalTrainerListViewModel == null)
             clientPersonalTrainerListViewModel = new ClientPersonalTrainerListViewModel(modelFactory.getPersonalTrainerManager(), modelFactory.getLoginManager());
         return clientPersonalTrainerListViewModel;
     }
 
-    public ClientPersonalTrainerBookingViewModel getClientPersonalTrainerBookingViewModel() {
+    public ClientPersonalTrainerBookingViewModel getClientPersonalTrainerBookingViewModel()
+    {
         if(clientPersonalTrainerBookingViewModel == null)
             clientPersonalTrainerBookingViewModel = new ClientPersonalTrainerBookingViewModel(modelFactory.getPersonalTrainerManager(), modelFactory.getLoginManager());
         return clientPersonalTrainerBookingViewModel;
     }
 
-    public RegisteredListViewModel getRegisteredListViewModel(){
+    public RegisteredListViewModel getRegisteredListViewModel()
+    {
         if (registeredListViewModel == null)
             registeredListViewModel = new RegisteredListViewModel(modelFactory.getActivitiesManager(), modelFactory.getLoginManager());
         return registeredListViewModel;
