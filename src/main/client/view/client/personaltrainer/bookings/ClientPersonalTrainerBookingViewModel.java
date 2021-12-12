@@ -23,24 +23,23 @@ public class ClientPersonalTrainerBookingViewModel {
         this.personalTrainerManager = personalTrainerManager;
         populateList();
 
-        personalTrainerManager.addListener("Personal Trainer Booked", evt -> personalTrainerBooked(evt));
-        personalTrainerManager.addListener("Personal Trainer Cancelled", evt -> personalTrainerCancelled(evt));
+        personalTrainerManager.addListener("Personal Trainer Booked", evt -> updateTable(evt));
+        personalTrainerManager.addListener("Personal Trainer Cancelled", evt -> updateTable(evt));
+        loginManager.addListener("New Client", evt -> updateTable(evt));
     }
 
-    private void personalTrainerCancelled(PropertyChangeEvent evt) {
-        PersonalTrainer personalTrainerCancelled = (PersonalTrainer) evt.getNewValue();
-        System.out.println("trying to cancel appointment, items contains personal trainer?");
-        System.out.println(items.contains(personalTrainerCancelled));
-        items.remove(personalTrainerCancelled);
+    private void updateTable(PropertyChangeEvent evt) {
+        new Thread(() -> {
+            try {
+                Thread.sleep(5000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            items.clear();
+            populateList();
+        }).start();
     }
 
-    private void personalTrainerBooked(PropertyChangeEvent evt) {
-        PersonalTrainer personalTrainerBooked = (PersonalTrainer) evt.getNewValue();
-        if(personalTrainerBooked.getUsername().equals(loginManager.getUserName().getUserName()))
-        {
-            items.add(personalTrainerBooked);
-        }
-    }
 
     public void populateList(){
         items.addAll(getMyBookings());

@@ -25,7 +25,7 @@ public class RegisteredListViewModel {
         items = FXCollections.observableArrayList();
 
 
-        items.addAll( activitiesManager.requestRegisteredActivities());
+        items.addAll(activitiesManager.requestRegisteredActivities());
 
 
     }
@@ -37,6 +37,10 @@ public class RegisteredListViewModel {
 
     public void cancelRegistration(Activity activity) {
         String response = activitiesManager.cancelRegistration(activity, loginManager.getUserName());
+
+        items.clear();
+        items.addAll(activitiesManager.requestRegisteredActivities());
+
         if(response.contains("resultado")){
             response = "Registration cancelled successfully";
         }
