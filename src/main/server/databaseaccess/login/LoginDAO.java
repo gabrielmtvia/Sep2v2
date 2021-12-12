@@ -7,16 +7,18 @@ import main.shared.UserName;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
-public class LoginDAO implements LoginDAOModel{
-
+public class LoginDAO implements LoginDAOModel
+{
     private DBConnectionModel dbConnection;
 
-    public LoginDAO(DBConnectionModel dbConnection){
+    public LoginDAO(DBConnectionModel dbConnection)
+    {
         this.dbConnection = dbConnection;
     }
 
     @Override
-    public String validateLoginClient(UserName userName, Password password) {
+    public String validateLoginClient(UserName userName, Password password)
+    {
         PreparedStatement statement;
         ResultSet resultSet;
         String result = "Failed connection to the database";
@@ -47,7 +49,8 @@ public class LoginDAO implements LoginDAOModel{
     }
 
     @Override
-    public String validateLoginOwner(UserName userName, Password password) {
+    public String validateLoginOwner(UserName userName, Password password)
+    {
         PreparedStatement statement;
         ResultSet resultSet;
         String result = "Failed connection to the database";
@@ -78,7 +81,8 @@ public class LoginDAO implements LoginDAOModel{
     }
 
     @Override
-    public String validateLoginStaff(UserName userName, Password password) {
+    public String validateLoginStaff(UserName userName, Password password)
+    {
         PreparedStatement statement;
         ResultSet resultSet;
         String result = "Failed connection to the database";
@@ -104,7 +108,6 @@ public class LoginDAO implements LoginDAOModel{
         } finally {
             dbConnection.closeConnection();
         }
-
         return result;
     }
 }

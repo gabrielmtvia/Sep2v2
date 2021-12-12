@@ -14,7 +14,8 @@ import main.server.databaseaccess.managestaff.ManageStaffDAOModel;
 import main.server.databaseaccess.personaltrainer.PersonalTrainerDAO;
 import main.server.databaseaccess.personaltrainer.PersonalTrainerDAOModel;
 
-public class DAOFactory {
+public class DAOFactory
+{
     private DBConnectionModel dbConnection;
     private LoginDAOModel loginDAO;
     private ActivitiesDAOModel activitiesDAO;
@@ -23,35 +24,41 @@ public class DAOFactory {
     private PersonalTrainerDAOModel personalTrainerDAO;
     private ClientDAOModel clientDAO;
 
-    public DAOFactory(DBConnectionModel dbConnection){
+    public DAOFactory(DBConnectionModel dbConnection)
+    {
         this.dbConnection = dbConnection;
     }
 
-    public LoginDAOModel getLoginDAO(){
+    public LoginDAOModel getLoginDAO()
+    {
         if(loginDAO == null)
             loginDAO = new LoginDAO(dbConnection);
         return loginDAO;
     }
 
-    public ActivitiesDAOModel getActivitiesDAO(){
+    public ActivitiesDAOModel getActivitiesDAO()
+    {
         if(activitiesDAO==null)
             activitiesDAO = new ActivitiesDAO(dbConnection);
         return activitiesDAO;
     }
 
-    public BmiDAOModel getBmiDAO(){
+    public BmiDAOModel getBmiDAO()
+    {
         if(bmiDAO==null)
             bmiDAO = new BmiDAO(dbConnection);
         return bmiDAO;
     }
 
-    public ManageStaffDAOModel getManageStaffDAO(){
+    public ManageStaffDAOModel getManageStaffDAO()
+    {
         if(manageStaffDAO==null)
             manageStaffDAO = new ManageStaffDAO(dbConnection);
         return manageStaffDAO;
     }
 
-    public PersonalTrainerDAOModel getPersonalTrainerDAO() {
+    public PersonalTrainerDAOModel getPersonalTrainerDAO()
+    {
         if(personalTrainerDAO==null)
             personalTrainerDAO = new PersonalTrainerDAO(dbConnection);
         return personalTrainerDAO;

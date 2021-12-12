@@ -11,8 +11,10 @@ import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.rmi.server.ExportException;
 
-public class RunServer {
-    public static void main(String[] args) throws RemoteException{
+public class RunServer
+{
+    public static void main(String[] args) throws RemoteException
+    {
 
         startRegistry();
         DBConnectionModel dbConnection = new DBConnection();
@@ -24,7 +26,8 @@ public class RunServer {
 
     }
 
-    private static void startRegistry() throws RemoteException {
+    private static void startRegistry() throws RemoteException
+    {
         try {
             Registry reg = LocateRegistry.createRegistry(1099);
             System.out.println("Registry started...");

@@ -7,16 +7,18 @@ import main.shared.UserName;
 import java.sql.*;
 import java.util.ArrayList;
 
-public class ActivitiesDAO implements ActivitiesDAOModel{
-
+public class ActivitiesDAO implements ActivitiesDAOModel
+{
     private DBConnectionModel dbConnection;
 
-    public ActivitiesDAO(DBConnectionModel dbConnection){
+    public ActivitiesDAO(DBConnectionModel dbConnection)
+    {
         this.dbConnection = dbConnection;
     }
 
     @Override
-    public ArrayList<Activity> requestActivities() {
+    public ArrayList<Activity> requestActivities()
+    {
         PreparedStatement statement;
         ResultSet resultSet;
         ArrayList<Activity> list = new ArrayList<>();
@@ -35,21 +37,18 @@ public class ActivitiesDAO implements ActivitiesDAOModel{
         } finally {
             dbConnection.closeConnection();
         }
-
         return list;
     }
 
     @Override
-    public String deleteActivity(Activity activity) {
-
+    public String deleteActivity(Activity activity)
+    {
         PreparedStatement statement;
         ResultSet resultSet;
         try
         {
            // String query0 = "DELETE from registrations where registrations.activityno = activities.activityno";
             //todo
-
-
             String query = "select activityno from activities where type like ? ";
             statement =dbConnection.createPreparedStatement(query);
             statement.setString(1, activity.getActivityName());
@@ -58,11 +57,11 @@ public class ActivitiesDAO implements ActivitiesDAOModel{
 
             int activityNumber = 0;
 
-            while (resultSet.next()){
+            while (resultSet.next())
+            {
                 activityNumber = resultSet.getInt("activityno");
 
             }
-
 
             String query1 = " DELETE FROM activities WHERE activityno = ?";
 
@@ -71,10 +70,6 @@ public class ActivitiesDAO implements ActivitiesDAOModel{
 
              statement.executeQuery();
 
-
-
-
-
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         } catch (Exception e) {
@@ -82,8 +77,6 @@ public class ActivitiesDAO implements ActivitiesDAOModel{
             return e.getMessage();
         }
         return "Activity deleted successfully";
-
-
 
 /*
         PreparedStatement statement;
@@ -138,21 +131,11 @@ public class ActivitiesDAO implements ActivitiesDAOModel{
 
         return "Activity deleted successfully";
  */
-
-
-
-
-
-
-
-
-
-
-
     }
 
     @Override
-    public String saveActivity(Activity activity) {
+    public String saveActivity(Activity activity)
+    {
         PreparedStatement statement;
 
         try {
@@ -176,12 +159,11 @@ public class ActivitiesDAO implements ActivitiesDAOModel{
         return "Activity saved successfully";
     }
 
-
     @Override
-    public String registerActivities(Activity activity, UserName userName) {
+    public String registerActivities(Activity activity, UserName userName)
+    {
         PreparedStatement statement;
         ResultSet resultSet;
-
 
         try {
             String query = "select * from activities where type like ? and price like ? and date = ?   ";
@@ -213,22 +195,12 @@ public class ActivitiesDAO implements ActivitiesDAOModel{
         } finally {
             dbConnection.closeConnection();
         }
-
-
-
-
-
-
-
         return "Activity has been registered successfully";
-
-
-
-
     }
 
     @Override
-    public ArrayList<Activity> requestRegisteredActivities() {
+    public ArrayList<Activity> requestRegisteredActivities()
+    {
         PreparedStatement statement;
         ResultSet resultSet;
 
@@ -252,9 +224,9 @@ public class ActivitiesDAO implements ActivitiesDAOModel{
         return list;
     }
 
-
     @Override
-    public String cancelRegistration(Activity activity, UserName userName) {
+    public String cancelRegistration(Activity activity, UserName userName)
+    {
 
         PreparedStatement statement;
         ResultSet resultSet;
@@ -288,8 +260,5 @@ public class ActivitiesDAO implements ActivitiesDAOModel{
             return e.getMessage();
         }
         return "Registration Cancelled Successfully";
-
     }
-
-
 }

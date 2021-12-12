@@ -5,12 +5,12 @@ import main.shared.UserName;
 
 import java.util.ArrayList;
 
-public interface ActivitiesDAOModel {
+public interface ActivitiesDAOModel
+{
     ArrayList<Activity> requestActivities();
     String deleteActivity(Activity activity);
     String saveActivity(Activity activity);
     String registerActivities(Activity activity, UserName userName);
     ArrayList<Activity> requestRegisteredActivities();
-
     String cancelRegistration(Activity activity, UserName userName);
 }

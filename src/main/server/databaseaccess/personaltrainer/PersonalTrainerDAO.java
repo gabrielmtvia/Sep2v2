@@ -9,16 +9,18 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 
-public class PersonalTrainerDAO implements PersonalTrainerDAOModel {
-
+public class PersonalTrainerDAO implements PersonalTrainerDAOModel
+{
     DBConnectionModel dbConnection;
 
-    public PersonalTrainerDAO(DBConnectionModel dbConnection){
+    public PersonalTrainerDAO(DBConnectionModel dbConnection)
+    {
         this.dbConnection = dbConnection;
     }
 
     @Override
-    public String savePersonalTrainer(PersonalTrainer personalTrainer) {
+    public String savePersonalTrainer(PersonalTrainer personalTrainer)
+    {
         PreparedStatement statement;
 
         try {
@@ -43,8 +45,8 @@ public class PersonalTrainerDAO implements PersonalTrainerDAOModel {
     }
 
     @Override
-    public ArrayList<PersonalTrainer> getPersonalTrainers(boolean staff) {
-
+    public ArrayList<PersonalTrainer> getPersonalTrainers(boolean staff)
+    {
         PreparedStatement statement;
         ResultSet resultSet;
         ArrayList<PersonalTrainer> list = new ArrayList<>();
@@ -95,7 +97,8 @@ public class PersonalTrainerDAO implements PersonalTrainerDAOModel {
     }
 
     @Override
-    public String removePersonalTrainer(PersonalTrainer personalTrainer) {
+    public String removePersonalTrainer(PersonalTrainer personalTrainer)
+    {
         PreparedStatement statement;
         try
         {
@@ -115,7 +118,8 @@ public class PersonalTrainerDAO implements PersonalTrainerDAOModel {
     }
 
     @Override
-    public String bookPersonalTrainer(PersonalTrainer personalTrainer, UserName userName) {
+    public String bookPersonalTrainer(PersonalTrainer personalTrainer, UserName userName)
+    {
         PreparedStatement statement;
 
         try {
@@ -139,7 +143,8 @@ public class PersonalTrainerDAO implements PersonalTrainerDAOModel {
     }
 
     @Override
-    public ArrayList<PersonalTrainer> viewMyBookings(UserName userName) {
+    public ArrayList<PersonalTrainer> viewMyBookings(UserName userName)
+    {
         PreparedStatement statement;
         ResultSet resultSet;
         ArrayList<PersonalTrainer> list = new ArrayList<>();
@@ -166,7 +171,8 @@ public class PersonalTrainerDAO implements PersonalTrainerDAOModel {
     }
 
     @Override
-    public String cancelBooking(PersonalTrainer personalTrainer, UserName userName) {
+    public String cancelBooking(PersonalTrainer personalTrainer, UserName userName)
+    {
         System.out.println(personalTrainer + " in the server " + userName.getUserName());
         PreparedStatement statement;
         try
@@ -186,6 +192,4 @@ public class PersonalTrainerDAO implements PersonalTrainerDAOModel {
 
         return "You have successfully cancelled the booking";
     }
-
-
 }
