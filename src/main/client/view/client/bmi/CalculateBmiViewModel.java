@@ -1,6 +1,5 @@
 package main.client.view.client.bmi;
 
-
 import javafx.beans.property.SimpleStringProperty;
 import javafx.scene.control.Alert;
 import main.client.model.bmi.BmiModel;
@@ -18,7 +17,8 @@ public class CalculateBmiViewModel
   private SimpleStringProperty weight;
   private SimpleStringProperty result;
 
-  public CalculateBmiViewModel(BmiModel bmiManager, LoginModel loginManager){
+  public CalculateBmiViewModel(BmiModel bmiManager, LoginModel loginManager)
+  {
     this.bmiManager = bmiManager;
     this.loginManager = loginManager;
 
@@ -27,7 +27,8 @@ public class CalculateBmiViewModel
     result = new SimpleStringProperty();
   }
 
-  public void calculateBMI() {
+  public void calculateBMI()
+  {
     boolean error = false;
     double inputHeight = 0;
     double inputWeight = 0;
@@ -60,17 +61,18 @@ public class CalculateBmiViewModel
     weight.set("");
     height.set("");
     result.set("");
-
   }
 
-  public void alert(String title, String text){
+  public void alert(String title, String text)
+  {
     Alert alert = new Alert(Alert.AlertType.INFORMATION);
     alert.setTitle(title);
     alert.setContentText(text);
     alert.showAndWait();
   }
 
-  public void save(){
+  public void save()
+  {
     boolean error = false;
     if(weight.getValue()!=null&&weight.getValue()!=""&&height.getValue()!=null&&height.getValue()!="")
     {
@@ -100,7 +102,8 @@ public class CalculateBmiViewModel
     }
   }
 
-  public void load() {
+  public void load()
+  {
     BMIData loadedData = bmiManager.loadBmiData(loginManager.getUserName());
     if(loadedData==null){
       alert("Connection error", "Connection error");
@@ -110,7 +113,8 @@ public class CalculateBmiViewModel
     }
   }
 
-  public void delete() {
+  public void delete()
+  {
     String response = bmiManager.deleteBmiData(loginManager.getUserName());
     alert("Delete operation", response);
     weight.set("");
@@ -118,18 +122,18 @@ public class CalculateBmiViewModel
     result.set("");
   }
 
-
-  public SimpleStringProperty heightProperty() {
+  public SimpleStringProperty heightProperty()
+  {
     return height;
   }
 
-  public SimpleStringProperty weightProperty() {
+  public SimpleStringProperty weightProperty()
+  {
     return weight;
   }
 
-  public SimpleStringProperty resultProperty() {
+  public SimpleStringProperty resultProperty()
+  {
     return result;
   }
-
-
 }

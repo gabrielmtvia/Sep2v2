@@ -5,7 +5,8 @@ import main.shared.StaffMember;
 import java.beans.PropertyChangeListener;
 import java.util.ArrayList;
 
-public interface ManageStaffClientModel {
+public interface ManageStaffClientModel
+{
     String addStaffMember(StaffMember staffMember);
     ArrayList<StaffMember> getStaffMembers();
     String deleteStaffMember(StaffMember staffMember);

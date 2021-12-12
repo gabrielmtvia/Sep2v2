@@ -6,7 +6,8 @@ import main.shared.UserName;
 import java.beans.PropertyChangeListener;
 import java.util.ArrayList;
 
-public interface ActivitiesClientModel {
+public interface ActivitiesClientModel
+{
     ArrayList<Activity> requestActivities();
     String deleteActivity(Activity activity);
     String saveActivity(Activity activity);

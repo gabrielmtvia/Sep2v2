@@ -5,24 +5,20 @@ import javafx.collections.ObservableList;
 import javafx.scene.control.Alert;
 import main.client.model.activities.ActivitiesModel;
 import main.client.model.login.LoginModel;
-import main.client.view.client.viewregisteredlist.RegisteredListViewModel;
 import main.shared.Activity;
 import main.shared.UserName;
-
 import java.beans.PropertyChangeEvent;
 import java.util.ArrayList;
 
-
-public class ActivitiesViewModel {
-
-
+public class ActivitiesViewModel
+{
     private ActivitiesModel activitiesManager;
     private LoginModel loginManager;
     private UserName userName;
     private ObservableList<Activity> items;
-    private RegisteredListViewModel registeredListViewModel;
 
-    public ActivitiesViewModel(ActivitiesModel activitiesManager, LoginModel loginManager){
+    public ActivitiesViewModel(ActivitiesModel activitiesManager, LoginModel loginManager)
+    {
         this.activitiesManager = activitiesManager;
         this.loginManager = loginManager;
         userName = loginManager.getUserName();
@@ -34,40 +30,42 @@ public class ActivitiesViewModel {
         loadActivities();
     }
 
-    private void activityAdded(PropertyChangeEvent evt) {
+    private void activityAdded(PropertyChangeEvent evt)
+    {
         Activity activityAdded = (Activity) evt.getNewValue();
         items.add(activityAdded);
     }
 
-    private void activityDeleted(PropertyChangeEvent evt) {
+    private void activityDeleted(PropertyChangeEvent evt)
+    {
         Activity activityDeleted = (Activity) evt.getNewValue();
         items.remove(activityDeleted);
     }
 
-    public ArrayList<Activity> requestActivities() {
+    public ArrayList<Activity> requestActivities()
+    {
         return  activitiesManager.requestActivities();
     }
 
 
-    public ObservableList<Activity> getItemsList() {
+    public ObservableList<Activity> getItemsList()
+    {
         return items;
     }
 
-
-    public void registerActivity(Activity activity){
-
+    public void registerActivity(Activity activity)
+    {
         String response = activitiesManager.registerActivities(activity,userName);
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Registration");
         alert.setContentText(response);
         alert.showAndWait();
     }
-    public void loadActivities() {
+
+    public void loadActivities()
+    {
         items.addAll(activitiesManager.requestActivities());
     }
-
-
-
 }
 
 

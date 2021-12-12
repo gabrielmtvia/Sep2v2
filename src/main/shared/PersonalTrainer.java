@@ -17,7 +17,6 @@ public class PersonalTrainer implements Serializable
     this.name = name;
     this.phoneNumber = phoneNumber;
     this.ssn = ssn;
-
   }
 
   public PersonalTrainer(String name, String phoneNumber, String ssn, String startTime, String date)
@@ -34,7 +33,8 @@ public class PersonalTrainer implements Serializable
     this.username = username;
   }
 
-  public String getUsername(){
+  public String getUsername()
+  {
     return username;
   }
 
@@ -43,15 +43,18 @@ public class PersonalTrainer implements Serializable
     return startTime;
   }
 
-  public void setStartTime(String startTime) {
+  public void setStartTime(String startTime)
+  {
     this.startTime = startTime;
   }
 
-  public String getDate() {
+  public String getDate()
+  {
     return date;
   }
 
-  public void setDate(String date) {
+  public void setDate(String date)
+  {
     this.date = date;
   }
 
@@ -91,11 +94,11 @@ public class PersonalTrainer implements Serializable
   }
 
   @Override
-  public boolean equals(Object o) {
+  public boolean equals(Object o)
+  {
     if (this == o) return true;
     if (o == null || getClass() != o.getClass()) return false;
     PersonalTrainer that = (PersonalTrainer) o;
     return Objects.equals(name, that.name) && Objects.equals(phoneNumber, that.phoneNumber) && Objects.equals(ssn, that.ssn) && Objects.equals(startTime, that.startTime) && Objects.equals(date, that.date);
   }
-
 }

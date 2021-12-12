@@ -1,31 +1,33 @@
 package main.client.view.client.main;
 
-import javafx.event.ActionEvent;
 import main.client.core.ViewHandler;
 
+public class ClientMainController
+{
+    private ViewHandler viewHandler;
 
-public class ClientMainController {
-
-  ViewHandler viewHandler;
-
-    public void init(ViewHandler viewHandler){
+    public void init(ViewHandler viewHandler)
+    {
         this.viewHandler = viewHandler;
     }
 
-    public void onPersonalData(ActionEvent actionEvent) {
+    public void onPersonalData()
+    {
       viewHandler.openCalculateBmi();
     }
 
-    public void onActivities(ActionEvent actionEvent) {
+    public void onActivities()
+    {
        viewHandler.openClientActivities();
     }
 
-    public void onPersonalTraining(ActionEvent actionEvent) {
+    public void onPersonalTraining()
+    {
         viewHandler.openClientPersonalTrainer();
     }
 
-    public void onButtonBack(ActionEvent actionEvent) {
+    public void onButtonBack()
+    {
         viewHandler.openClientLogin();
     }
-
 }

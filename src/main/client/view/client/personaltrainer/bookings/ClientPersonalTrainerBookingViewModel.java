@@ -10,51 +10,54 @@ import main.shared.PersonalTrainer;
 import java.beans.PropertyChangeEvent;
 import java.util.ArrayList;
 
-
-public class ClientPersonalTrainerBookingViewModel {
-
+public class ClientPersonalTrainerBookingViewModel
+{
     private ObservableList<PersonalTrainer> items;
     private PersonalTrainerModel personalTrainerManager;
     private LoginModel loginManager;
 
-    public ClientPersonalTrainerBookingViewModel(PersonalTrainerModel personalTrainerManager, LoginModel loginManager){
+    public ClientPersonalTrainerBookingViewModel(PersonalTrainerModel personalTrainerManager, LoginModel loginManager)
+    {
         this.loginManager = loginManager;
         items = FXCollections.observableArrayList();
         this.personalTrainerManager = personalTrainerManager;
         populateList();
 
-        personalTrainerManager.addListener("Personal Trainer Booked", evt -> personalTrainerBooked(evt));
-        personalTrainerManager.addListener("Personal Trainer Cancelled", evt -> personalTrainerCancelled(evt));
+        personalTrainerManager.addListener("Personal Trainer Booked", evt -> updateTable(evt));
+        personalTrainerManager.addListener("Personal Trainer Cancelled", evt -> updateTable(evt));
+        loginManager.addListener("New Client", evt -> updateTable(evt));
     }
 
-    private void personalTrainerCancelled(PropertyChangeEvent evt) {
-        PersonalTrainer personalTrainerCancelled = (PersonalTrainer) evt.getNewValue();
-        System.out.println("trying to cancel appointment, items contains personal trainer?");
-        System.out.println(items.contains(personalTrainerCancelled));
-        items.remove(personalTrainerCancelled);
+    private void updateTable(PropertyChangeEvent evt)
+    {
+        new Thread(() -> {
+            try {
+                Thread.sleep(5000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            items.clear();
+            populateList();
+        }).start();
     }
 
-    private void personalTrainerBooked(PropertyChangeEvent evt) {
-        PersonalTrainer personalTrainerBooked = (PersonalTrainer) evt.getNewValue();
-        if(personalTrainerBooked.getUsername().equals(loginManager.getUserName().getUserName()))
-        {
-            items.add(personalTrainerBooked);
-        }
-    }
-
-    public void populateList(){
+    public void populateList()
+    {
         items.addAll(getMyBookings());
     }
 
-    public ArrayList<PersonalTrainer> getMyBookings(){
+    public ArrayList<PersonalTrainer> getMyBookings()
+    {
         return personalTrainerManager.viewMyBookings(loginManager.getUserName());
     }
 
-    public ObservableList<PersonalTrainer> getItemsList() {
+    public ObservableList<PersonalTrainer> getItemsList()
+    {
         return items;
     }
 
-    public void cancelBooking(PersonalTrainer personalTrainer) {
+    public void cancelBooking(PersonalTrainer personalTrainer)
+    {
         PersonalTrainer personalTrainerCancelled = personalTrainer;
         personalTrainerCancelled.setUsername(loginManager.getUserName().getUserName());
         String result = personalTrainerManager.cancelBooking(personalTrainerCancelled, loginManager.getUserName());

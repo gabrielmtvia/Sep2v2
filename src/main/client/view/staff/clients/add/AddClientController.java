@@ -1,7 +1,6 @@
 package main.client.view.staff.clients.add;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import main.client.core.ViewHandler;
 
@@ -11,9 +10,6 @@ public class AddClientController
   @FXML private TextField ssnField;
   @FXML private TextField usernameField;
   @FXML private TextField passwordField;
-
-  @FXML private Button save;
-  @FXML private Button back;
 
   private ViewHandler viewHandler;
   private AddClientViewModel addClientViewModel;

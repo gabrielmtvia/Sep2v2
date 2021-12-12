@@ -1,21 +1,20 @@
 package main.client.view.owner.staffmemberlist;
-import javafx.application.Platform;
-import javafx.beans.property.SimpleListProperty;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.Alert;
 import main.client.model.managestaff.ManageStaffModel;
 import main.shared.StaffMember;
-
 import java.beans.PropertyChangeEvent;
 import java.util.ArrayList;
 
-
-public class StaffMemberListViewModel {
+public class StaffMemberListViewModel
+{
     private ManageStaffModel manageStaffManager;
     private ObservableList<StaffMember> list;
 
-    public StaffMemberListViewModel(ManageStaffModel manageStaffManager) {
+    public StaffMemberListViewModel(ManageStaffModel manageStaffManager)
+    {
         this.manageStaffManager = manageStaffManager;
 
         list = FXCollections.observableArrayList();
@@ -26,18 +25,20 @@ public class StaffMemberListViewModel {
         populateList();
     }
 
-    private void staffMemberAdded(PropertyChangeEvent evt) {
+    private void staffMemberAdded(PropertyChangeEvent evt)
+    {
         StaffMember staffMemberAdded = (StaffMember) evt.getNewValue();
         list.add(staffMemberAdded);
     }
 
-    private void staffMemberDeleted(PropertyChangeEvent evt) {
+    private void staffMemberDeleted(PropertyChangeEvent evt)
+    {
         StaffMember staffMemberDeleted = (StaffMember) evt.getNewValue();
         list.remove(staffMemberDeleted);
     }
 
-
-    public void populateList(){
+    public void populateList()
+    {
         ArrayList<StaffMember> test = getStaffMembers();
         System.out.println(test.toString());
 
@@ -50,15 +51,15 @@ public class StaffMemberListViewModel {
         else{
             list.addAll(test);
         }
-
     }
 
-    public ObservableList<StaffMember> getList(){
+    public ObservableList<StaffMember> getList()
+    {
         return list;
     }
 
-
-    public void deleteStaffMember(StaffMember staffMember){
+    public void deleteStaffMember(StaffMember staffMember)
+    {
         String response = manageStaffManager.deleteStaffMember(staffMember);
 
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -67,7 +68,8 @@ public class StaffMemberListViewModel {
         alert.showAndWait();
     }
 
-    public ArrayList<StaffMember> getStaffMembers() {
+    public ArrayList<StaffMember> getStaffMembers()
+    {
         return manageStaffManager.getStaffMembers();
     }
 }

@@ -6,16 +6,18 @@ import main.shared.UserName;
 
 import java.rmi.RemoteException;
 
-public class BmiClient implements BmiClientModel {
-
+public class BmiClient implements BmiClientModel
+{
     private RemoteClient rmiClient;
 
-    public BmiClient(RemoteClient rmiClient){
+    public BmiClient(RemoteClient rmiClient)
+    {
         this.rmiClient = rmiClient;
     }
 
     @Override
-    public String saveBmiData(BMIData bmiData) {
+    public String saveBmiData(BMIData bmiData)
+    {
         try {
             return rmiClient.saveBmiData(bmiData);
         } catch (RemoteException e) {
@@ -25,7 +27,8 @@ public class BmiClient implements BmiClientModel {
     }
 
     @Override
-    public BMIData loadBmiData(UserName userName) {
+    public BMIData loadBmiData(UserName userName)
+    {
         try {
             return rmiClient.loadBmiData(userName);
         } catch (RemoteException e) {
@@ -35,7 +38,8 @@ public class BmiClient implements BmiClientModel {
     }
 
     @Override
-    public String deleteBmiData(UserName userName) {
+    public String deleteBmiData(UserName userName)
+    {
         try {
             return rmiClient.deleteBmiData(userName);
         } catch (RemoteException e) {

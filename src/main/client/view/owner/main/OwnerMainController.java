@@ -1,24 +1,28 @@
 package main.client.view.owner.main;
-import javafx.event.ActionEvent;
+
 import main.client.core.ViewHandler;
 
-public class OwnerMainController {
-
+public class OwnerMainController
+{
     private ViewHandler viewHandler;
 
-    public void init(ViewHandler viewHandler){
+    public void init(ViewHandler viewHandler)
+    {
         this.viewHandler = viewHandler;
     }
 
-    public void onAddStaffMember(ActionEvent actionEvent) {
+    public void onAddStaffMember()
+    {
         viewHandler.openOwnerAddAStaffMember();
     }
 
-    public void onStaffMembersList(ActionEvent actionEvent) {
+    public void onStaffMembersList()
+    {
         viewHandler.openOwnerStaffMembersList();
     }
 
-    public void onBackButton(ActionEvent actionEvent) {
+    public void onBackButton()
+    {
        viewHandler.openOwnerLogin();
     }
 }

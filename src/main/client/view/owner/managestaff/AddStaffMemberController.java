@@ -1,20 +1,20 @@
 package main.client.view.owner.managestaff;
-import javafx.event.ActionEvent;
-import javafx.scene.control.Alert;
+
 import javafx.scene.control.TextField;
 import main.client.core.ViewHandler;
-import main.shared.StaffMember;
 
-public class AddStaffMemberController {
+public class AddStaffMemberController
+{
     public TextField ssn;
     public TextField fullname;
     public TextField username;
     public TextField password;
 
-    AddStaffMemberViewModel addAStaffMemberViewModel;
-    ViewHandler viewHandler;
+    private AddStaffMemberViewModel addAStaffMemberViewModel;
+    private ViewHandler viewHandler;
 
-    public void init(AddStaffMemberViewModel addAStaffMemberViewModel, ViewHandler viewHandler){
+    public void init(AddStaffMemberViewModel addAStaffMemberViewModel, ViewHandler viewHandler)
+    {
         this.addAStaffMemberViewModel = addAStaffMemberViewModel;
         this.viewHandler = viewHandler;
 
@@ -24,17 +24,19 @@ public class AddStaffMemberController {
         password.textProperty().bindBidirectional(addAStaffMemberViewModel.passwordProperty());
     }
 
-    public void onSaveButton(ActionEvent actionEvent) {
-
-        if(addAStaffMemberViewModel.addAStaffMember()){
+    public void onSaveButton()
+    {
+        if(addAStaffMemberViewModel.addAStaffMember())
+        {
                 ssn.textProperty().set("");
                 fullname.textProperty().set("");
                 username.textProperty().set("");
                 password.textProperty().set("");
-            }
+        }
     }
 
-    public void onBackButton(ActionEvent actionEvent) {
+    public void onBackButton()
+    {
         viewHandler.openOwnerMain();
     }
 }

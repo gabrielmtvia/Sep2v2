@@ -3,48 +3,56 @@ package main.shared;
 import java.io.Serializable;
 import java.util.Objects;
 
-public class Activity implements Serializable {
+public class Activity implements Serializable
+{
     private String activityName;
     private String price;
     private String date;
     private String startTime;
     private String endTime;
 
-
-
-    public String getActivityName() {
+    public String getActivityName()
+    {
         return activityName;
     }
-    public void setActivityName(String activityName) {
+
+    public void setActivityName(String activityName)
+    {
         this.activityName = activityName;
     }
 
-    public String getPrice() {
+    public String getPrice()
+    {
         return price;
     }
 
-    public String setPrice(String price) {
+    public String setPrice(String price)
+    {
         return this.price = price;
     }
 
-    public String getDate() {
+    public String getDate()
+    {
         return date;
     }
 
-    public String setDate(String date) {
+    public String setDate(String date)
+    {
         return  this.date = date;
     }
 
-    public String getStartTime() {
+    public String getStartTime()
+    {
         return startTime;
     }
 
-    public String getEndTime() {
+    public String getEndTime()
+    {
         return endTime;
     }
 
-
-    public Activity(String activityName, String price, String date, String startTime, String endTime) {
+    public Activity(String activityName, String price, String date, String startTime, String endTime)
+    {
         this.activityName = activityName;
         this.price = price;
         this.date = date;
@@ -53,7 +61,8 @@ public class Activity implements Serializable {
     }
 
     @Override
-    public boolean equals(Object o) {
+    public boolean equals(Object o)
+    {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Activity activity = (Activity) o;

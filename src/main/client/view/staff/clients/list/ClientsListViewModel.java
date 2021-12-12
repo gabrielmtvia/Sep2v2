@@ -14,7 +14,6 @@ public class ClientsListViewModel
   private ClientModel clientManager;
   private ObservableList<TheClient> list;
 
-  // todo fix this constructor problem
   public ClientsListViewModel(ClientModel clientManager)
   {
     this.clientManager = clientManager;

@@ -12,12 +12,13 @@ import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 
-public class RmiClient implements RemoteClient {
-
+public class RmiClient implements RemoteClient
+{
     private RemoteServer serverStub;
     private PropertyChangeSupport support = new PropertyChangeSupport(this);
 
-    public RmiClient(){
+    public RmiClient()
+    {
         try{
             serverStub = (RemoteServer) Naming.lookup("rmi://localhost:1099/DB");
             UnicastRemoteObject.exportObject(this,0);
@@ -27,48 +28,56 @@ public class RmiClient implements RemoteClient {
     }
 
     @Override
-    public String loginClient(UserName userName, Password password) throws RemoteException {
+    public String loginClient(UserName userName, Password password) throws RemoteException
+    {
         return serverStub.LoginClient(userName, password);
     }
 
     @Override
-    public String loginOwner(UserName userName, Password password) throws RemoteException {
+    public String loginOwner(UserName userName, Password password) throws RemoteException
+    {
         return serverStub.LoginOwner(userName, password);
     }
 
     @Override
-    public String loginStaff(UserName userName, Password password) throws RemoteException {
+    public String loginStaff(UserName userName, Password password) throws RemoteException
+    {
         return serverStub.LoginStaff(userName, password);
     }
 
     @Override
-    public ArrayList<Activity> requestActivities() throws RemoteException {
+    public ArrayList<Activity> requestActivities() throws RemoteException
+    {
         return serverStub.requestActivities();
     }
 
     @Override
-    public String deleteActivity(Activity activity) throws RemoteException {
+    public String deleteActivity(Activity activity) throws RemoteException
+    {
         return serverStub.deleteActivity(activity);
     }
 
     @Override
-    public String saveActivity(Activity activity) throws RemoteException {
+    public String saveActivity(Activity activity) throws RemoteException
+    {
         return serverStub.saveActivity(activity);
     }
 
     @Override
-    public void activityDeleted(Activity activity) throws RemoteException {
+    public void activityDeleted(Activity activity) throws RemoteException
+    {
         support.firePropertyChange("Activity Deleted", null, activity);
     }
 
     @Override
-    public void activityAdded(Activity activity) throws RemoteException {
+    public void activityAdded(Activity activity) throws RemoteException
+    {
         support.firePropertyChange("Activity Added", null, activity);
     }
 
-
     @Override
-    public void addListener(String eventName, PropertyChangeListener listener) throws RemoteException{
+    public void addListener(String eventName, PropertyChangeListener listener) throws RemoteException
+    {
         if(eventName == null || "".equals(eventName)) {
             support.addPropertyChangeListener(listener);
         } else {
@@ -77,7 +86,8 @@ public class RmiClient implements RemoteClient {
     }
 
     @Override
-    public boolean authenticate() throws RemoteException {
+    public boolean authenticate() throws RemoteException
+    {
         if(serverStub==null){
         }
          else {
@@ -93,64 +103,68 @@ public class RmiClient implements RemoteClient {
     }
 
     @Override
-    public String saveBmiData(BMIData bmiData) throws RemoteException {
+    public String saveBmiData(BMIData bmiData) throws RemoteException
+    {
         return serverStub.saveBmiData(bmiData);
     }
 
     @Override
-    public String addStaffMember(StaffMember staffMember) throws RemoteException {
-
+    public String addStaffMember(StaffMember staffMember) throws RemoteException
+    {
         return serverStub.addStaffMember(staffMember);
     }
 
     @Override
-    public ArrayList<StaffMember> getStaffMembers() throws RemoteException {
-
+    public ArrayList<StaffMember> getStaffMembers() throws RemoteException
+    {
         return serverStub.getStaffMembers();
-
     }
 
     @Override
-    public String deleteStaffMember(StaffMember staffMember) throws RemoteException {
-
+    public String deleteStaffMember(StaffMember staffMember) throws RemoteException
+    {
         return serverStub.deleteStaffMember(staffMember);
-
     }
 
     @Override
-    public String savePersonalTrainer(PersonalTrainer personalTrainer)  throws RemoteException{
-
+    public String savePersonalTrainer(PersonalTrainer personalTrainer)  throws RemoteException
+    {
         return serverStub.savePersonalTrainer(personalTrainer);
-
     }
 
     @Override
-    public ArrayList<PersonalTrainer> getPersonalTrainers(boolean staff) throws RemoteException {
+    public ArrayList<PersonalTrainer> getPersonalTrainers(boolean staff) throws RemoteException
+    {
         return serverStub.getPersonalTrainers(staff);
     }
 
     @Override
-    public String removePersonalTrainer(PersonalTrainer personalTrainer) throws RemoteException {
+    public String removePersonalTrainer(PersonalTrainer personalTrainer) throws RemoteException
+    {
         return serverStub.removePersonalTrainer(personalTrainer);
     }
 
     @Override
-    public void personalTrainerAdded(PersonalTrainer personalTrainer) throws RemoteException {
+    public void personalTrainerAdded(PersonalTrainer personalTrainer) throws RemoteException
+    {
         support.firePropertyChange("Personal Trainer Added", null, personalTrainer);
     }
 
     @Override
-    public void personalTrainerRemoved(PersonalTrainer personalTrainer) throws RemoteException {
+    public void personalTrainerRemoved(PersonalTrainer personalTrainer) throws RemoteException
+    {
         support.firePropertyChange("Personal Trainer Removed", null, personalTrainer);
     }
 
     @Override
-    public void staffMemberAdded(StaffMember staffMember) throws RemoteException {
+    public void staffMemberAdded(StaffMember staffMember) throws RemoteException
+    {
         support.firePropertyChange("Staff Member Added", null, staffMember);
     }
 
     @Override
-    public void staffMemberDeleted(StaffMember staffMember) throws RemoteException {
+    public void staffMemberDeleted(StaffMember staffMember) throws RemoteException
+    {
         support.firePropertyChange("Staff Member Deleted", null, staffMember);
     }
 
@@ -180,47 +194,56 @@ public class RmiClient implements RemoteClient {
     }
 
     @Override
-    public BMIData loadBmiData(UserName userName) throws RemoteException {
+    public BMIData loadBmiData(UserName userName) throws RemoteException
+    {
         return serverStub.loadBmiData(userName);
     }
 
     @Override
-    public String deleteBmiData(UserName userName) throws RemoteException {
+    public String deleteBmiData(UserName userName) throws RemoteException
+    {
         return serverStub.deleteBmiData(userName);
     }
 
     @Override
-    public String bookPersonalTrainer(PersonalTrainer personalTrainer, UserName userName) throws RemoteException {
+    public String bookPersonalTrainer(PersonalTrainer personalTrainer, UserName userName) throws RemoteException
+    {
         return serverStub.bookPersonalTrainer(personalTrainer, userName, this);
     }
 
     @Override
-    public ArrayList<PersonalTrainer> viewMyBookings(UserName userName) throws RemoteException {
+    public ArrayList<PersonalTrainer> viewMyBookings(UserName userName) throws RemoteException
+    {
         return serverStub.viewMyBookings(userName);
     }
 
     @Override
-    public void personalTrainerBooked(PersonalTrainer personalTrainer) {
+    public void personalTrainerBooked(PersonalTrainer personalTrainer)
+    {
         support.firePropertyChange("Personal Trainer Booked", null, personalTrainer);
     }
 
     @Override
-    public void personalTrainerCancelled(PersonalTrainer personalTrainer) {
+    public void personalTrainerCancelled(PersonalTrainer personalTrainer)
+    {
         support.firePropertyChange("Personal Trainer Cancelled", null, personalTrainer);
     }
 
     @Override
-    public void personalTrainerAlreadyBooked(PersonalTrainer personalTrainer) {
+    public void personalTrainerAlreadyBooked(PersonalTrainer personalTrainer)
+    {
         support.firePropertyChange("Personal Trainer Already Booked", null, personalTrainer);
     }
 
     @Override
-    public String cancelBooking(PersonalTrainer personalTrainer, UserName userName) throws RemoteException {
+    public String cancelBooking(PersonalTrainer personalTrainer, UserName userName) throws RemoteException
+    {
         return serverStub.cancelBooking(personalTrainer, userName, this);
     }
 
     @Override
-    public void personalTrainerAlreadyCancelled(PersonalTrainer personalTrainer)  {
+    public void personalTrainerAlreadyCancelled(PersonalTrainer personalTrainer)
+    {
         support.firePropertyChange("Personal Trainer Already Cancelled", null, personalTrainer);
     }
 
@@ -230,13 +253,14 @@ public class RmiClient implements RemoteClient {
     }
 
     @Override
-    public String cancelRegistration(Activity activity, UserName userName) throws RemoteException {
+    public String cancelRegistration(Activity activity, UserName userName) throws RemoteException
+    {
         return serverStub.cancelRegistration(activity,userName);
     }
 
-
     @Override
-    public String registeredActivity(Activity activity, UserName userName) throws RemoteException {
+    public String registeredActivity(Activity activity, UserName userName) throws RemoteException
+    {
         return serverStub.registeredActivity(activity, userName);
     }
 

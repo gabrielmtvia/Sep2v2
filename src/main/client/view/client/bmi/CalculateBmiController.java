@@ -1,19 +1,14 @@
 package main.client.view.client.bmi;
-import javafx.event.ActionEvent;
+
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import main.client.core.ViewHandler;
-import main.shared.BMIData;
 
 public class CalculateBmiController
 {
   @FXML private TextField inputHeight;
-
   @FXML private TextField inputWeight;
-
   @FXML private Label result;
 
   private CalculateBmiViewModel calculateBmiViewModel;
@@ -29,26 +24,27 @@ public class CalculateBmiController
     result.textProperty().bindBidirectional(calculateBmiViewModel.resultProperty());
   }
 
-  public void onButtonBack(ActionEvent actionEvent)
+  public void onButtonBack()
   {
     viewHandler.openClientMain();
   }
 
-  public void onCalculateBMI(ActionEvent actionEvent)
+  public void onCalculateBMI()
   {
     calculateBmiViewModel.calculateBMI();
   }
 
-  public void onSave(ActionEvent actionEvent)
+  public void onSave()
   {
     calculateBmiViewModel.save();
   }
-  public void onLoad(ActionEvent actionEvent)
+  public void onLoad()
   {
     calculateBmiViewModel.load();
   }
 
-  public void onDelete(ActionEvent actionEvent) {
+  public void onDelete()
+  {
     calculateBmiViewModel.delete();
   }
 }

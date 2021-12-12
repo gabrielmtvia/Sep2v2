@@ -1,26 +1,24 @@
 package main.server.databaseaccess.bmi;
 
 import main.server.databaseaccess.database.DBConnectionModel;
-import main.shared.Activity;
 import main.shared.BMIData;
 import main.shared.UserName;
 
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.util.ArrayList;
 
-public class BmiDAO implements BmiDAOModel {
-
+public class BmiDAO implements BmiDAOModel
+{
     private DBConnectionModel dbConnection;
 
-    public BmiDAO(DBConnectionModel dbConnection){
+    public BmiDAO(DBConnectionModel dbConnection)
+    {
         this.dbConnection = dbConnection;
     }
 
     @Override
-    public String saveBmiData(BMIData bmiData) {
-
+    public String saveBmiData(BMIData bmiData)
+    {
         double height = bmiData.getHeight();
         double weight = bmiData.getWeight();
         String username = bmiData.getUserName();
@@ -64,7 +62,8 @@ public class BmiDAO implements BmiDAOModel {
     }
 
     @Override
-    public BMIData loadBmiData(UserName userName) {
+    public BMIData loadBmiData(UserName userName)
+    {
         String username = userName.getUserName();
         PreparedStatement statement;
         ResultSet resultSet;
@@ -92,7 +91,8 @@ public class BmiDAO implements BmiDAOModel {
     }
 
     @Override
-    public String deleteBmiData(UserName userName) {
+    public String deleteBmiData(UserName userName)
+    {
         String username = userName.getUserName();
 
         PreparedStatement statement;
@@ -103,7 +103,6 @@ public class BmiDAO implements BmiDAOModel {
             statement.setDouble(1, 0);
             statement.setString(2, username);
             statement.executeQuery();
-
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -126,7 +125,6 @@ public class BmiDAO implements BmiDAOModel {
         } finally {
             dbConnection.closeConnection();
         }
-
         return "BMI Data deleted successfully";
     }
 }

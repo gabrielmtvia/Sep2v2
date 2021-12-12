@@ -12,23 +12,19 @@ import java.beans.PropertyChangeEvent;
 import java.util.ArrayList;
 import java.util.regex.PatternSyntaxException;
 
-public class ManageActivitiesViewModel {
-
+public class ManageActivitiesViewModel
+{
     private StringProperty date;
     private StringProperty type;
     private StringProperty price;
     private StringProperty startTimeField;
     private StringProperty endTimeField;
 
-
-
-
     private ActivitiesModel activitiesManager;
     private ObservableList<Activity> items;
 
-
-
-    public ManageActivitiesViewModel(ActivitiesModel activitiesManager) {
+    public ManageActivitiesViewModel(ActivitiesModel activitiesManager)
+    {
         this.activitiesManager = activitiesManager;
         items = FXCollections.observableArrayList();
 
@@ -43,25 +39,22 @@ public class ManageActivitiesViewModel {
 
         activitiesManager.addListener("Activity Deleted", evt -> activityDeleted(evt));
         activitiesManager.addListener("Activity Added", evt -> activityAdded(evt));
-
     }
 
-    private void activityAdded(PropertyChangeEvent evt) {
+    private void activityAdded(PropertyChangeEvent evt)
+    {
         Activity activityAdded = (Activity) evt.getNewValue();
         items.add(activityAdded);
     }
 
-    private void activityDeleted(PropertyChangeEvent evt) {
+    private void activityDeleted(PropertyChangeEvent evt)
+    {
         Activity activityDeleted = (Activity) evt.getNewValue();
         items.remove(activityDeleted);
     }
 
-
-
-
-
-    public void saveActivity() {
-
+    public void saveActivity()
+    {
         String[] dateSplit = date.getValue().split("/");
         String day = dateSplit[0];
         String month = dateSplit[1];
@@ -87,13 +80,6 @@ public class ManageActivitiesViewModel {
 
         System.out.println("the time is " + " "+ Integer.parseInt(timeSplitForStartTime[0])+ " hours and " + Integer.parseInt(timeSplitForStartTime[1]) + " minutes");
 
-
-
-
-
-
-
-
         //String response = "Please fill the date in HH:MM format";
         //alert(response);
 
@@ -114,15 +100,10 @@ public class ManageActivitiesViewModel {
             endTimeHours = Integer.parseInt(timeSplitForEndTime[0]);
             endTimeMinutes = Integer.parseInt(timeSplitForEndTime[1]);
 
-
-
-
-
         }catch (Exception e){
             infoMessage.append(e.getMessage());
             isValid = false;
         }
-
 
         if(isValid) {
             if ( type.getValue() != null && type.getValue() != "") {
@@ -151,63 +132,56 @@ public class ManageActivitiesViewModel {
         }
         else
         {
-
             alert(infoMessage.toString());
         }
-
-
-
-
-
 }
 
-
-    public void alert(String response){
+    public void alert(String response)
+    {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Information");
         alert.setContentText(response);
         alert.showAndWait();
     }
 
-    public ArrayList<Activity> requestActivities() {
+    public ArrayList<Activity> requestActivities()
+    {
         return  activitiesManager.requestActivities();
     }
 
-
-    public void deleteAnActivity(Activity activity) {
+    public void deleteAnActivity(Activity activity)
+    {
         String response = activitiesManager.deleteActivity(activity);
         alert(response);
     }
 
-    public StringProperty dateProperty() {
+    public StringProperty dateProperty()
+    {
         return date;
     }
 
-    public StringProperty typeFieldProperty() {
+    public StringProperty typeFieldProperty()
+    {
         return type;
     }
 
-
-    public StringProperty priceFieldProperty() {
+    public StringProperty priceFieldProperty()
+    {
         return price;
     }
 
-    public StringProperty startTimeFieldProperty() {
+    public StringProperty startTimeFieldProperty()
+    {
         return startTimeField;
     }
 
-
-    public StringProperty endTimeFieldProperty() {
+    public StringProperty endTimeFieldProperty()
+    {
         return endTimeField;
     }
 
-
-
-
-    public ObservableList<Activity> getItemsList() {
+    public ObservableList<Activity> getItemsList()
+    {
         return items;
     }
-
-
-
 }

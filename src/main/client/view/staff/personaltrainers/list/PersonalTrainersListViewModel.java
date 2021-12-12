@@ -1,7 +1,5 @@
 package main.client.view.staff.personaltrainers.list;
 
-import javafx.application.Platform;
-import javafx.beans.property.SimpleListProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.Alert;
@@ -10,7 +8,6 @@ import main.shared.PersonalTrainer;
 
 import java.beans.PropertyChangeEvent;
 import java.util.ArrayList;
-
 
 public class PersonalTrainersListViewModel
 {
@@ -23,51 +20,24 @@ public class PersonalTrainersListViewModel
     list  = FXCollections.observableArrayList();
     populateList();
 
-    personalTrainerManager.addListener("Personal Trainer Added", evt -> personalTrainerAdded(evt));
-    personalTrainerManager.addListener("Personal Trainer Removed", evt -> personalTrainerRemoved(evt));
-    personalTrainerManager.addListener("Personal Trainer Booked", evt -> personalTrainerBooked(evt));
-    personalTrainerManager.addListener("Personal Trainer Cancelled", evt -> personalTrainerCancelled(evt));
-    personalTrainerManager.addListener("Personal Trainer Already Booked", evt -> personalTrainerAlreadyBooked(evt));
-    personalTrainerManager.addListener("Personal Trainer Already Cancelled", evt -> personalTrainerAlreadyCancelled(evt));
+    personalTrainerManager.addListener("Personal Trainer Added", evt -> updateTable(evt));
+    personalTrainerManager.addListener("Personal Trainer Removed", evt -> updateTable(evt));
+    personalTrainerManager.addListener("Personal Trainer Booked", evt -> updateTable(evt));
+    personalTrainerManager.addListener("Personal Trainer Cancelled", evt -> updateTable(evt));
+    personalTrainerManager.addListener("Personal Trainer Already Booked", evt -> updateTable(evt));
+    personalTrainerManager.addListener("Personal Trainer Already Cancelled", evt -> updateTable(evt));
   }
 
-  private void personalTrainerAlreadyCancelled(PropertyChangeEvent evt) {
-    PersonalTrainer personalTrainerAlreadyCancelled = (PersonalTrainer) evt.getNewValue();
-    list.remove(personalTrainerAlreadyCancelled);
-    list.add(personalTrainerAlreadyCancelled);
-  }
-
-  private void personalTrainerAlreadyBooked(PropertyChangeEvent evt) {
-    PersonalTrainer personalTrainerAlreadyBooked = (PersonalTrainer) evt.getNewValue();
-    System.out.println(personalTrainerAlreadyBooked);
-    System.out.println(list.contains(personalTrainerAlreadyBooked));
-    list.remove(personalTrainerAlreadyBooked);
-    list.add(personalTrainerAlreadyBooked);
-  }
-
-  private void personalTrainerCancelled(PropertyChangeEvent evt) {
-    PersonalTrainer personalTrainerCancelled = (PersonalTrainer) evt.getNewValue();
-    list.remove(personalTrainerCancelled);
-    list.add(personalTrainerCancelled);
-  }
-
-
-  private void personalTrainerBooked(PropertyChangeEvent evt) {
-    PersonalTrainer personalTrainerBooked = (PersonalTrainer) evt.getNewValue();
-    System.out.println(personalTrainerBooked);
-    System.out.println(list.contains(personalTrainerBooked));
-    list.remove(personalTrainerBooked);
-    list.add(personalTrainerBooked);
-  }
-
-  private void personalTrainerRemoved(PropertyChangeEvent evt) {
-    PersonalTrainer personalTrainerRemoved = (PersonalTrainer) evt.getNewValue();
-    list.remove(personalTrainerRemoved);
-  }
-
-  private void personalTrainerAdded(PropertyChangeEvent evt) {
-    PersonalTrainer personalTrainerAdded = (PersonalTrainer) evt.getNewValue();
-    list.add(personalTrainerAdded);
+  private void updateTable(PropertyChangeEvent evt) {
+    new Thread(() -> {
+      try {
+        Thread.sleep(2000);
+      } catch (InterruptedException e) {
+        e.printStackTrace();
+      }
+      list.clear();
+      populateList();
+    }).start();
   }
 
   public void populateList()
@@ -112,11 +82,10 @@ public class PersonalTrainersListViewModel
       alert.setContentText(response);
       alert.showAndWait();
     }
-
   }
 
-  public ObservableList<PersonalTrainer> getList(){
+  public ObservableList<PersonalTrainer> getList()
+  {
     return list;
-}
-
+  }
 }

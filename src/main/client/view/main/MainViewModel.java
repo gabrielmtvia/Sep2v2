@@ -3,16 +3,17 @@ package main.client.view.main;
 import javafx.scene.control.Alert;
 import main.client.model.login.LoginModel;
 
-public class MainViewModel {
-
+public class MainViewModel
+{
     private LoginModel loginManager;
 
-    public MainViewModel(LoginModel loginManager) {
+    public MainViewModel(LoginModel loginManager)
+    {
         this.loginManager = loginManager;
     }
 
-    public void authenticate(){
-
+    public void authenticate()
+    {
         if(!loginManager.authenticate()){
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("CONNECTION ERROR");

@@ -13,8 +13,8 @@ import main.client.model.managestaff.ManageStaffModel;
 import main.client.model.personaltrainer.PersonalTrainerManager;
 import main.client.model.personaltrainer.PersonalTrainerModel;
 
-public class ModelFactory {
-
+public class ModelFactory
+{
     private ClientFactory clientFactory;
     private LoginModel loginManager;
     private ActivitiesModel activitiesManager;
@@ -23,35 +23,41 @@ public class ModelFactory {
     private PersonalTrainerModel personalTrainerManager;
     private ClientModel clientManager;
 
-    public ModelFactory(ClientFactory clientFactory){
+    public ModelFactory(ClientFactory clientFactory)
+    {
         this.clientFactory = clientFactory;
     }
 
-    public LoginModel getLoginManager(){
+    public LoginModel getLoginManager()
+    {
         if(loginManager==null)
             loginManager = new LoginManager(clientFactory.getLoginClient());
         return loginManager;
     }
 
-    public ActivitiesModel getActivitiesManager(){
+    public ActivitiesModel getActivitiesManager()
+    {
         if(activitiesManager==null)
             activitiesManager = new ActivitiesManager(clientFactory.getActivitiesClient());
         return activitiesManager;
     }
 
-    public BmiModel getBmiManager(){
+    public BmiModel getBmiManager()
+    {
         if(bmiManager==null)
             bmiManager = new BmiManager(clientFactory.getBmiClient());
         return bmiManager;
     }
 
-    public ManageStaffModel getManageStaffManager() {
+    public ManageStaffModel getManageStaffManager()
+    {
         if(manageStaffManager==null)
             manageStaffManager = new ManageStaffManager(clientFactory.getManageStaffClient());
         return manageStaffManager;
     }
 
-    public PersonalTrainerModel getPersonalTrainerManager() {
+    public PersonalTrainerModel getPersonalTrainerManager()
+    {
         if(personalTrainerManager==null)
             personalTrainerManager = new PersonalTrainerManager(clientFactory.getPersonalTrainerClient());
         return personalTrainerManager;

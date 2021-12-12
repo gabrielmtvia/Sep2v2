@@ -5,17 +5,16 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-public class DBConnection implements DBConnectionModel {
-
+public class DBConnection implements DBConnectionModel
+{
     private final String url = "jdbc:postgresql://abul.db.elephantsql.com/unmjzkfa?currentSchema=\"GYM\"";
     private final String username = "unmjzkfa";
     private final String password ="BrDPIIo-EZN8SwzYMLawn1YK8Mshe4Ln";
     private Connection connection;
 
-
-
     @Override
-    public Connection getConnection() {
+    public Connection getConnection()
+    {
         try {
             if (connection == null || connection.isClosed()) {
                 connection = DriverManager.getConnection(url, username, password);
@@ -26,9 +25,9 @@ public class DBConnection implements DBConnectionModel {
         return connection;
     }
 
-
     @Override
-    public void closeConnection() {
+    public void closeConnection()
+    {
         try {
             if (!connection.isClosed()) {
                 connection.close();
@@ -39,7 +38,8 @@ public class DBConnection implements DBConnectionModel {
     }
 
     @Override
-    public PreparedStatement createPreparedStatement(String preparedSql)  {
+    public PreparedStatement createPreparedStatement(String preparedSql)
+    {
         Connection connection = getConnection();
         PreparedStatement preparedStatement = null;
         try {
@@ -50,5 +50,4 @@ public class DBConnection implements DBConnectionModel {
         }
         return preparedStatement;
     }
-
 }

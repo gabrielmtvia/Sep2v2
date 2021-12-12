@@ -15,8 +15,8 @@ import main.client.networking.personaltrainer.PersonalTrainerClientModel;
 import main.client.networking.rmi.RemoteClient;
 import main.client.networking.rmi.RmiClient;
 
-public class ClientFactory {
-
+public class ClientFactory
+{
     private RemoteClient rmiClient;
     private LoginClientModel loginClient;
     private ActivitiesClientModel activitiesClient;
@@ -25,35 +25,41 @@ public class ClientFactory {
     private PersonalTrainerClientModel personalTrainerClient;
     private ClientsClientModel clientModel;
 
-    public ClientFactory(){
+    public ClientFactory()
+    {
         rmiClient = new RmiClient();
     }
 
-    public LoginClientModel getLoginClient(){
+    public LoginClientModel getLoginClient()
+    {
         if(loginClient==null)
             loginClient = new LoginClient(rmiClient);
         return loginClient;
     }
 
-    public ActivitiesClientModel getActivitiesClient(){
+    public ActivitiesClientModel getActivitiesClient()
+    {
         if(activitiesClient==null)
             activitiesClient = new ActivitiesClient(rmiClient);
         return activitiesClient;
     }
 
-    public BmiClientModel getBmiClient(){
+    public BmiClientModel getBmiClient()
+    {
         if(bmiClient==null)
             bmiClient = new BmiClient(rmiClient);
         return bmiClient;
     }
 
-    public ManageStaffClientModel getManageStaffClient() {
+    public ManageStaffClientModel getManageStaffClient()
+    {
         if(manageStaffClient==null)
             manageStaffClient = new ManageStaffClient(rmiClient);
         return manageStaffClient;
     }
 
-    public PersonalTrainerClientModel getPersonalTrainerClient() {
+    public PersonalTrainerClientModel getPersonalTrainerClient()
+    {
         if(personalTrainerClient==null)
             personalTrainerClient = new PersonalTrainerClient(rmiClient);
         return personalTrainerClient;
@@ -65,5 +71,4 @@ public class ClientFactory {
             clientModel = new ClientsClient(rmiClient);
         return clientModel;
     }
-
 }

@@ -10,61 +10,54 @@ import main.shared.PersonalTrainer;
 import java.beans.PropertyChangeEvent;
 import java.util.ArrayList;
 
-public class ClientPersonalTrainerListViewModel {
-
+public class ClientPersonalTrainerListViewModel
+{
     private ObservableList<PersonalTrainer> items;
     private PersonalTrainerModel personalTrainerManager;
     private LoginModel loginManager;
 
-    public ClientPersonalTrainerListViewModel(PersonalTrainerModel personalTrainerManager, LoginModel loginManager){
+    public ClientPersonalTrainerListViewModel(PersonalTrainerModel personalTrainerManager, LoginModel loginManager)
+    {
         this.loginManager = loginManager;
         items = FXCollections.observableArrayList();
         this.personalTrainerManager = personalTrainerManager;
         items.addAll(getPersonalTrainers());
 
-        personalTrainerManager.addListener("Personal Trainer Booked", evt -> personalTrainerBooked(evt));
-        personalTrainerManager.addListener("Personal Trainer Cancelled", evt -> personalTrainerCancelled(evt));
+        personalTrainerManager.addListener("Personal Trainer Booked", evt -> updateTable(evt));
+        personalTrainerManager.addListener("Personal Trainer Cancelled", evt -> updateTable(evt));
 
-        personalTrainerManager.addListener("Personal Trainer Added", evt -> personalTrainerAdded(evt));
-        personalTrainerManager.addListener("Personal Trainer Removed", evt -> personalTrainerRemoved(evt));
-        personalTrainerManager.addListener("Personal Trainer Already Booked", evt -> personalTrainerRemoved(evt));
-        personalTrainerManager.addListener("Personal Trainer Already Cancelled", evt -> personalTrainerAlreadyCancelled(evt));
+        personalTrainerManager.addListener("Personal Trainer Added", evt -> updateTable(evt));
+        personalTrainerManager.addListener("Personal Trainer Removed", evt -> updateTable(evt));
+        personalTrainerManager.addListener("Personal Trainer Already Booked", evt -> updateTable(evt));
+        personalTrainerManager.addListener("Personal Trainer Already Cancelled", evt -> updateTable(evt));
+        loginManager.addListener("New Client", evt -> updateTable(evt));
     }
 
-    private void personalTrainerAlreadyCancelled(PropertyChangeEvent evt) {
-        PersonalTrainer personalTrainerAlreadyCancelled = (PersonalTrainer) evt.getNewValue();
-        items.add(personalTrainerAlreadyCancelled);
+    private void updateTable(PropertyChangeEvent evt)
+    {
+        new Thread(() -> {
+            try {
+                Thread.sleep(3500);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            items.clear();
+            items.addAll(getPersonalTrainers());
+        }).start();
     }
 
-    private void personalTrainerRemoved(PropertyChangeEvent evt) {
-        PersonalTrainer personalTrainerRemoved = (PersonalTrainer) evt.getNewValue();
-        items.remove(personalTrainerRemoved);
-    }
-
-    private void personalTrainerAdded(PropertyChangeEvent evt) {
-        PersonalTrainer personalTrainerAdded = (PersonalTrainer) evt.getNewValue();
-        items.add(personalTrainerAdded);
-    }
-
-    private void personalTrainerCancelled(PropertyChangeEvent evt) {
-        PersonalTrainer personalTrainerCancelled = (PersonalTrainer) evt.getNewValue();
-        items.add(personalTrainerCancelled);
-    }
-
-    private void personalTrainerBooked(PropertyChangeEvent evt) {
-        PersonalTrainer personalTrainerBooked = (PersonalTrainer) evt.getNewValue();
-        items.remove(personalTrainerBooked);
-    }
-
-    public ArrayList<PersonalTrainer> getPersonalTrainers(){
+    public ArrayList<PersonalTrainer> getPersonalTrainers()
+    {
         return personalTrainerManager.getPersonalTrainers(false);
     }
 
-    public ObservableList<PersonalTrainer> getItemsList() {
+    public ObservableList<PersonalTrainer> getItemsList()
+    {
         return items;
     }
 
-    public void bookPersonalTrainer(PersonalTrainer personalTrainer) {
+    public void bookPersonalTrainer(PersonalTrainer personalTrainer)
+    {
         PersonalTrainer personalTrainerWithUsername= personalTrainer;
         personalTrainerWithUsername.setUsername(loginManager.getUserName().getUserName());
         String response = personalTrainerManager.bookPersonalTrainer(personalTrainerWithUsername, loginManager.getUserName());

@@ -88,7 +88,6 @@ public class ClientDAO implements ClientDAOModel
     {
       e.printStackTrace();
     }
-
     return "Client deleted successfully";
   }
 }

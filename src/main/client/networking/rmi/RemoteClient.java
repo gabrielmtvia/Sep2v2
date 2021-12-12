@@ -7,7 +7,8 @@ import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
-public interface RemoteClient extends Remote {
+public interface RemoteClient extends Remote
+{
     String loginClient(UserName userName, Password password) throws RemoteException;
     String loginOwner(UserName userName, Password password) throws RemoteException;
     String loginStaff(UserName userName, Password password) throws RemoteException;
@@ -34,25 +35,16 @@ public interface RemoteClient extends Remote {
     void clientRemoved(TheClient theClient) throws RemoteException;
     ArrayList<TheClient> getClients() throws RemoteException;
     String removeClient(TheClient theClient) throws RemoteException;
-
     BMIData loadBmiData(UserName userName) throws RemoteException;
     String deleteBmiData(UserName userName) throws RemoteException;
-
     String bookPersonalTrainer(PersonalTrainer personalTrainer, UserName userName) throws RemoteException;
-
     ArrayList<PersonalTrainer> viewMyBookings(UserName userName) throws RemoteException;
-
     void personalTrainerBooked(PersonalTrainer personalTrainer) throws RemoteException;
-
     void personalTrainerCancelled(PersonalTrainer personalTrainer) throws RemoteException;
-
     void personalTrainerAlreadyBooked(PersonalTrainer personalTrainer) throws RemoteException;
-
     String registeredActivity(Activity activity, UserName userName) throws RemoteException;
     String cancelBooking(PersonalTrainer personalTrainer, UserName userName) throws RemoteException;
-
     void personalTrainerAlreadyCancelled(PersonalTrainer pt) throws RemoteException;
     ArrayList<Activity> requestRegisteredActivities() throws RemoteException;
-
     String cancelRegistration(Activity activity, UserName userName) throws RemoteException;
 }
