@@ -166,7 +166,7 @@ public class ActivitiesDAO implements ActivitiesDAOModel
         ResultSet resultSet;
 
         try {
-            String query = "select * from activities where type like ? and price like ? and date = ?   ";
+            String query = "select * from activities where type like ? and price = ? and date = ?   ";
             statement = dbConnection.createPreparedStatement(query);
 
             statement.setString(1, activity.getActivityName() );
@@ -233,7 +233,7 @@ public class ActivitiesDAO implements ActivitiesDAOModel
         ResultSet resultSet;
         try
         {
-            String query = "select * from activities where type like ? and price like ? and date = ? and starttime = ? and endtime = ?  ";
+            String query = "select * from activities where type like ? and price = ? and date = ? and starttime = ? and endtime = ?  ";
             statement = dbConnection.createPreparedStatement(query);
 
             statement.setString(1, activity.getActivityName() );
