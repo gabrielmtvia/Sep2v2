@@ -68,7 +68,7 @@ public class PersonalTrainersListViewModel
       list.add(personalTrainer);
       Alert alert = new Alert(Alert.AlertType.INFORMATION);
       alert.setTitle("Remove operation");
-      alert.setContentText("Cannot remove this time because it is already \nbooked. Please contact the client\n to inform about the cancellation");
+      alert.setContentText("Cannot remove this personal trainer because it is already \nbooked. Please contact the client\n to inform about the cancellation");
       alert.showAndWait();
     }
     else if(response.contains("resultado")){
