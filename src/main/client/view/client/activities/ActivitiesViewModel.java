@@ -56,6 +56,9 @@ public class ActivitiesViewModel
     public void registerActivity(Activity activity)
     {
         String response = activitiesManager.registerActivities(activity,userName);
+        if(response.contains("duplicate")){
+            response = "Error. Activity already registered";
+        }
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Registration");
         alert.setContentText(response);

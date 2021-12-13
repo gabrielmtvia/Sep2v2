@@ -35,7 +35,7 @@ public class LoginDAO implements LoginDAOModel
                     result = "Wrong Credentials";
                 }
             } else {
-                result = "Username does not exist";
+                result = "Username or Password is incorrect";
             }
 
         } catch (Exception e) {
@@ -67,7 +67,7 @@ public class LoginDAO implements LoginDAOModel
                     result = "Wrong Credentials";
                 }
             } else {
-                result = "Username does not exist";
+                result = "Username or Password is incorrect";
             }
 
         } catch (Exception e) {
@@ -99,7 +99,7 @@ public class LoginDAO implements LoginDAOModel
                     result = "Wrong Credentials";
                 }
             } else {
-                result = "Username does not exist";
+                result = "Username or Password is incorrect";
             }
 
         } catch (Exception e) {

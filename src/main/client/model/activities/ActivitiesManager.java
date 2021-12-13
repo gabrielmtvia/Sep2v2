@@ -19,6 +19,11 @@ public class ActivitiesManager implements ActivitiesModel
         this.activitiesClient = activitiesClient;
         activitiesClient.addListener("Activity Deleted", evt -> activityDeleted(evt));
         activitiesClient.addListener("Activity Added", evt -> activityAdded(evt));
+        activitiesClient.addListener("Activity Registered", evt -> activityRegistered(evt));
+    }
+
+    private void activityRegistered(PropertyChangeEvent evt) {
+        support.firePropertyChange("Activity Registered", null, "Activity Registered");
     }
 
     private void activityAdded(PropertyChangeEvent evt)

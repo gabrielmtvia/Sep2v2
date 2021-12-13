@@ -6,7 +6,7 @@ import java.util.Objects;
 public class Activity implements Serializable
 {
     private String activityName;
-    private String price;
+    private int price;
     private String date;
     private String startTime;
     private String endTime;
@@ -21,12 +21,12 @@ public class Activity implements Serializable
         this.activityName = activityName;
     }
 
-    public String getPrice()
+    public int getPrice()
     {
         return price;
     }
 
-    public String setPrice(String price)
+    public int setPrice(int price)
     {
         return this.price = price;
     }
@@ -51,7 +51,7 @@ public class Activity implements Serializable
         return endTime;
     }
 
-    public Activity(String activityName, String price, String date, String startTime, String endTime)
+    public Activity(String activityName, int price, String date, String startTime, String endTime)
     {
         this.activityName = activityName;
         this.price = price;

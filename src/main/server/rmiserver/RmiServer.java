@@ -12,13 +12,12 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-public class RmiServer implements RemoteServer
-{
+public class RmiServer implements RemoteServer{
+
     private ModelFactory modelFactory;
     private ArrayList<RemoteClient> clients;
 
-    public RmiServer(ModelFactory modelFactory)
-    {
+    public RmiServer(ModelFactory modelFactory){
 
         this.modelFactory = modelFactory;
         clients = new ArrayList<>();
@@ -30,8 +29,7 @@ public class RmiServer implements RemoteServer
         }
     }
 
-    public void start()
-    {
+    public void start() {
         try {
             UnicastRemoteObject.exportObject(this, 0);
             Naming.rebind("DB", this);
@@ -41,32 +39,28 @@ public class RmiServer implements RemoteServer
     }
 
     @Override
-    public String LoginClient(UserName userName, Password password) throws RemoteException
-    {
+    public String LoginClient(UserName userName, Password password) throws RemoteException {
         return modelFactory.getLoginManager().validateLoginClient(userName, password);
     }
 
     @Override
-    public String LoginOwner(UserName userName, Password password) throws RemoteException
-    {
+    public String LoginOwner(UserName userName, Password password) throws RemoteException {
         return modelFactory.getLoginManager().validateLoginOwner(userName, password);
     }
 
     @Override
-    public String LoginStaff(UserName userName, Password password) throws RemoteException
-    {
+    public String LoginStaff(UserName userName, Password password) throws RemoteException {
         return modelFactory.getLoginManager().validateLoginStaff(userName, password);
     }
 
     @Override
-    public ArrayList<Activity> requestActivities() throws RemoteException
-    {
+    public ArrayList<Activity> requestActivities() throws RemoteException {
         return modelFactory.getActivitiesManager().requestActivities();
     }
 
     @Override
-    public String deleteActivity(Activity activity) throws RemoteException
-    {
+    public String deleteActivity(Activity activity) throws RemoteException {
+
         for (RemoteClient client: clients) {
             client.activityDeleted(activity);
         }
@@ -75,8 +69,8 @@ public class RmiServer implements RemoteServer
     }
 
     @Override
-    public String saveActivity(Activity activity) throws RemoteException
-    {
+    public String saveActivity(Activity activity) throws RemoteException {
+
         for (RemoteClient client: clients) {
             client.activityAdded(activity);
         }
@@ -85,8 +79,7 @@ public class RmiServer implements RemoteServer
     }
 
     @Override
-    public boolean authenticate(RemoteClient client) throws RemoteException
-    {
+    public boolean authenticate(RemoteClient client) throws RemoteException{
         if(!clients.contains(client)){
             clients.add(client);
         }
@@ -94,14 +87,12 @@ public class RmiServer implements RemoteServer
     }
 
     @Override
-    public String saveBmiData(BMIData bmiData) throws RemoteException
-    {
+    public String saveBmiData(BMIData bmiData) throws RemoteException {
         return modelFactory.getBmiManager().saveBmiData(bmiData);
     }
 
     @Override
-    public String addStaffMember(StaffMember staffMember) throws RemoteException
-    {
+    public String addStaffMember(StaffMember staffMember) throws RemoteException{
         for (RemoteClient client: clients) {
             client.staffMemberAdded(staffMember);
         }
@@ -109,14 +100,12 @@ public class RmiServer implements RemoteServer
     }
 
     @Override
-    public ArrayList<StaffMember> getStaffMembers() throws RemoteException
-    {
+    public ArrayList<StaffMember> getStaffMembers() throws RemoteException {
         return modelFactory.getManageStaffManager().getStaffMembers();
     }
 
     @Override
-    public String deleteStaffMember(StaffMember staffMember) throws RemoteException
-    {
+    public String deleteStaffMember(StaffMember staffMember) throws RemoteException {
         for (RemoteClient client: clients) {
             client.staffMemberDeleted(staffMember);
         }
@@ -124,8 +113,7 @@ public class RmiServer implements RemoteServer
     }
 
     @Override
-    public String savePersonalTrainer(PersonalTrainer personalTrainer) throws RemoteException
-    {
+    public String savePersonalTrainer(PersonalTrainer personalTrainer) throws RemoteException{
         for (RemoteClient client: clients) {
             client.personalTrainerAdded(personalTrainer);
         }
@@ -133,14 +121,12 @@ public class RmiServer implements RemoteServer
     }
 
     @Override
-    public ArrayList<PersonalTrainer> getPersonalTrainers(boolean staff) throws RemoteException
-    {
+    public ArrayList<PersonalTrainer> getPersonalTrainers(boolean staff) throws RemoteException {
         return modelFactory.getPersonalTrainerManager().getPersonalTrainers(staff);
     }
 
     @Override
-    public String removePersonalTrainer(PersonalTrainer personalTrainer) throws RemoteException
-    {
+    public String removePersonalTrainer(PersonalTrainer personalTrainer) throws RemoteException {
         for (RemoteClient client: clients) {
             client.personalTrainerRemoved(personalTrainer);
         }
@@ -170,20 +156,18 @@ public class RmiServer implements RemoteServer
     }
 
     @Override
-    public BMIData loadBmiData(UserName userName) throws RemoteException
-    {
+    public BMIData loadBmiData(UserName userName) throws RemoteException {
         return modelFactory.getBmiManager().loadBmiData(userName);
     }
 
     @Override
-    public String deleteBmiData(UserName userName) throws RemoteException
-    {
+    public String deleteBmiData(UserName userName) throws RemoteException {
         return modelFactory.getBmiManager().deleteBmiData(userName);
     }
 
     @Override
-    public String bookPersonalTrainer(PersonalTrainer personalTrainer, UserName userName, RemoteClient remoteClient) throws RemoteException
-    {
+    public String bookPersonalTrainer(PersonalTrainer personalTrainer, UserName userName, RemoteClient remoteClient) throws RemoteException {
+
         remoteClient.personalTrainerBooked(personalTrainer);
 
         clients.remove(remoteClient);
@@ -198,14 +182,12 @@ public class RmiServer implements RemoteServer
     }
 
     @Override
-    public ArrayList<PersonalTrainer> viewMyBookings(UserName userName) throws RemoteException
-    {
+    public ArrayList<PersonalTrainer> viewMyBookings(UserName userName) throws RemoteException {
         return modelFactory.getPersonalTrainerManager().viewMyBookings(userName);
     }
 
     @Override
-    public String cancelBooking(PersonalTrainer personalTrainer, UserName userName, RemoteClient remoteClient)  throws RemoteException
-    {
+    public String cancelBooking(PersonalTrainer personalTrainer, UserName userName, RemoteClient remoteClient)  throws RemoteException{
        // ArrayList<RemoteClient> otherClients = new ArrayList<>();
         //otherClients.addAll(clients);
         //otherClients.remove(remoteClient);
@@ -233,20 +215,18 @@ public class RmiServer implements RemoteServer
     }
 
     @Override
-    public ArrayList<Activity> requestRegisteredActivities() throws RemoteException
-    {
+    public ArrayList<Activity> requestRegisteredActivities() throws RemoteException {
         return modelFactory.getActivitiesManager().requestRegisteredActivities();
     }
 
     @Override
-    public String cancelRegistration(Activity activity, UserName userName) throws RemoteException
-    {
+    public String cancelRegistration(Activity activity, UserName userName) throws RemoteException {
         return modelFactory.getActivitiesManager().cancelRegistration(activity,userName);
     }
 
     @Override
-    public String registeredActivity(Activity activity, UserName userName)throws RemoteException
-    {
-        return modelFactory.getActivitiesManager().registeredActivity(activity, userName);
+    public String registerActivities(Activity activity, UserName userName, RemoteClient remoteClient)throws RemoteException {
+        remoteClient.activityRegistered();
+        return modelFactory.getActivitiesManager().registerActivities(activity, userName);
     }
 }

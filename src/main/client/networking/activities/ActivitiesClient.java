@@ -10,37 +10,39 @@ import java.beans.PropertyChangeSupport;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
-public class ActivitiesClient implements ActivitiesClientModel
-{
+public class ActivitiesClient implements ActivitiesClientModel {
+
     private PropertyChangeSupport support = new PropertyChangeSupport(this);
     private RemoteClient rmiClient;
 
-    public ActivitiesClient(RemoteClient rmiClient)
-    {
+    public ActivitiesClient(RemoteClient rmiClient){
         this.rmiClient = rmiClient;
         try {
             rmiClient.addListener("Activity Deleted", evt -> activityDeleted(evt));
             rmiClient.addListener("Activity Added", evt -> activityAdded(evt));
+            rmiClient.addListener("Activity Registered", evt -> activityRegistered(evt));
         } catch (RemoteException e) {
             e.printStackTrace();
         }
     }
 
-    private void activityAdded(PropertyChangeEvent evt)
-    {
-        Activity activity = (Activity) evt.getNewValue();
-        support.firePropertyChange("Activity Added", null, activity);
+    private void activityRegistered(PropertyChangeEvent evt) {
+        support.firePropertyChange("Activity Registered", null, "Activity Registered");
     }
 
-    private void activityDeleted(PropertyChangeEvent evt)
-    {
+    private void activityAdded(PropertyChangeEvent evt) {
+        Activity activity = (Activity) evt.getNewValue();
+        support.firePropertyChange("Activity Added", null, activity);
+
+    }
+
+    private void activityDeleted(PropertyChangeEvent evt) {
         Activity activity = (Activity) evt.getNewValue();
         support.firePropertyChange("Activity Deleted", null, activity);
     }
 
     @Override
-    public ArrayList<Activity> requestActivities()
-    {
+    public ArrayList<Activity> requestActivities() {
         try {
             return rmiClient.requestActivities();
         } catch (RemoteException e) {
@@ -50,41 +52,41 @@ public class ActivitiesClient implements ActivitiesClientModel
     }
 
     @Override
-    public String deleteActivity(Activity activity)
-    {
+    public String deleteActivity(Activity activity) {
         try {
             return rmiClient.deleteActivity(activity);
         } catch (RemoteException e) {
             e.printStackTrace();
             return "Connection Lost";
         }
+
     }
 
     @Override
-    public String saveActivity(Activity activity)
-    {
+    public String saveActivity(Activity activity) {
         try {
             return rmiClient.saveActivity(activity);
         } catch (RemoteException e) {
             e.printStackTrace();
             return "Connection Lost";
         }
+
     }
 
     @Override
-    public String registerActivities(Activity activity, UserName userName)
-    {
+    public String registerActivities(Activity activity, UserName userName)  {
         try {
-            return rmiClient.registeredActivity(activity, userName);
+            return rmiClient.registerActivities(activity, userName);
         } catch (RemoteException e) {
             e.printStackTrace();
             return "Connection Lost";
         }
+
     }
 
+
     @Override
-    public void addListener(String eventName, PropertyChangeListener listener)
-    {
+    public void addListener(String eventName, PropertyChangeListener listener) {
         if(eventName == null || "".equals(eventName)) {
             support.addPropertyChangeListener(listener);
         } else {
@@ -93,8 +95,8 @@ public class ActivitiesClient implements ActivitiesClientModel
     }
 
     @Override
-    public ArrayList<Activity> requestRegisteredActivities()
-    {
+    public ArrayList<Activity> requestRegisteredActivities() {
+
         try {
             return rmiClient.requestRegisteredActivities();
         } catch (RemoteException e) {
@@ -105,8 +107,7 @@ public class ActivitiesClient implements ActivitiesClientModel
     }
 
     @Override
-    public String cancelRegistration(Activity activity, UserName userName)
-    {
+    public String cancelRegistration(Activity activity, UserName userName) {
         try {
             return rmiClient.cancelRegistration(activity, userName);
         } catch (RemoteException e) {
@@ -114,4 +115,6 @@ public class ActivitiesClient implements ActivitiesClientModel
             return "Connection Lost";
         }
     }
+
+
 }

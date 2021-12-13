@@ -19,7 +19,7 @@ public class PersonalTrainerDAO implements PersonalTrainerDAOModel
     }
 
     @Override
-    public String savePersonalTrainer(PersonalTrainer personalTrainer)
+    public synchronized String savePersonalTrainer(PersonalTrainer personalTrainer)
     {
         PreparedStatement statement;
 
@@ -45,7 +45,7 @@ public class PersonalTrainerDAO implements PersonalTrainerDAOModel
     }
 
     @Override
-    public ArrayList<PersonalTrainer> getPersonalTrainers(boolean staff)
+    public synchronized ArrayList<PersonalTrainer> getPersonalTrainers(boolean staff)
     {
         PreparedStatement statement;
         ResultSet resultSet;
@@ -97,7 +97,7 @@ public class PersonalTrainerDAO implements PersonalTrainerDAOModel
     }
 
     @Override
-    public String removePersonalTrainer(PersonalTrainer personalTrainer)
+    public synchronized String removePersonalTrainer(PersonalTrainer personalTrainer)
     {
         PreparedStatement statement;
         try
@@ -118,7 +118,7 @@ public class PersonalTrainerDAO implements PersonalTrainerDAOModel
     }
 
     @Override
-    public String bookPersonalTrainer(PersonalTrainer personalTrainer, UserName userName)
+    public synchronized String bookPersonalTrainer(PersonalTrainer personalTrainer, UserName userName)
     {
         PreparedStatement statement;
 
@@ -143,7 +143,7 @@ public class PersonalTrainerDAO implements PersonalTrainerDAOModel
     }
 
     @Override
-    public ArrayList<PersonalTrainer> viewMyBookings(UserName userName)
+    public synchronized ArrayList<PersonalTrainer> viewMyBookings(UserName userName)
     {
         PreparedStatement statement;
         ResultSet resultSet;
@@ -171,7 +171,7 @@ public class PersonalTrainerDAO implements PersonalTrainerDAOModel
     }
 
     @Override
-    public String cancelBooking(PersonalTrainer personalTrainer, UserName userName)
+    public synchronized String cancelBooking(PersonalTrainer personalTrainer, UserName userName)
     {
         System.out.println(personalTrainer + " in the server " + userName.getUserName());
         PreparedStatement statement;
