@@ -7,28 +7,49 @@ import main.client.model.activities.ActivitiesModel;
 import main.client.model.login.LoginModel;
 import main.shared.Activity;
 
-public class RegisteredListViewModel
-{
+import java.beans.PropertyChangeEvent;
+
+public class RegisteredListViewModel {
+
+
+
     private ActivitiesModel activitiesManager;
     private LoginModel loginManager;
     private ObservableList<Activity> items;
 
-    public RegisteredListViewModel(ActivitiesModel activitiesManager, LoginModel loginManager)
-    {
+
+
+
+    public RegisteredListViewModel(ActivitiesModel activitiesManager, LoginModel loginManager){
         this.loginManager = loginManager;
         this.activitiesManager = activitiesManager;
 
         items = FXCollections.observableArrayList();
         items.addAll(activitiesManager.requestRegisteredActivities());
+
+        activitiesManager.addListener("Activity Registered", evt -> activityRegistered(evt));
+
     }
 
-    public ObservableList<Activity> getItems()
-    {
+    private void activityRegistered(PropertyChangeEvent evt) {
+        new Thread(() -> {
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            items.clear();
+            items.addAll(activitiesManager.requestRegisteredActivities());
+        }).start();
+
+    }
+
+    public ObservableList<Activity> getItems() {
         return items;
     }
 
-    public void cancelRegistration(Activity activity)
-    {
+
+    public void cancelRegistration(Activity activity) {
         String response = activitiesManager.cancelRegistration(activity, loginManager.getUserName());
 
         items.clear();
@@ -36,9 +57,6 @@ public class RegisteredListViewModel
 
         if(response.contains("resultado")){
             response = "Registration cancelled successfully";
-        }
-        else {
-
         }
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Cancel operation");

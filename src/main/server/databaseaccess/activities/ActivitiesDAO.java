@@ -191,6 +191,7 @@ public class ActivitiesDAO implements ActivitiesDAOModel
 
         } catch (Exception e) {
             e.printStackTrace();
+            return e.getMessage();
 
         } finally {
             dbConnection.closeConnection();

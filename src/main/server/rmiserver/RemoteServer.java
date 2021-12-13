@@ -29,7 +29,7 @@ public interface RemoteServer extends Remote
     String deleteBmiData(UserName userName) throws RemoteException;
     String bookPersonalTrainer(PersonalTrainer personalTrainer, UserName userName, RemoteClient remoteClient) throws RemoteException;
     ArrayList<PersonalTrainer> viewMyBookings(UserName userName) throws RemoteException;
-    String registeredActivity(Activity activity, UserName userName) throws RemoteException;
+    String registerActivities(Activity activity, UserName userName, RemoteClient remoteClient) throws RemoteException;
     String cancelBooking(PersonalTrainer personalTrainer, UserName userName, RemoteClient remoteClient) throws RemoteException;
     ArrayList<Activity> requestRegisteredActivities() throws RemoteException;
     String cancelRegistration(Activity activity, UserName userName) throws RemoteException;

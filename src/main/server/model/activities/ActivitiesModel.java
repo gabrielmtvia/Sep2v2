@@ -10,7 +10,7 @@ public interface ActivitiesModel
     ArrayList<Activity> requestActivities();
     String deleteActivity(Activity activity);
     String saveActivity(Activity activity);
-    String registeredActivity(Activity activity, UserName userName);
+    String registerActivities(Activity activity, UserName userName);
     ArrayList<Activity> requestRegisteredActivities();
     String cancelRegistration(Activity activity, UserName userName);
 }
