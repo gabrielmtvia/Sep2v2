@@ -77,6 +77,17 @@ public class ManageActivitiesController
 
     public void saveButton() throws RemoteException
     {
-        manageActivitiesViewModel.saveActivity();
+
+
+        try {
+            manageActivitiesViewModel.saveActivity();
+        }catch (Exception e){
+
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Error");
+            alert.setContentText("please provide data");
+            alert.showAndWait();
+
+        }
     }
 }
