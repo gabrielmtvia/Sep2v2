@@ -7,14 +7,14 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" stylesheets="@../../../tools/LoginUser.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.client.view.client.login.ClientLoginController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" stylesheets="@../../../tools/LoginUser.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.client.view.client.login.ClientLoginController">
    <children>
       <Label layoutX="197.0" layoutY="39.0" text="Client Login" textFill="#fbfbfb">
          <font>
             <Font size="39.0" />
          </font>
       </Label>
-      <Label layoutX="54.0" layoutY="134.0" text="Personal ID:" textFill="WHITE">
+      <Label layoutX="54.0" layoutY="134.0" text="Username" textFill="WHITE">
          <font>
             <Font size="25.0" />
          </font>
