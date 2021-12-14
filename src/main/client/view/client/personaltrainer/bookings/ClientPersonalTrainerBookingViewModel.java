@@ -64,7 +64,7 @@ public class ClientPersonalTrainerBookingViewModel
         System.out.println("From the viewmodel");
         System.out.println(personalTrainerCancelled + " "+personalTrainerCancelled.getUsername());
 
-        if(result.contains("resultado")){
+        if(result.contains("result")){
             items.remove(personalTrainer);
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Success");
