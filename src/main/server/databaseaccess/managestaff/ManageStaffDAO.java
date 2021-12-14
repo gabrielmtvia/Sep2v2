@@ -3,6 +3,8 @@ package main.server.databaseaccess.managestaff;
 import main.server.databaseaccess.database.DBConnectionModel;
 import main.shared.StaffMember;
 
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.util.ArrayList;
 
 public class ManageStaffDAO implements ManageStaffDAOModel
@@ -17,24 +19,67 @@ public class ManageStaffDAO implements ManageStaffDAOModel
     @Override
     public String addStaffMember(StaffMember staffMember)
     {
-        return "Staff Member added successfully";
+        PreparedStatement statement;
+
+        try
+        {
+            String query = "INSERT INTO staff (ssn, fullname, username, password) VALUES (?,?,?,?)";
+            statement = dbConnection.createPreparedStatement(query);
+            statement.setString(1 ,staffMember.getSSN());
+            statement.setString(2, staffMember.getFullName());
+            statement.setString(3, staffMember.getUserName());
+            statement.setString(4, staffMember.getPassword());
+            statement.executeUpdate();
+        }
+        catch (Exception throwables)
+        {
+            throwables.printStackTrace();
+        }
+        return "Staff-Member added successfully";
     }
 
     @Override
     public ArrayList<StaffMember> getStaffMembers()
     {
-        ArrayList<StaffMember> test = new ArrayList<>();
-        test.add(new StaffMember("456", "test","test", "test"));
-        test.add(new StaffMember("354", "dummy","test", "test"));
-        test.add(new StaffMember("456", "test","dummy", "test"));
-        test.add(new StaffMember("456", "test","test", "dummy"));
+        PreparedStatement statement;
+        ResultSet resultSet;
+        ArrayList<StaffMember> list = new ArrayList<>();
 
-        return test;
+        try
+        {
+            String query = "SELECT * FROM staff";
+            statement = dbConnection.createPreparedStatement(query);
+            resultSet = statement.executeQuery();
+
+            while (resultSet.next())
+            {
+                StaffMember staffMember = new StaffMember(resultSet.getString("ssn"), resultSet.getString("fullname"), resultSet.getString("username"), resultSet.getString("password"));
+                list.add(staffMember);
+            }
+        }
+        catch (Exception throwables)
+        {
+            throwables.printStackTrace();
+        }
+        return list;
     }
 
     @Override
     public String deleteStaffMember(StaffMember staffMember)
     {
-        return "Staff member deleted successfully";
+        PreparedStatement statement;
+
+        try
+        {
+            String query = "DELETE FROM staff WHERE username = ?";
+            statement = dbConnection.createPreparedStatement(query);
+            statement.setString(1, staffMember.getUserName());
+            statement.executeUpdate();
+        }
+        catch (Exception throwables)
+        {
+            throwables.printStackTrace();
+        }
+        return "Staff-Member deleted successfully";
     }
 }
