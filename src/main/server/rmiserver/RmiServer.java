@@ -188,18 +188,7 @@ public class RmiServer implements RemoteServer{
 
     @Override
     public String cancelBooking(PersonalTrainer personalTrainer, UserName userName, RemoteClient remoteClient)  throws RemoteException{
-       // ArrayList<RemoteClient> otherClients = new ArrayList<>();
-        //otherClients.addAll(clients);
-        //otherClients.remove(remoteClient);
 
-       // for (RemoteClient client : clients) {
-         //   client.cancelBooking(personalTrainer, userName);
-       // }
-
-        //remoteClient.personalTrainerRemoved(personalTrainer);
-       // PersonalTrainer pt = personalTrainer;
-       // pt.setUsername("");
-        //remoteClient.personalTrainerAdded(pt);
         remoteClient.personalTrainerCancelled(personalTrainer);
         clients.remove(remoteClient);
         PersonalTrainer pt = personalTrainer;

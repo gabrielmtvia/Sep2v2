@@ -3,6 +3,7 @@ package main.server.databaseaccess.managestaff;
 import main.server.databaseaccess.database.DBConnectionModel;
 import main.shared.StaffMember;
 
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
@@ -21,47 +22,49 @@ public class ManageStaffDAO implements ManageStaffDAOModel
     {
         PreparedStatement statement;
 
-        try
-        {
+        try {
             String query = "INSERT INTO staff (ssn, fullname, username, password) VALUES (?,?,?,?)";
             statement = dbConnection.createPreparedStatement(query);
-            statement.setString(1 ,staffMember.getSSN());
+            statement.setString(1, staffMember.getSSN());
             statement.setString(2, staffMember.getFullName());
             statement.setString(3, staffMember.getUserName());
             statement.setString(4, staffMember.getPassword());
-            statement.executeUpdate();
+            statement.executeQuery();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+
+        } finally {
+            dbConnection.closeConnection();
         }
-        catch (Exception throwables)
-        {
-            throwables.printStackTrace();
-        }
-        return "Staff-Member added successfully";
+
+        return "Staff Member added successfully";
     }
 
     @Override
     public ArrayList<StaffMember> getStaffMembers()
     {
+        ArrayList<StaffMember> staffMembers = new ArrayList<>();
         PreparedStatement statement;
         ResultSet resultSet;
-        ArrayList<StaffMember> list = new ArrayList<>();
-
-        try
-        {
+        try {
             String query = "SELECT * FROM staff";
             statement = dbConnection.createPreparedStatement(query);
             resultSet = statement.executeQuery();
 
-            while (resultSet.next())
-            {
+            while (resultSet.next()) {
                 StaffMember staffMember = new StaffMember(resultSet.getString("ssn"), resultSet.getString("fullname"), resultSet.getString("username"), resultSet.getString("password"));
-                list.add(staffMember);
+                staffMembers.add(staffMember);
             }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+
+        } finally {
+            dbConnection.closeConnection();
         }
-        catch (Exception throwables)
-        {
-            throwables.printStackTrace();
-        }
-        return list;
+
+        return staffMembers;
     }
 
     @Override
@@ -69,17 +72,19 @@ public class ManageStaffDAO implements ManageStaffDAOModel
     {
         PreparedStatement statement;
 
-        try
-        {
-            String query = "DELETE FROM staff WHERE username = ?";
+        try {
+            String query = "DELETE FROM staff WHERE ssn = ?";
             statement = dbConnection.createPreparedStatement(query);
-            statement.setString(1, staffMember.getUserName());
-            statement.executeUpdate();
+            statement.setString(1, staffMember.getSSN());
+            statement.executeQuery();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+
+        } finally {
+            dbConnection.closeConnection();
         }
-        catch (Exception throwables)
-        {
-            throwables.printStackTrace();
-        }
-        return "Staff-Member deleted successfully";
+
+        return "Staff member deleted successfully";
     }
 }

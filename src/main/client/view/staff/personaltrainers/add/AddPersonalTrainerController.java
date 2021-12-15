@@ -24,7 +24,6 @@ public class AddPersonalTrainerController
     phoneNumberField.textProperty().bindBidirectional(addPersonalTrainerViewModel.phoneNumberFieldProperty());
     ssnField.textProperty().bindBidirectional(addPersonalTrainerViewModel.ssnFieldProperty());
     time.textProperty().bindBidirectional(addPersonalTrainerViewModel.timeProperty());
-    //datePicker.getEditor().textProperty().bind(addPersonalTrainerViewModel.dateProperty());
     addPersonalTrainerViewModel.dateProperty().bind(datePicker.getEditor().textProperty());
   }
 

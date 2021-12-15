@@ -28,7 +28,9 @@ public class ActivitiesDAO implements ActivitiesDAOModel
             resultSet = statement.executeQuery();
 
             while (resultSet.next()) {
-                Activity activity = new Activity(resultSet.getString("type"),resultSet.getInt("price"),resultSet.getString("date"),resultSet.getString("startTime"),resultSet.getString("endTime"));
+                Activity activity = new Activity(resultSet.getString("type"),
+                        resultSet.getInt("price"),resultSet.getString("date"),
+                        resultSet.getString("startTime"),resultSet.getString("endTime"));
                 list.add(activity);
             }
 
@@ -47,8 +49,6 @@ public class ActivitiesDAO implements ActivitiesDAOModel
         ResultSet resultSet;
         try
         {
-           // String query0 = "DELETE from registrations where registrations.activityno = activities.activityno";
-            //todo
             String query = "select activityno from activities where type like ? ";
             statement =dbConnection.createPreparedStatement(query);
             statement.setString(1, activity.getActivityName());
@@ -78,59 +78,7 @@ public class ActivitiesDAO implements ActivitiesDAOModel
         }
         return "Activity deleted successfully";
 
-/*
-        PreparedStatement statement;
-        PreparedStatement statement1;
-        ResultSet resultSet;
 
-        try
-        {
-            // String query0 = "DELETE from registrations where registrations.activityno = activities.activityno";
-            String query = "select activityno from activities where type like ? ";
-            statement =dbConnection.createPreparedStatement(query);
-            statement.setString(1, activity.getActivityName());
-
-            resultSet = statement.executeQuery();
-
-            int activityNumber = 0;
-
-            while (resultSet.next()){
-                activityNumber = resultSet.getInt("activityno");
-
-            }
-
-            String query1 = "DELETE FROM registrations WHERE activityno = ?";
-            statement = dbConnection.createPreparedStatement(query1);
-
-            statement.setInt(1,activityNumber);
-            statement.executeQuery();
-
-
-
-
-            int activityNumber2 = 0;
-            while (resultSet.next()){
-                activityNumber2 = resultSet.getInt("activityno");
-
-            }
-
-            String query2 = "DELETE from activities where activityno = ? ";
-            statement = dbConnection.createPreparedStatement(query2);
-            statement.setInt(2, activityNumber2);
-            statement.executeQuery();
-
-
-
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-        } catch (Exception e) {
-            e.printStackTrace();
-            return e.getMessage();
-        }
-
-
-        return "Activity deleted successfully";
- */
     }
 
     @Override

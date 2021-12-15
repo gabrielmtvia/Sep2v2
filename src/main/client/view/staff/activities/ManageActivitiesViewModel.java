@@ -74,14 +74,9 @@ public class ManageActivitiesViewModel
 
         }catch (PatternSyntaxException e){
             alert(e.getMessage());
-          //  alert("incorrect time format");
-
         }
 
         System.out.println("the time is " + " "+ Integer.parseInt(timeSplitForStartTime[0])+ " hours and " + Integer.parseInt(timeSplitForStartTime[1]) + " minutes");
-
-        //String response = "Please fill the date in HH:MM format";
-        //alert(response);
 
         boolean isValid = true;
         StringBuilder infoMessage = new StringBuilder();
@@ -107,8 +102,11 @@ public class ManageActivitiesViewModel
 
         if(isValid) {
             if ( type.getValue() != null && type.getValue() != "") {
-                if (priceField <= 500 && priceField >= 50 && startTimeHours >= 0 && startTimeHours < 24 && startTimeMinutes >= 0 && startTimeMinutes < 60 && endTimeHours >= 0 && endTimeHours <= 24 && endTimeMinutes >= 0 && endTimeMinutes <= 60) {
-                    Activity activity = new Activity(type.getValue(), Integer.parseInt(price.getValue()), dbFormat, startTimeField.getValue(), endTimeField.getValue());
+                if (priceField <= 500 && priceField >= 50 && startTimeHours >= 0 && startTimeHours < 24 &&
+                        startTimeMinutes >= 0 && startTimeMinutes < 60 && endTimeHours >= 0 && endTimeHours <= 24 &&
+                        endTimeMinutes >= 0 && endTimeMinutes <= 60) {
+                    Activity activity = new Activity(type.getValue(), Integer.parseInt(price.getValue()), dbFormat,
+                            startTimeField.getValue(), endTimeField.getValue());
                     String result = activitiesManager.saveActivity(activity);
                     type.setValue("");
                     price.setValue("");
