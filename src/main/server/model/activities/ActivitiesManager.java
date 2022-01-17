@@ -34,8 +34,8 @@ public class ActivitiesManager implements ActivitiesModel {
     }
 
     @Override
-    public ArrayList<Activity> requestRegisteredActivities() {
-        return activitiesDAO.requestRegisteredActivities();
+    public ArrayList<Activity> requestRegisteredActivities(UserName userName) {
+        return activitiesDAO.requestRegisteredActivities(userName);
     }
 
     @Override

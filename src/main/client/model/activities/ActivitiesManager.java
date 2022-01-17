@@ -76,9 +76,9 @@ public class ActivitiesManager implements ActivitiesModel
     }
 
     @Override
-    public ArrayList<Activity> requestRegisteredActivities()
+    public ArrayList<Activity> requestRegisteredActivities(UserName userName)
     {
-        return activitiesClient.requestRegisteredActivities();
+        return activitiesClient.requestRegisteredActivities(userName);
     }
 
     @Override

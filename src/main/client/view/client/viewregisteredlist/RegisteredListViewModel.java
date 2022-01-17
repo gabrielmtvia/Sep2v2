@@ -25,7 +25,7 @@ public class RegisteredListViewModel {
         this.activitiesManager = activitiesManager;
 
         items = FXCollections.observableArrayList();
-        items.addAll(activitiesManager.requestRegisteredActivities());
+        items.addAll(activitiesManager.requestRegisteredActivities(loginManager.getUserName()));
 
         activitiesManager.addListener("Activity Registered", evt -> activityRegistered(evt));
 
@@ -39,7 +39,7 @@ public class RegisteredListViewModel {
                 e.printStackTrace();
             }
             items.clear();
-            items.addAll(activitiesManager.requestRegisteredActivities());
+            items.addAll(activitiesManager.requestRegisteredActivities(loginManager.getUserName()));
         }).start();
 
     }
@@ -53,7 +53,7 @@ public class RegisteredListViewModel {
         String response = activitiesManager.cancelRegistration(activity, loginManager.getUserName());
 
         items.clear();
-        items.addAll(activitiesManager.requestRegisteredActivities());
+        items.addAll(activitiesManager.requestRegisteredActivities(loginManager.getUserName()));
 
         if(response.contains("resultado")){
             response = "Registration cancelled successfully";

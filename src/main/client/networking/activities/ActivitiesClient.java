@@ -95,10 +95,10 @@ public class ActivitiesClient implements ActivitiesClientModel {
     }
 
     @Override
-    public ArrayList<Activity> requestRegisteredActivities() {
+    public ArrayList<Activity> requestRegisteredActivities(UserName userName) {
 
         try {
-            return rmiClient.requestRegisteredActivities();
+            return rmiClient.requestRegisteredActivities(userName);
         } catch (RemoteException e) {
             e.printStackTrace();
 

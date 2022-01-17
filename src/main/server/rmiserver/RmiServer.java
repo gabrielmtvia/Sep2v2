@@ -204,8 +204,8 @@ public class RmiServer implements RemoteServer{
     }
 
     @Override
-    public ArrayList<Activity> requestRegisteredActivities() throws RemoteException {
-        return modelFactory.getActivitiesManager().requestRegisteredActivities();
+    public ArrayList<Activity> requestRegisteredActivities(UserName userName) throws RemoteException {
+        return modelFactory.getActivitiesManager().requestRegisteredActivities(userName);
     }
 
     @Override

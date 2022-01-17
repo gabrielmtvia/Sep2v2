@@ -148,15 +148,16 @@ public class ActivitiesDAO implements ActivitiesDAOModel
     }
 
     @Override
-    public ArrayList<Activity> requestRegisteredActivities()
+    public ArrayList<Activity> requestRegisteredActivities(UserName userName)
     {
         PreparedStatement statement;
         ResultSet resultSet;
 
         ArrayList<Activity> list = new ArrayList<>();
         try {
-            String query ="SELECT activities.type, price, date, starttime, endtime from activities join registrations on activities.activityno = registrations.activityno";
+            String query ="SELECT registrations.username, activities.type, price, date, starttime, endtime from activities join registrations on activities.activityno = registrations.activityno where username = ?";
             statement = dbConnection.createPreparedStatement(query);
+            statement.setString(1, userName.getUserName());
             resultSet = statement.executeQuery();
 
             while (resultSet.next()) {

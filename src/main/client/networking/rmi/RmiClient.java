@@ -224,9 +224,9 @@ public class RmiClient implements RemoteClient {
         support.firePropertyChange("Personal Trainer Already Cancelled", null, personalTrainer);
     }
 
-    @Override public ArrayList<Activity> requestRegisteredActivities() throws RemoteException
+    @Override public ArrayList<Activity> requestRegisteredActivities(UserName userName) throws RemoteException
     {
-        return serverStub.requestRegisteredActivities();
+        return serverStub.requestRegisteredActivities(userName);
     }
 
     @Override
